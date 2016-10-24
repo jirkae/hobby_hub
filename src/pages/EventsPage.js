@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import { SearchBox } from '../components/events/SearchBox.js';
 
 export class EventsPage extends Component {
-  render() {    
+  render() {
     return (
       <div className="homepage">
-        eventsPage
+        <SearchBox />
       </div>
     );
   }
