@@ -11,8 +11,8 @@ export class SearchBox extends Component {
         return (
             <div>
                 <input type="text" placeholder="Hello!" onChange={(event) => this.setState({
-                    url: "http://localhost:3000/api/events?filter[where][name]=" + event.target.value
-                })}/>
+                    url: "http://localhost:3000/api/events" + (event.target.value !== '' ? "?filter[where][name]="+event.target.value : '')
+                })}/>                
                 <SearchResults url={url}/></div>
         );
     }

@@ -8,7 +8,7 @@ export class SearchResults extends Component {
 
     render() {
         var items = this.state.data.map((data) => {
-            return <SearchItem name={data.name} description={data.description}/>
+            return <SearchItem name={data.name} description={data.description} id={data.id} key={data.id}/>
         })
         return (
             <div>{items}</div>

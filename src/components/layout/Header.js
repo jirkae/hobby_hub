@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 
-import logo from '../../images/logo.svg';
+import logo from '../../images/hobby_hub.jpg';
 
 export class Header extends Component {
   render() {
     return (
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <nav>
+            <ul>
+              <li><a href="/">Homepage</a></li>
+              <li><a href="/events">Výpis eventů</a></li>
+              <li><a href="/create-event">Přidat event</a></li>
+            </ul>
+          </nav>
         </div>
     );
   }
