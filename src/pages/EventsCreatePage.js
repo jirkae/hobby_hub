@@ -50,7 +50,7 @@ var that = this;
             
             that.clearForm();
         }
-    }
+    };
     http.send(JSON.stringify(params));
   }
 
@@ -59,12 +59,15 @@ var that = this;
     return (
       <div className="createEvent">
         <form onSubmit={this.formSubmit.bind(this)}>
-          <label>Název eventu</label><br />
-          <input type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} /><br />
-          <label>Krátký popis</label><br />
-          <input type="text" value={this.state.description} onChange={this.handleDescriptionChange.bind(this)} /><br />
-          <label>Dlouhý popis</label><br />
-          <textarea  onChange={this.handleDetailDescriptionChange.bind(this)} value={this.state.detailDescription}></textarea><br />
+          <label htmlFor="eventName">Název eventu</label><br />
+          <input id="eventName" type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} /><br />
+
+          <label htmlFor="shortDesc">Krátký popis</label><br />
+          <input id="shortDesc" type="text" value={this.state.description} onChange={this.handleDescriptionChange.bind(this)} /><br />
+
+          <label htmlFor="longDesc">Dlouhý popis</label><br />
+          <textarea id="longDesc" onChange={this.handleDetailDescriptionChange.bind(this)} value={this.state.detailDescription}></textarea><br />
+
           <input type="submit" value="přidat" />
         </form>
       </div>
