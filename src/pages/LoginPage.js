@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 
 export class LoginPage extends Component {
   handleSubmit(event) {
@@ -7,19 +8,17 @@ export class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="col-xs-3">
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <div><label htmlFor="username">User name</label></div>
-            <input type="text" name="firstName" id="username"/>
-          </div>
-          <div>
-            <div><label htmlFor="passwd">Password</label></div>
-            <input type="text" name="lastName" id="passwd"/>
-          </div>
-          <div>
-            <button type="submit">Submit Order</button>
-          </div>
+          <FormGroup controlId="formUserName">
+            <ControlLabel>Uživatelské jméno</ControlLabel>
+            <FormControl type="text"/>
+          </FormGroup>
+          <FormGroup controlId="formPassword">
+            <ControlLabel>Heslo</ControlLabel>
+            <FormControl type="password"/>
+          </FormGroup>
+          <Button bsStyle="primary" type="submit">Log in</Button>
         </form>
       </div>
     )

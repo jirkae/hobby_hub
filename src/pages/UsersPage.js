@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 export class UsersPage extends Component {
   render() {
     return (
-      <div>
-        <table>
+      <div className="col-xs-6">
+        <table className="table table-striped table-hover">
           <thead>
           <tr>
             <th>Jméno</th>
@@ -22,6 +22,11 @@ export class UsersPage extends Component {
             <td>Drahomír</td>
             <td>Zakop</td>
             <td>passw</td>
+          </tr>
+          <tr>
+            <td>Tekla</td>
+            <td>Řídká</td>
+            <td>Neptej se</td>
           </tr>
           </tbody>
         </table>

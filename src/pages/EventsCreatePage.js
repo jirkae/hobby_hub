@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap"
 
 export class EventsCreatePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = this.getInitData();
+
+    this.formSubmit = this.formSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleDetailDescriptionChange = this.handleDetailDescriptionChange.bind(this);
   }
 
   getInitData() {
@@ -14,6 +20,7 @@ export class EventsCreatePage extends Component {
       detailDescription: ''
     };
   }
+
   clearForm() {
     this.setState(this.getInitData());
   }
@@ -44,12 +51,12 @@ export class EventsCreatePage extends Component {
     //Send the proper header information along with the request
     http.setRequestHeader("Content-type", "application/json");
 
-var that = this;
-    http.onreadystatechange = function() {//Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-            
-            that.clearForm();
-        }
+    var that = this;
+    http.onreadystatechange = function () {//Call a function when the state changes.
+      if (http.readyState == 4 && http.status == 200) {
+
+        that.clearForm();
+      }
     };
     http.send(JSON.stringify(params));
   }
@@ -57,18 +64,27 @@ var that = this;
   render() {
     const setName = this.setName;
     return (
-      <div className="createEvent">
-        <form onSubmit={this.formSubmit.bind(this)}>
-          <label htmlFor="eventName">Název eventu</label><br />
-          <input id="eventName" type="text" value={this.state.name} onChange={this.handleNameChange.bind(this)} /><br />
+      <div className="createEvent col-xs-4">
+        <form onSubmit={this.formSubmit}>
+          <FormGroup controlId="eventName">
+            <ControlLabel>Název události</ControlLabel>
+            <FormControl type="text" value={this.state.name} onChange={this.handleNameChange}/>
+          </FormGroup>
 
-          <label htmlFor="shortDesc">Krátký popis</label><br />
-          <input id="shortDesc" type="text" value={this.state.description} onChange={this.handleDescriptionChange.bind(this)} /><br />
+          <FormGroup controlId="eventSortDesc">
+            <ControlLabel>Krátký popis</ControlLabel>
+            <FormControl type="text" value={this.state.description} onChange={this.handleDescriptionChange}/>
+          </FormGroup>
 
-          <label htmlFor="longDesc">Dlouhý popis</label><br />
-          <textarea id="longDesc" onChange={this.handleDetailDescriptionChange.bind(this)} value={this.state.detailDescription}></textarea><br />
+          <FormGroup controlId="eventLongDesc">
+            <ControlLabel>Dlouhý popis</ControlLabel>
+            <FormControl componentClass="textarea"
+                         placeholder="Dopište detailní popis události"
+                         value={this.state.detailDescription}
+                         onChange={this.handleDetailDescriptionChange}/>{/**/}
+          </FormGroup>
 
-          <input type="submit" value="přidat" />
+          <Button bsStyle="primary" type="submit">Přidat</Button>
         </form>
       </div>
     );

@@ -1,19 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router";
+import { NavBar, Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 export class MenuPane extends Component {
   render() {
     return (
-      <div>
-        <ul className="menu">
-          <li><Link to="/" className="menuItem" activeClassName="active">Homepage</Link></li>
-          {/* root adresa "/" je aktivní pořád, proto svítí*/}
-          <li><Link to="events" className="menuItem" activeClassName="active">Výpis eventů</Link></li>
-          <li><Link to="create-event" className="menuItem" activeClassName="active">Přidat event</Link></li>
-          <li><Link to="users" className="menuItem" activeClassName="active">Seznam uživatelů</Link></li>
-          <li><Link to="login" className="menuItem" activeClassName="active">login</Link></li>
-        </ul>
-      </div>
+      <Navbar>
+        <Nav>
+          <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
+          <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
+          <LinkContainer to="/users"><NavItem eventKey={3}>Seznam uživatelů</NavItem></LinkContainer>
+        </Nav>
+        <Nav pullRight>
+          <LinkContainer to="/login"><NavItem eventKey={5}>Login</NavItem></LinkContainer>
+        </Nav>
+      </Navbar>
     );
   }
 }
