@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
 
-export class LoginPage extends Component {
+export class RegisterForm extends Component {
   constructor(props) {
     super(props);
 
@@ -9,13 +9,14 @@ export class LoginPage extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
   }
 
   render() {
     return (
-      <div className="col-xs-offset-3 col-xs-4">
+      <div className="col-xs-offset-1 col-xs-9  ">
         <Form horizontal onSubmit={this.handleSubmit()}>
+
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={3}>
               Email
@@ -27,22 +28,39 @@ export class LoginPage extends Component {
 
           <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={3}>
-              Password
+              Jméno
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Password" />
+              <FormControl type="text" placeholder="Jméno" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={3}>
+              Heslo
+            </Col>
+            <Col sm={9}>
+              <FormControl type="password" placeholder="Příjmení" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword">
+            <Col componentClass={ControlLabel} sm={3}>
+              Heslo
+            </Col>
+            <Col sm={9}>
+              <FormControl type="password" placeholder="Heslo" />
             </Col>
           </FormGroup>
 
           <FormGroup>
             <Col smOffset={3} sm={9}>
               <Button type="submit">
-                Sign in
+                Register
               </Button>
             </Col>
           </FormGroup>
         </Form>
-
       </div>
     )
   }

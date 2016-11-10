@@ -6,7 +6,6 @@ import { HomePage } from './pages/HomePage.js';
 import { EventsPage } from './pages/EventsPage.js';
 import { EventDetailPage } from './pages/EventDetailPage.js';
 import { EventsCreatePage } from './pages/EventsCreatePage.js';
-import { LoginPage } from './pages/LoginPage.js';
 import { UsersPage } from './pages/UsersPage.js';
 import { UserDetailPage } from './pages/UserDetailPage.js';
 import { Page404 } from './pages/Page404.js';
@@ -20,7 +19,6 @@ export function createRoutes() {
         <Route path=":eventId" component={EventDetailPage}/>
       </Route>
       <Route path="/create-event" component={EventsCreatePage}></Route>
-      <Route path="/login" component={LoginPage}></Route>
       <Route path="/users">
         <IndexRoute component={UsersPage}/>
         <Route path=":userId" component={UserDetailPage}/>
