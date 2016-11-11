@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
-import { postLogin } from './../../services/restApi';
 
-class LoginForm extends Component {
+class ForgotPassForm extends Component {
   constructor(props) {
     super(props);
 
@@ -11,14 +10,6 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    const formData = new FormData(event.target);
-
-    postLogin(formData)
-      .then(({data}) => {
-          // zavřít modální okno a zobrazit zelenou hlášku
-        })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
   }
 
   render() {
@@ -35,26 +26,18 @@ class LoginForm extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword">
-            <Col componentClass={ControlLabel} sm={3}>
-              Heslo
-            </Col>
-            <Col sm={9}>
-              <FormControl type="password" placeholder="Heslo" />
-            </Col>
-          </FormGroup>
-
           <FormGroup>
             <Col smOffset={3} sm={9}>
               <Button type="submit">
-                Přihlásit se
+                Resetovat heslo
               </Button>
             </Col>
           </FormGroup>
+
         </Form>
       </div>
     )
   }
 }
 
-export default LoginForm;
+export default ForgotPassForm;

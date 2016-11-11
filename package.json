@@ -50,6 +50,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "axios": "^0.15.2",
     "node-sass": "^3.10.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.6",

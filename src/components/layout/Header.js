@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router";
-import { MenuPane } from "./../menu/MenuPane.js";
+import MenuPane from "./../menu/MenuPane.js";
 
 import logo from '../../images/hobby_hub.jpg';
 

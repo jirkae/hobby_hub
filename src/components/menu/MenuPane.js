@@ -1,10 +1,15 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavItem, Modal, Button } from "react-bootstrap";
+import { Navbar, Nav, NavItem, Modal } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { LoginForm } from "./../login/LoginForm";
-import { RegisterForm } from "./../login/RegisterForm";
+import LoginForm from "./../login/LoginForm";
+import RegisterForm from "./../login/RegisterForm";
+import ForgotPassForm from "./../login/ForgotPassForm";
 
-export class MenuPane extends Component {
+const LOGIN_CODE = "login";
+const REGISTER_CODE = "register";
+const FORGOT_PASS_CODE = "forgotPass";
+
+class MenuPane extends Component {
   constructor(props) {
     super(props);
 
@@ -13,6 +18,7 @@ export class MenuPane extends Component {
     this.close = this.close.bind(this);
     this.openLogin = this.openLogin.bind(this);
     this.openRegister = this.openRegister.bind(this);
+    this.openForgotPass = this.openForgotPass.bind(this);
   }
 
   getInitData() {
@@ -24,12 +30,12 @@ export class MenuPane extends Component {
   }
 
   close() {
-    this.state = (this.getInitData());
+    this.setState({showModal: false,});
   }
 
   openLogin() {
     this.setState({
-      formToShow: "login",
+      formToShow: LOGIN_CODE,
       modaltitle: "Přihlášení",
       showModal: true,
     });
@@ -37,30 +43,46 @@ export class MenuPane extends Component {
 
   openRegister() {
     this.setState({
-      formToShow: "register",
+      formToShow: REGISTER_CODE,
       modaltitle: "Registrace",
       showModal: true,
     });
   }
 
+  openForgotPass() {
+    this.setState({
+      formToShow: FORGOT_PASS_CODE,
+      modaltitle: "Zapomenuté heslo",
+      showModal: true,
+    });
+  }
+
   getModalBody () {
-    return (
-      this.state.formToShow === "login" ? <LoginForm/> : <RegisterForm/>
-    )
+    switch (this.state.formToShow) {
+      case LOGIN_CODE:
+        return <LoginForm/>;
+      case REGISTER_CODE:
+        return <RegisterForm/>;
+      case FORGOT_PASS_CODE:
+        return <ForgotPassForm/>;
+      default:
+        return <div></div>;
+    }
   }
 
   render() {
     return (
       <div>
         <Navbar>
-          <Nav>
+          <Nav pullLeft>
             <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
             <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
             <LinkContainer to="/users"><NavItem eventKey={3}>Seznam uživatelů</NavItem></LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={5} onClick={this.openLogin}>Login</NavItem>
-            <NavItem eventKey={6} onClick={this.openRegister}>Register</NavItem>
+            <NavItem eventKey={5} onClick={this.openLogin}>Přihlásit se</NavItem>
+            <NavItem eventKey={6} onClick={this.openRegister}>Registrovat</NavItem>
+            <NavItem eventKey={7} onClick={this.openForgotPass}>Zapomenuté heslo</NavItem>
           </Nav>
         </Navbar>
 
@@ -69,12 +91,10 @@ export class MenuPane extends Component {
             <Modal.Title>{ this.state.modaltitle }</Modal.Title>
             { this.getModalBody() }
           </Modal.Header>
-
-          {/*<Modal.Body>*/}
-            {/*<div className="clearFix"></div>*/}
-          {/*</Modal.Body>*/}
         </Modal>
       </div>
     );
   }
 }
+
+export default MenuPane;

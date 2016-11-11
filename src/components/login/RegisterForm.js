@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
 
-export class RegisterForm extends Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
 
@@ -9,20 +9,20 @@ export class RegisterForm extends Component {
   }
 
   handleSubmit(event) {
-    // event.preventDefault();
+    event.preventDefault();
   }
 
   render() {
     return (
       <div className="col-xs-offset-1 col-xs-9  ">
-        <Form horizontal onSubmit={this.handleSubmit()}>
+        <Form horizontal onSubmit={this.handleSubmit}>
 
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={3}>
               Email
             </Col>
             <Col sm={9}>
-              <FormControl type="email" placeholder="Email" />
+              <FormControl type="text" placeholder="Email" />
             </Col>
           </FormGroup>
 
@@ -37,10 +37,10 @@ export class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={3}>
-              Heslo
+              Příjmení
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Příjmení" />
+              <FormControl type="text" placeholder="Příjmení" />
             </Col>
           </FormGroup>
 
@@ -56,7 +56,7 @@ export class RegisterForm extends Component {
           <FormGroup>
             <Col smOffset={3} sm={9}>
               <Button type="submit">
-                Register
+                Registrovat
               </Button>
             </Col>
           </FormGroup>
@@ -65,3 +65,5 @@ export class RegisterForm extends Component {
     )
   }
 }
+
+export default RegisterForm;
