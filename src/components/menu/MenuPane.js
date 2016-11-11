@@ -18,19 +18,19 @@ export class MenuPane extends Component {
   getInitData() {
     return {
       showModal: false,
-      formToShow: '',
-      modaltitle: '',
+      formToShow: "",
+      modaltitle: "",
     };
   }
 
   close() {
-    this.getInitData();
+    this.state = (this.getInitData());
   }
 
   openLogin() {
     this.setState({
       formToShow: "login",
-      modaltitle: 'Přihlášení',
+      modaltitle: "Přihlášení",
       showModal: true,
     });
   }
@@ -38,11 +38,16 @@ export class MenuPane extends Component {
   openRegister() {
     this.setState({
       formToShow: "register",
-      modaltitle: 'Registrace',
+      modaltitle: "Registrace",
       showModal: true,
     });
   }
 
+  getModalBody () {
+    return (
+      this.state.formToShow === "login" ? <LoginForm/> : <RegisterForm/>
+    )
+  }
 
   render() {
     return (
@@ -62,13 +67,12 @@ export class MenuPane extends Component {
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
             <Modal.Title>{ this.state.modaltitle }</Modal.Title>
+            { this.getModalBody() }
           </Modal.Header>
 
-          <Modal.Body>
-            {this.state.formToShow === "login" ? <LoginForm/> : <RegisterForm/>}
-            <div className="clearFix"></div>
-          </Modal.Body>
-
+          {/*<Modal.Body>*/}
+            {/*<div className="clearFix"></div>*/}
+          {/*</Modal.Body>*/}
         </Modal>
       </div>
     );

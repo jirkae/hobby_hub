@@ -14,7 +14,7 @@ export class LoginForm extends Component {
 
   render() {
     return (
-      <div className="col-xs-offset-1 col-xs-9  ">
+      <div className="col-xs-offset-1 col-xs-9">
         <Form horizontal onSubmit={this.handleSubmit()}>
 
           <FormGroup controlId="formHorizontalEmail">
