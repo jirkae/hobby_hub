@@ -14,9 +14,8 @@ class ForgotPassForm extends Component {
 
   render() {
     return (
-      <div className="col-xs-offset-1 col-xs-9">
+      <div>
         <Form horizontal onSubmit={this.handleSubmit}>
-
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={3}>
               Email
