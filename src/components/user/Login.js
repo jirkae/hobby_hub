@@ -1,20 +1,14 @@
-import React, { Component } from 'react';
-import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
+import React, {Component} from 'react';
+import { Button, Form, FormGroup, ControlLabel, FormControl, Col, Row } from 'react-bootstrap'
 
-export default class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
+export default class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
   }
 
   render() {
-  return (
-      <div className="col-xs-offset-3 col-xs-4">
+    return (
+      <div>
         <Form horizontal onSubmit={this.handleSubmit}>
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={3}>
@@ -44,6 +38,6 @@ export default class LoginPage extends Component {
         </Form>
 
       </div>
-    )
+    );
   }
 }
