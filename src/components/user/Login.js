@@ -1,31 +1,15 @@
-import React, { Component } from "react";
-import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
-import { postLogin } from './../../services/restApi';
+import React, {Component} from 'react';
+import { Button, Form, FormGroup, ControlLabel, FormControl, Col, Row } from 'react-bootstrap'
 
-class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
+export default class Login extends Component {
   handleSubmit(event) {
     event.preventDefault();
-
-    const formData = new FormData(event.target);
-
-    postLogin(formData)
-      .then(({data}) => {
-          // zavřít modální okno a zobrazit zelenou hlášku
-        })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
   }
 
   render() {
     return (
       <div>
         <Form horizontal onSubmit={this.handleSubmit}>
-
           <FormGroup controlId="formHorizontalEmail">
             <Col componentClass={ControlLabel} sm={3}>
               Email
@@ -37,24 +21,23 @@ class LoginForm extends Component {
 
           <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={3}>
-              Heslo
+              Password
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Heslo" />
+              <FormControl type="password" placeholder="Password" />
             </Col>
           </FormGroup>
 
           <FormGroup>
             <Col smOffset={3} sm={9}>
               <Button type="submit">
-                Přihlásit se
+                Sign in
               </Button>
             </Col>
           </FormGroup>
         </Form>
+
       </div>
-    )
+    );
   }
 }
-
-export default LoginForm;

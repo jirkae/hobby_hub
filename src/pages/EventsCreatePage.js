@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap"
 
-export class EventsCreatePage extends Component {
+export default class EventsCreatePage extends Component {
   constructor(props) {
     super(props);
 

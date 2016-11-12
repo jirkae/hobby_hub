@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export class EventDetailPage extends Component {
+export default class EventDetailPage extends Component {
   constructor(props) {
     super(props);
 

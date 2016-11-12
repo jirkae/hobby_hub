@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class UsersPage extends Component {
+export default class UsersPage extends Component {
   render() {
     return (
       <div className="col-xs-6">
