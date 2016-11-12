@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
 import { postLogin } from './../../services/restApi';
 
+// import NotificationSystem from "react-notification-system";
+
+// const toastr = require('@hps/react-toaster');
+const NotificationSystem = require('react-notification-system');
+
 class LoginForm extends Component {
   constructor(props) {
     super(props);
@@ -11,19 +16,27 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    NotificationSystem.addNotification({
+      message: 'Notification message',
+      level: 'success',
+      position: 'br',
+    });
 
     const formData = new FormData(event.target);
 
     postLogin(formData)
       .then(({data}) => {
-          // zavřít modální okno a zobrazit zelenou hlášku
+        // zavřít modální okno a zobrazit zelenou hlášku
         })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+      .catch(() => {
+        console.log("Chyba!!!");
+      }); // nechat modální okno otevřené a zobrazit červenou hlášku
   }
 
   render() {
     return (
       <div className="col-xs-offset-1 col-xs-9">
+        <NotificationSystem ref="notificationSystem" />
         <Form horizontal onSubmit={this.handleSubmit}>
 
           <FormGroup controlId="formHorizontalEmail">
