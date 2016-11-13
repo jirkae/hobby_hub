@@ -56,7 +56,7 @@ class LoginForm extends Component {
 
           <FormGroup>
             <Col smOffset={3} sm={9}>
-              <Button type="submit">
+              <Button bsStyle="primary" type="submit">
                 Přihlásit se
               </Button>
             </Col>
