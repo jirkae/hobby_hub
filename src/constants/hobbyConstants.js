@@ -1,1 +1,3 @@
-export const  CHANGE_VISIBILITY  = "CHANGE_VISIBILITY";
+export const  CHANGE_VISIBILITY = "CHANGE_VISIBILITY";
+
+export const  LOGIN_USER        = "LOGIN_USER";

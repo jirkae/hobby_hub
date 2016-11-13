@@ -33,7 +33,7 @@ class LayoutRaw extends Component {
 
     return (
       <div className="container">
-        <Modal show={modalVisible}>
+        <Modal show={this.state.modalVisible}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
@@ -49,21 +49,14 @@ class LayoutRaw extends Component {
   }
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
     modalVisible: state
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-};
-
 const Layout = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(LayoutRaw);
 
 export default Layout;
