@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavItem, Modal } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import LoginForm from "./../login/LoginForm";

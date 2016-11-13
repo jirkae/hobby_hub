@@ -66,7 +66,7 @@ class RegisterForm extends Component {
       this.setState({emailValidationState: null});
     }
 
-    if (this.state.password != this.state.secondPassword || minPassLength > this.state.password.length) {
+    if (this.state.password !== this.state.secondPassword || minPassLength > this.state.password.length) {
       this.setState({passValidationState: 'error'});
       valid = false;
     } else {

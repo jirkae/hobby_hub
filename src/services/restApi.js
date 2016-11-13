@@ -6,6 +6,7 @@ export const postRegister = (props) => {
   return axios.post(`${BASE_URL}AuthUsers`,
     JSON.stringify({
       email: props.email,
+      name: props.name,
       password: props.password,
     })
   );
