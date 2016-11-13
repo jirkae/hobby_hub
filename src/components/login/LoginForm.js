@@ -7,18 +7,28 @@ class LoginForm extends Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
+    const formData = this.state;
 
     postLogin(formData)
       .then(({data}) => {
-          // zavřít modální okno a zobrazit zelenou hlášku
-        })
+        // zavřít modální okno a zobrazit zelenou hlášku
+      })
       .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+  }
+
+  handleEmailChange(event) {
+    this.setState({email: event.target.value});
+  }
+
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value});
   }
 
   render() {
@@ -31,7 +41,7 @@ class LoginForm extends Component {
               Email
             </Col>
             <Col sm={9}>
-              <FormControl type="email" placeholder="Email" />
+              <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange}/>
             </Col>
           </FormGroup>
 
@@ -40,7 +50,7 @@ class LoginForm extends Component {
               Heslo
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Heslo" />
+              <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
             </Col>
           </FormGroup>
 

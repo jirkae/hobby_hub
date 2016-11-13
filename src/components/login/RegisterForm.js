@@ -45,7 +45,7 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword" onChange={this.handlePasswordChange}>
+          <FormGroup controlId="formHorizontalPassword">
             <Col componentClass={ControlLabel} sm={3}>
               Jméno
             </Col>
@@ -68,7 +68,7 @@ class RegisterForm extends Component {
               Heslo
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Heslo" />
+              <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
             </Col>
           </FormGroup>
 
