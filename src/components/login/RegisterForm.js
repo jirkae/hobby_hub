@@ -116,12 +116,12 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formValidationError2" validationState={this.state.passValidationState}>
+          <FormGroup controlId="formHorizontalPasswordAgain" validationState={this.state.passValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
               Heslo znovu
             </Col>
             <Col sm={9}>
-              <FormControl type="password" placeholder="Heslo" onChange={this.handleSecondPasswordChange}/>
+              <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange}/>
               <FormControl.Feedback />
             </Col>
           </FormGroup>
