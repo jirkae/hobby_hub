@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, applyRouterMiddleware, browserHistory } from 'react-router'
-import Notifications, { notify } from 'react-notify-toast';
+import Notifications  from 'react-notify-toast';
 import { Provider, createStore } from 'react-redux';
 import reducers from './reducers/reducers';
 
