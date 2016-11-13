@@ -12,6 +12,10 @@ export const postRegister = (props) => {
   );
 };
 
+export const postEvent = (event) => {
+  return axios.post(`${BASE_URL}Events`, event)
+}
+
 export const postLogin = (props) => {
   return axios.post(`${BASE_URL}AuthUsers/login`,
     JSON.stringify({
