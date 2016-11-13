@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavItem, Modal } from "react-bootstrap";
+import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import LoginForm from "./../login/LoginForm";
 import RegisterForm from "./../login/RegisterForm";
 import ForgotPassForm from "./../login/ForgotPassForm";
 
-export default class MenuPane extends Component {
-  constructor(params) {
-    super(params);
+class MenuPane extends Component {
+  constructor(props) {
+    super(props);
 
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleRegisterClick = this.handleRegisterClick.bind(this);
@@ -59,3 +59,5 @@ export default class MenuPane extends Component {
     );
   }
 }
+
+export default MenuPane;
