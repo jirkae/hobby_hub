@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 
-export class UserDetailpage extends Component {
+export default class UserDetailpage extends Component {
     render() {
         return(
         <div>

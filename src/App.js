@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Router, applyRouterMiddleware, browserHistory } from 'react-router'
+import Notifications from 'react-notify-toast';
 
 import './scss/app.scss';
 
@@ -10,9 +11,12 @@ class App extends Component {
     const routes = createRoutes();
 
     return (
-      <Router history={browserHistory} render={applyRouterMiddleware()}>
-         {routes}
-       </Router>
+      <div>
+        <Notifications/>
+        <Router history={browserHistory} render={applyRouterMiddleware()}>
+           {routes}
+         </Router>
+      </div>
     );
   }
 }
