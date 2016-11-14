@@ -44,7 +44,7 @@ export default class MenuPane extends Component {
 
   render() {
     return (
-      <Navbar>
+      <Navbar className="navbar-custom">
         <Nav>
           <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
           <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
