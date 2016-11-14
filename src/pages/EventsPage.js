@@ -3,7 +3,7 @@ import { SearchBox } from '../components/events/SearchBox.js';
 
 const EventsPage = () => {
   return (
-    <div className="col-xs-3">
+    <div>
       <SearchBox />
     </div>
   );

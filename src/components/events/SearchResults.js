@@ -11,7 +11,7 @@ export class SearchResults extends Component {
             return <SearchItem name={data.name} description={data.description} id={data.id} key={data.id}/>
         })
         return (
-            <div>{items}</div>
+            <div className="searchResults">{items}</div>
         );
     }
 
