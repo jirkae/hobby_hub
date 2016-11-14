@@ -49,9 +49,10 @@ class LayoutRaw extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (store) => {
   return {
-    modalVisible: state
+    modalVisible: store.state,
+    user: store.user
   }
 };
 

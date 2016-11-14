@@ -11,8 +11,13 @@ export default function userReducer(state={
 
   switch (action.type) {
     case C.LOGIN_USER: {
-      return {...state, user: true}
+      return {...state, ...action.data}
     }
+
+    case C.REGISTER_USER: {
+      return {...state, ...action.data}
+    }
+
   }
 
   return state
