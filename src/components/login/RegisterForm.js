@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
-import { postRegister } from './../../services/restApi';
+// import { postRegister } from './../../services/restApi';
+import { connect } from 'react-redux';
+
+import * as A from './../../actions/index';
 
 const minPassLength = 6;
 
@@ -74,11 +77,12 @@ class RegisterForm extends Component {
     }
 
     if (valid) {
-      postRegister(formData)
-        .then(({data}) => {
-          // zavřít modální okno a zobrazit zelenou hlášku
-        })
-        .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+      this.props.register();
+      // postRegister(formData)
+      //   .then(({data}) => {
+      //     // zavřít modální okno a zobrazit zelenou hlášku
+      //   })
+      //   .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
     }
   }
 
@@ -138,5 +142,17 @@ class RegisterForm extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: () => {
+      dispatch(A.registerUser());
+    }
+  };
+};
+
+RegisterForm = connect(
+  mapDispatchToProps
+)(RegisterForm);
 
 export default RegisterForm;

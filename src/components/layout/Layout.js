@@ -7,7 +7,7 @@ import Footer from './Footer.js';
 
 import '../../scss/app.scss';
 
-class LayoutRaw extends Component {
+class Layout extends Component {
   constructor(props) {
     super(props);
 
@@ -56,8 +56,8 @@ const mapStateToProps = (store) => {
   }
 };
 
-const Layout = connect(
+Layout = connect(
   mapStateToProps
-)(LayoutRaw);
+)(Layout);
 
 export default Layout;
