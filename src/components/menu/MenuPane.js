@@ -48,7 +48,6 @@ export default class MenuPane extends Component {
         <Nav>
           <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
           <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
-          <LinkContainer to="/users"><NavItem eventKey={3}>Seznam uživatelů</NavItem></LinkContainer>
         </Nav>
         <Nav pullRight>
           <NavItem eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>

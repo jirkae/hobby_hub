@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { FormControl, Button } from "react-bootstrap";
 import { SearchResults } from './SearchResults.js';
+import { baseUrl } from '../../services/restApi.js';
 
 export class SearchBox extends Component {
   state = {
-    url: "http://localhost:3000/api/events",
+    url: baseUrl() + 'events',
     search: ""
   };
 
@@ -21,7 +22,7 @@ export class SearchBox extends Component {
             </div>
             <div className="col-md-2">
               <Button onClick={(event) => this.setState({
-                url: "http://localhost:3000/api/events" + (this.state.search !== '' ? "?filter[where][name]=" + this.state.search : '')
+                url: baseUrl() + "events" + (this.state.search !== '' ? "/findFulltext?query=" + this.state.search : '')
               })}>Vyhledat</Button>
             </div>
           </div>

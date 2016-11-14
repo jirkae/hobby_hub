@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
+import { baseUrl } from '../services/restApi.js';
 
 export default class EventDetailPage extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class EventDetailPage extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/api/events/" + this.props.params.eventId).then(r => r.json()).then(json => {
+    fetch(baseUrl()+"events/" + this.props.params.eventId).then(r => r.json()).then(json => {
         this.setState({data: json})
     }).catch(e => console.log("Error"));
   }
