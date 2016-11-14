@@ -40,7 +40,7 @@ export default class Layout extends Component {
             <Button onClick={this.closeModal}>Zavřít</Button>
           </ModalFooter>
         </Modal>
-        <Header openModalFc={this.openModal}/>
+        <Header className="head" openModalFc={this.openModal}/>
         {children}
         <Footer/>
       </div>
