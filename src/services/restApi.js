@@ -1,6 +1,7 @@
 import axios, { CancelToken } from 'axios';
 
 const BASE_URL = "http://localhost:3000/api/";
+//const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 export const postRegister = (props) => {
   return axios.post(`${BASE_URL}AuthUsers`,
