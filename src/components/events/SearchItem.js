@@ -5,10 +5,10 @@ export class SearchItem extends Component {
 
     render() {
         return (
-            <blockquote>
-                <div><strong>Name: <Link to={"/events/" + this.props.id}>{this.props.name}</Link></strong></div>
-                <div>Description: {this.props.description}</div>
-            </blockquote>
+            <div className="eventItem">
+                <strong><Link to={"/events/" + this.props.id}>{this.props.name}</Link></strong>
+                <div>{this.props.description}</div>
+            </div>
         );
     }
 }

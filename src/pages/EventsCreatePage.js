@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap"
+import AddEvent from "../components/events/AddEvent.js";
 
 export default class EventsCreatePage extends Component {
   constructor(props) {
@@ -64,28 +65,8 @@ export default class EventsCreatePage extends Component {
   render() {
     const setName = this.setName;
     return (
-      <div className="createEvent col-xs-4">
-        <form onSubmit={this.formSubmit}>
-          <FormGroup controlId="eventName">
-            <ControlLabel>Název události</ControlLabel>
-            <FormControl type="text" value={this.state.name} onChange={this.handleNameChange}/>
-          </FormGroup>
-
-          <FormGroup controlId="eventSortDesc">
-            <ControlLabel>Krátký popis</ControlLabel>
-            <FormControl type="text" value={this.state.description} onChange={this.handleDescriptionChange}/>
-          </FormGroup>
-
-          <FormGroup controlId="eventLongDesc">
-            <ControlLabel>Dlouhý popis</ControlLabel>
-            <FormControl componentClass="textarea"
-                         placeholder="Dopište detailní popis události"
-                         value={this.state.detailDescription}
-                         onChange={this.handleDetailDescriptionChange}/>{/**/}
-          </FormGroup>
-
-          <Button bsStyle="primary" type="submit">Přidat</Button>
-        </form>
+      <div className="createEvent">
+        <AddEvent />
       </div>
     );
   }
