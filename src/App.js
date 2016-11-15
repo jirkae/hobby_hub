@@ -4,14 +4,13 @@ import { Router, applyRouterMiddleware, browserHistory } from 'react-router'
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { createRoutes } from './createRoutes.js';
+import thunk from 'redux-thunk';
 
 import './scss/app.scss';
 
 import reducers from './reducers/reducers';
-import enhancer from './services/enhancer';
 
-const preloadedState = window.__PRELOADED_STATE__;
-let store = createStore(reducers, preloadedState, applyMiddleware(enhancer));
+let store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends Component {
   render() {

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { connect } from "react-redux";
 
 import LoginForm from "./../login/LoginForm";
 import RegisterForm from "./../login/RegisterForm";
 import ForgotPassForm from "./../login/ForgotPassForm";
+
+import { changeModalVisibility } from "./../../actions"
 
 class MenuPane extends Component {
   constructor(props) {
@@ -17,27 +20,24 @@ class MenuPane extends Component {
 
   handleLoginClick(e) {
     e.preventDefault();
-    this.props.openModalFc(() => {
-      return (
-        <LoginForm />
-      );
-    });
+    this.changeModalProp(<LoginForm />);
   }
 
   handleRegisterClick(e) {
     e.preventDefault();
-    this.props.openModalFc(() => {
-      return (
-        <RegisterForm />
-      );
-    });
+    this.changeModalProp(<RegisterForm />);
   }
 
   handleForgotPassClick(e) {
     e.preventDefault();
+    this.changeModalProp(<ForgotPassForm />);
+  }
+
+  changeModalProp(newProp) {
+    this.props.dispatch(changeModalVisibility); // nezachytí ji reducer
     this.props.openModalFc(() => {
       return (
-        <ForgotPassForm />
+        newProp
       );
     });
   }
@@ -59,4 +59,16 @@ class MenuPane extends Component {
   }
 }
 
-export default MenuPane;
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     changeModalVisibility: () => {
+//       dispatch(changeModalVisibility());
+//     }
+//   }
+// };
+//
+// MenuPane = connect(
+//   mapDispatchToProps
+// )(MenuPane);
+
+export default MenuPane = connect()(MenuPane);

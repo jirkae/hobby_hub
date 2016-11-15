@@ -33,7 +33,7 @@ class Layout extends Component {
 
     return (
       <div className="container">
-        <Modal show={this.state.modalVisible}>
+        <Modal show={modalContentGenerator() !== null}> {/*modalContentGenerator() !== null  this.state.modalVisible*/}
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>

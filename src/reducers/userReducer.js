@@ -3,6 +3,7 @@ import * as C from './../constants/hobbyConstants';
 export default function userReducer(state={
   user: {
     id: null,
+    userId: null,
     email: null,
     firstName: null,
     lastName: null,
@@ -10,11 +11,11 @@ export default function userReducer(state={
 }, action) {
 
   switch (action.type) {
-    case C.LOGIN_USER: {
+    case C.LOGIN_USER_SUCCESS: {
       return {...state, ...action.data}
     }
 
-    case C.REGISTER_USER: {
+    case C.REGISTER_USER_SUCCESS: {
       return {...state, ...action.data}
     }
 
