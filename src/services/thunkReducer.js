@@ -11,6 +11,7 @@ export function loginUser(user) {
   return function (dispatch) {
     return API.postLogin(user)
       .then(response => {
+        {console.log(response)}
         dispatch(loginUserSuccess(response));
         dispatch(changeModalVisibility());
       }).catch(error => {
@@ -23,7 +24,8 @@ export function registerUser(user) {
   return function (dispatch) {
     return API.postRegister(user)
       .then(response => {
-        dispatch(registerUserSuccess(response));
+        {console.log(response.data)}
+        dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility());
       }).catch(error => {
         dispatch(registerUserFailure(user, error))

@@ -1,21 +1,25 @@
 import * as C from './../constants/hobbyConstants';
 
-export function loginUserSuccess(formData) {
-  return { type: C.LOGIN_USER_SUCCESS, formData };
+export function loginUserSuccess(payload) {
+  return { type: C.LOGIN_USER_SUCCESS, payload };
 }
 
-export function loginUserFailure(error, formData) {
-  return { type: C.LOGIN_USER_FAILURE, error, formData };
+export function loginUserFailure(error, payload) {
+  return { type: C.LOGIN_USER_FAILURE, error, payload };
 }
 
-export function registerUserSuccess(formData) {
-  return { type: C.REGISTER_USER_SUCCESS, formData };
+export function registerUserSuccessOld(payload) {
+  return { type: C.REGISTER_USER_SUCCESS, payload };
 }
 
-export function registerUserFailure(error, formData) {
-  return { type: C.REGISTER_USER_FAILURE, error, formData };
+export const registerUserSuccess = (payload) => {
+  return { type: C.REGISTER_USER_SUCCESS, payload };
+};
+
+export function registerUserFailure(error, payload) {
+  return { type: C.REGISTER_USER_FAILURE, error, payload };
 }
 
-export function changeModalVisibility() {
-  return { type: C.CHANGE_MODAL_VISIBLE };
+export function changeModalVisibility(payload) {
+  return { type: C.CHANGE_MODAL_VISIBLE, payload };
 }

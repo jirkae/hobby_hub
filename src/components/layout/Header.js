@@ -8,10 +8,14 @@ import logo from '../../images/hobby_hub.jpg';
 
 class Header extends Component {
   render() {
-    const user = this.props;
+    const props = this.props;
+    const {store} = this.props;
+    const state = store.getState();
+    // vytvořit nějakou funkci, která je definována v mapStateToProps
 
     return (
       <div className="App-header">
+        <div></div>
         <Link to="/">
           <img src={logo} className="App-logo" alt="logo"/>
         </Link>
@@ -25,5 +29,17 @@ class Header extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: getUser(
+      state.user
+    )
+  }
+};
+
+Header = connect(
+  mapStateToProps
+)(Header);
 
 export default Header;

@@ -34,7 +34,6 @@ class MenuPane extends Component {
   }
 
   changeModalProp(newProp) {
-    this.props.dispatch(changeModalVisibility); // nezachytí ji reducer
     this.props.openModalFc(() => {
       return (
         newProp
@@ -58,17 +57,5 @@ class MenuPane extends Component {
     );
   }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     changeModalVisibility: () => {
-//       dispatch(changeModalVisibility());
-//     }
-//   }
-// };
-//
-// MenuPane = connect(
-//   mapDispatchToProps
-// )(MenuPane);
 
 export default MenuPane = connect()(MenuPane);
