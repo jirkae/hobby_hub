@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Checkbox, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, Row } from "react-bootstrap"
 import Datetime from 'react-datetime';
 
 import '../../../node_modules/react-datetime/css/react-datetime.css';
@@ -14,7 +14,7 @@ export default class AddEventStep3 extends Component {
         endDate: '',
       },
       errors: []
-    }
+    };
 
     this.formSubmit = this.formSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);

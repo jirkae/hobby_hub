@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router";
 import MenuPane from "./../menu/MenuPane.js";
-import { Button } from "react-bootstrap";
-import {connect} from "react-redux";
 
 import logo from '../../images/hobby_hub.jpg';
 

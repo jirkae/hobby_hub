@@ -16,7 +16,7 @@ export default class AddEvent extends Component {
     this.state = {
       step: 1,
       event: {}
-    }
+    };
 
     this.handleStep1Submit = this.handleStep1Submit.bind(this);
     this.handleStep2Submit = this.handleStep2Submit.bind(this);
@@ -36,7 +36,7 @@ export default class AddEvent extends Component {
     this.setState({
       step: 2,
       event: newEvent
-    })
+    });
     console.log(this.state.event);
   }
 
@@ -45,7 +45,7 @@ export default class AddEvent extends Component {
     this.setState({
       step: 3,
       event: newEvent
-    })
+    });
     console.log(this.state.event);
   }
 
@@ -66,43 +66,37 @@ export default class AddEvent extends Component {
   getCurrentStepContent() {
     switch (this.state.step) {
       case 1:
-        return <AddEventStep1 onSubmit = {this.handleStep1Submit}/>;
-        break;
+        return <AddEventStep1 onSubmit={this.handleStep1Submit}/>;
       case 2:
-        return <AddEventStep2 onSubmit = {this.handleStep2Submit}/>;
-        break;
+        return <AddEventStep2 onSubmit={this.handleStep2Submit}/>;
       case 3:
-        return <AddEventStep3 onSubmit = {this.handleStep3Submit}/>;
-        break;
+        return <AddEventStep3 onSubmit={this.handleStep3Submit}/>;
       case 4:
         return (
           <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
             <h4>Událost vytvořena</h4>
             <p>Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí</p>
           </Alert>
-        )
-        break;
+        );
       default:
         return null;
     }
   }
 
   render() {
-    const { step, event } = this.state;
-
     return (
       <div className="row">
         <nav className="addEventNav col-md-6 col-md-offset-3">
           <ul>
-            <li className={this.state.step == 1 ? 'active' : null}>
+            <li className={this.state.step === 1 ? 'active' : null}>
               <FontAwesome name="info-circle"></FontAwesome>
               <small>Základní info</small>
             </li>
-            <li className={this.state.step == 2 ? 'active' : null}>
+            <li className={this.state.step === 2 ? 'active' : null}>
               <FontAwesome name="map-marker"></FontAwesome>
               <small>Lokace</small>
             </li>
-            <li className={this.state.step == 3 ? 'active' : null}>
+            <li className={this.state.step === 3 ? 'active' : null}>
               <FontAwesome name="calendar"></FontAwesome>
               <small>Plánování</small>
             </li>

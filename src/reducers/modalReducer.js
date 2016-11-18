@@ -9,8 +9,9 @@ const modalReducer = (state={}, action) => {
       break;
     }
     // case "CHANGE_PARAMS"
+      default:
+        return state;
   }
-  return state;
 };
 
 export default modalReducer;

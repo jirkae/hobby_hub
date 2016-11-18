@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { LinkContainer } from "react-router-bootstrap";
 import { Nav, NavItem } from "react-bootstrap";
 
 class GuestNavRight extends Component{
@@ -17,7 +17,7 @@ class GuestNavRight extends Component{
   render() {
     return(
       <Nav pullRight>
-        <NavItem>Profil</NavItem>
+        <LinkContainer to="/profile"><NavItem>Profil</NavItem></LinkContainer>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
       </Nav>
     )

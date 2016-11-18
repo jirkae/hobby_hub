@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Checkbox, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap"
 
 export default class AddEventStep1 extends Component {
   constructor(params) {
@@ -14,7 +14,7 @@ export default class AddEventStep1 extends Component {
         participantsMax: 0,
       },
       errors: []
-    }
+    };
 
     this.formSubmit = this.formSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -62,27 +62,6 @@ export default class AddEventStep1 extends Component {
     } else {
       this.setState({errors: errors});
     }
-    /*
-    var http = new XMLHttpRequest();
-    var url = "http://localhost:3000/api/events";
-    var params = {
-      name: this.state.name,
-      description: this.state.description,
-      detailDescription: this.state.detailDescription,
-    };
-    http.open("POST", url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader("Content-type", "application/json");
-
-    var that = this;
-    http.onreadystatechange = function () {//Call a function when the state changes.
-      if (http.readyState == 4 && http.status == 200) {
-
-        that.clearForm();
-      }
-    };
-    http.send(JSON.stringify(params));*/
   }
 
   render() {

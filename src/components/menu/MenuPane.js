@@ -7,10 +7,6 @@ import GuestNavRight from "./../menu/GuestNavRight";
 import UserNavRight from "./../menu/UserNavRight";
 
 class MenuPane extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {user} = this.props;
     return (
