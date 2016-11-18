@@ -44,17 +44,11 @@ export default class MenuPane extends Component {
 
   render() {
     return (
-      <Navbar>
-        <Nav>
-          <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
-          <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
-        </Nav>
-        <Nav pullRight>
-          <NavItem eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
-          <NavItem eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
-          <NavItem eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
-        </Nav>
-      </Navbar>
+      <Nav pullRight>
+        <NavItem eventKey={1} role="button" onClick={this.handleLoginClick}>Přihlásit se</NavItem>
+        <NavItem eventKey={2} role="button" onClick={this.handleRegisterClick}>Registrace</NavItem>
+        <li className="postadd"><a className="btn btn-block btn-border btn-post btn-danger" href="#">Feedback</a></li>
+      </Nav>
     );
   }
 }

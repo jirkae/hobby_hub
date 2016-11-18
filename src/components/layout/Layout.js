@@ -5,6 +5,9 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 
 import '../../scss/app.scss';
+import '../../css/style.css';
+import '../../css/fontello.css';
+import '../../css/animate.min.css';
 
 export default class Layout extends Component {
   constructor(props) {
@@ -31,18 +34,17 @@ export default class Layout extends Component {
     const { modalContentGenerator } = this.state;
 
     return (
-      <div className="container">
+      <div>
         <Modal show={modalContentGenerator() !== null}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.closeModal}>Zavřít</Button>
+            <Button bsStyle="link" onClick={this.closeModal}>Zavřít</Button>
           </ModalFooter>
         </Modal>
         <Header openModalFc={this.openModal}/>
         {children}
-        <Footer/>
       </div>
     );
   }
