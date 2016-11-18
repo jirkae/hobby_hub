@@ -1,15 +1,6 @@
 import * as C from './../constants/hobbyConstants';
 
-export default function userReducer(state={}
-//   user: {
-//     id: null,
-//     userId: null,
-//     email: null,
-//     firstName: null,
-//     lastName: null,
-//   }
-// }
-, action) {
+function userReducer(state={}, action) {
 
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
@@ -36,3 +27,5 @@ export default function userReducer(state={}
 
   }
 }
+
+export default userReducer

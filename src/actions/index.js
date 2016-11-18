@@ -8,6 +8,14 @@ export function loginUserFailure(error, payload) {
   return { type: C.LOGIN_USER_FAILURE, error, payload };
 }
 
+export function logoutUserSuccess(payload) {
+  return { type: C.LOGOUT_USER_SUCCESS, payload };
+}
+
+export function logoutUserFailure(error, payload) {
+  return { type: C.LOGOUT_USER_FAILURE, error, payload };
+}
+
 export function registerUserSuccessOld(payload) {
   return { type: C.REGISTER_USER_SUCCESS, payload };
 }

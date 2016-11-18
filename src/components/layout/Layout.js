@@ -33,7 +33,7 @@ class Layout extends Component {
 
     return (
       <div className="container">
-        <Modal show={modalContentGenerator() !== null}> {/*modalContentGenerator() !== null  this.state.modalVisible*/}
+        <Modal show={this.props.modalVisible}> {/*modalContentGenerator() !== null  this.state.modalVisible*/}
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
@@ -51,8 +51,7 @@ class Layout extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    modalVisible: store.state,
-    user: store.user
+    modalVisible: store.modalReducer.showModal
   }
 };
 

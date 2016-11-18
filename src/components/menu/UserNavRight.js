@@ -1,8 +1,11 @@
-import React, {Component} from 'react';
-import { LinkContainer } from "react-router-bootstrap";
-import { Nav, NavItem } from "react-bootstrap";
+import React, { Component } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Nav, NavItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-class GuestNavRight extends Component{
+import { logoutUser } from './../../services/thunkReducer';
+
+class GuestNavRight extends Component {
   constructor(props) {
     super(props);
 
@@ -11,11 +14,12 @@ class GuestNavRight extends Component{
 
   handleLogoutClick(e) {
     e.preventDefault();
-    console.log('Chtěl se odhlásit, ale to mu neprojde :P')
+    this.props.logoutUser();
+    // redirect na homepage
   }
 
   render() {
-    return(
+    return (
       <Nav pullRight>
         <LinkContainer to="/profile"><NavItem>Profil</NavItem></LinkContainer>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
@@ -23,5 +27,17 @@ class GuestNavRight extends Component{
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutUser: () => {
+      dispatch(logoutUser());
+    }
+  };
+};
+
+GuestNavRight = connect(
+  mapDispatchToProps
+)(GuestNavRight);
 
 export default GuestNavRight;

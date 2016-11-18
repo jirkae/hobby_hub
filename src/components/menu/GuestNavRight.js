@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-
-import { Nav, NavItem } from "react-bootstrap";
+import { Nav, NavItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { changeModalVisibility } from './../../actions/index';
 
 import LoginForm from "./../login/LoginForm";
 import RegisterForm from "./../login/RegisterForm";
@@ -16,26 +17,25 @@ class GuestNavRight extends Component{
   }
 
   handleLoginClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<LoginForm />);
+    this.changeModalProp(e, <LoginForm />);
   }
 
   handleRegisterClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<RegisterForm />);
+    this.changeModalProp(e, <RegisterForm />);
   }
 
   handleForgotPassClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<ForgotPassForm />);
+    this.changeModalProp(e, <ForgotPassForm />);
   }
 
-  changeModalProp(newProp) {
+  changeModalProp(event, newProp) {
+    event.preventDefault();
     this.props.openModalFc(() => {
       return (
         newProp
       );
     });
+    this.props.changeModalVisibility(true);
   }
 
   render() {
@@ -48,5 +48,17 @@ class GuestNavRight extends Component{
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeModalVisibility: (visible) => {
+      dispatch(changeModalVisibility(visible));
+    }
+  };
+};
+
+GuestNavRight = connect(
+  mapDispatchToProps
+)(GuestNavRight);
 
 export default GuestNavRight;

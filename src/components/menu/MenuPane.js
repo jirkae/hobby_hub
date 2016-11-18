@@ -15,13 +15,11 @@ class MenuPane extends Component {
           <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
           <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
         </Nav>
-        {console.log(this.props.user)}
-        {user ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} />}
+        {user === undefined ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} />}
       </Navbar>
     );
   }
 }
-
 
 const mapStateToProps = (store) => {
   return {
@@ -33,4 +31,4 @@ MenuPane = connect(
   mapStateToProps
 )(MenuPane);
 
-export default MenuPane = connect()(MenuPane);
+export default MenuPane;
