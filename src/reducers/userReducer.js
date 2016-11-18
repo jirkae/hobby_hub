@@ -14,21 +14,20 @@ export default function userReducer(state={}
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
       console.log(state);
-      return {...state, ...action.data}
+      return {...state,
+        user: {
+          email: action.payload.email,
+          id: action.payload.id
+        }
+      }
     }
 
     case C.REGISTER_USER_SUCCESS: {
-      console.log('zapisuji uživatele do kontextu aplikace');
-
-      console.log(`action:`);
-      console.log(action);
-
-      console.log(`action payload:`);
-      console.log(action.payload);
-
       return {...state,
-        email: action.payload.email,
-        id: action.payload.id
+        user: {
+          email: action.payload.email,
+          id: action.payload.id
+        }
       }
     }
 

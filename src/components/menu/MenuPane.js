@@ -3,59 +3,38 @@ import { Navbar, Nav, NavItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { connect } from "react-redux";
 
-import LoginForm from "./../login/LoginForm";
-import RegisterForm from "./../login/RegisterForm";
-import ForgotPassForm from "./../login/ForgotPassForm";
-
-import { changeModalVisibility } from "./../../actions"
+import GuestNavRight from "./../menu/GuestNavRight";
+import UserNavRight from "./../menu/UserNavRight";
 
 class MenuPane extends Component {
   constructor(props) {
     super(props);
-
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleRegisterClick = this.handleRegisterClick.bind(this);
-    this.handleForgotPassClick = this.handleForgotPassClick.bind(this);
-  }
-
-  handleLoginClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<LoginForm />);
-  }
-
-  handleRegisterClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<RegisterForm />);
-  }
-
-  handleForgotPassClick(e) {
-    e.preventDefault();
-    this.changeModalProp(<ForgotPassForm />);
-  }
-
-  changeModalProp(newProp) {
-    this.props.openModalFc(() => {
-      return (
-        newProp
-      );
-    });
   }
 
   render() {
+    const {user} = this.props;
     return (
       <Navbar>
         <Nav>
           <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
           <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
         </Nav>
-        <Nav pullRight>
-          <NavItem eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
-          <NavItem eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
-          <NavItem eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
-        </Nav>
+        {console.log(this.props.user)}
+        {user ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} />}
       </Navbar>
     );
   }
 }
+
+
+const mapStateToProps = (store) => {
+  return {
+    user: store.userReducer.user
+  }
+};
+
+MenuPane = connect(
+  mapStateToProps
+)(MenuPane);
 
 export default MenuPane = connect()(MenuPane);

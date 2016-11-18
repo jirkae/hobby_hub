@@ -75,6 +75,7 @@ class RegisterForm extends Component {
     }
 
     if (valid) {
+
       this.props.dispatch(registerUser(formData));
     }
   }

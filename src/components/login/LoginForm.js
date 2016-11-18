@@ -23,8 +23,9 @@ class LoginForm extends Component {
     const formData = this.state;
 
     if(formData.email && formData.password){
+      console.log('Dispatching action login');
+
       this.props.dispatch(loginUser(formData))
-        .then({/*do nothing*/})
         .catch(error => {
           // reagovat na případ, že se nepodaří přihlásit se
         })
