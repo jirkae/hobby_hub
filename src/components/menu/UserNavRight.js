@@ -14,8 +14,8 @@ class GuestNavRight extends Component {
 
   handleLogoutClick(e) {
     e.preventDefault();
-    this.props.logoutUser();
-    // redirect na homepage
+    console.log('pokus o logout');
+    this.props.dispatch(logoutUser(this.props.userId));
   }
 
   render() {
@@ -28,16 +28,4 @@ class GuestNavRight extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logoutUser: () => {
-      dispatch(logoutUser());
-    }
-  };
-};
-
-GuestNavRight = connect(
-  mapDispatchToProps
-)(GuestNavRight);
-
-export default GuestNavRight;
+export default GuestNavRight = connect()(GuestNavRight);

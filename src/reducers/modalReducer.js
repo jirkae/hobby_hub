@@ -4,8 +4,9 @@ function modalReducer(state={}, action) {
 
   switch (action.type) {
     case C.CHANGE_MODAL_VISIBLE: {
-      state = {...state, ...action.payload};
-      break;
+      return {...state,
+        showModal: action.payload
+      }
     }
 
     default:

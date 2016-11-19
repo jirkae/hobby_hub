@@ -18,7 +18,7 @@ export const postEvent = (event) => {
 };
 
 export const postLogout = (userId) => {
-  return axios.post(`${BASE_URL}AuthUser/Logout`)
+  return axios.post(`${BASE_URL}AuthUser/logout`, userId)
 };
 
 export function getCancelTokenSource() {

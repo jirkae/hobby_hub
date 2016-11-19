@@ -35,7 +35,7 @@ class GuestNavRight extends Component{
         newProp
       );
     });
-    this.props.changeModalVisibility(true);
+    this.props.dispatch(changeModalVisibility(true));
   }
 
   render() {
@@ -49,16 +49,4 @@ class GuestNavRight extends Component{
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    changeModalVisibility: (visible) => {
-      dispatch(changeModalVisibility(visible));
-    }
-  };
-};
-
-GuestNavRight = connect(
-  mapDispatchToProps
-)(GuestNavRight);
-
-export default GuestNavRight;
+export default GuestNavRight = connect()(GuestNavRight);

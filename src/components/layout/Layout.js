@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from './Header.js';
 import Footer from './Footer.js';
+import { changeModalVisibility } from './../../actions/index';
 
 import '../../scss/app.scss';
 
@@ -24,16 +25,16 @@ class Layout extends Component {
   }
 
   closeModal() {
-    this.setState({modalContentGenerator: () => {return(null);}});
+    this.props.dispatch(changeModalVisibility(false))
   }
 
   render() {
-    const { children } = this.props;
+    const { children, modalVisible } = this.props;
     const { modalContentGenerator } = this.state;
 
     return (
       <div className="container">
-        <Modal show={this.props.modalVisible}> {/*modalContentGenerator() !== null  this.state.modalVisible*/}
+        <Modal show={modalVisible}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>

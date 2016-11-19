@@ -16,10 +16,6 @@ export function logoutUserFailure(error, payload) {
   return { type: C.LOGOUT_USER_FAILURE, error, payload };
 }
 
-export function registerUserSuccessOld(payload) {
-  return { type: C.REGISTER_USER_SUCCESS, payload };
-}
-
 export const registerUserSuccess = (payload) => {
   return { type: C.REGISTER_USER_SUCCESS, payload };
 };
