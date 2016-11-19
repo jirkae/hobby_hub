@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 class ProfilePage extends Component{
   render() {
     return (
-      <div>Nic tu není :P {this.props.user}</div>
+      <div>
+        Nic tu není :P {this.user}
+      </div>
     );
   };
 }
