@@ -27,3 +27,11 @@ export function registerUserFailure(error, payload) {
 export function changeModalVisibility(payload) {
   return { type: C.CHANGE_MODAL_VISIBLE, payload };
 }
+
+export function getUserDataSuccess(payload) {
+  return { type: C.GET_USER_DATA_SUCCESS, payload };
+}
+
+export function getUserDataFailure(payload) {
+  return { type: C.GET_USER_DATA_FAILURE, payload };
+}

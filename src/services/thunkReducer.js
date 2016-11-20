@@ -6,7 +6,9 @@ import {
   logoutUserFailure,
   registerUserSuccess,
   registerUserFailure,
-  changeModalVisibility
+  changeModalVisibility,
+  getUserDataSuccess,
+  getUserDataFailure
 } from "./../actions/index";
 
 export function loginUser(user) {
@@ -40,6 +42,17 @@ export function logoutUser(userId) {
         dispatch(logoutUserSuccess(response.data));
       }).catch(error => {
         dispatch(logoutUserFailure(userId, error))
+      });
+  };
+}
+
+export function getUserProfileInfo(userId) {
+  return function (dispatch) {
+    return API.getUserData(userId)
+      .then(response => {
+        dispatch(getUserDataSuccess(response));
+      }).catch(error => {
+        dispatch(getUserDataFailure(userId, error))
       });
   };
 }

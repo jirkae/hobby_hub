@@ -21,6 +21,10 @@ export const postLogout = (userId) => {
   return axios.post(`${BASE_URL}AuthUser/logout`, userId)
 };
 
+export const getUserData = (userId) => {
+  return axios.get(`${BASE_URL}AuthUser/${userId}`)
+};
+
 export function getCancelTokenSource() {
   return CancelToken.source();
 }

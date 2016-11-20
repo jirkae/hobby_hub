@@ -21,6 +21,13 @@ function userReducer(state={}, action) {
       }
     }
 
+    case C.GET_USER_DATA_SUCCESS: {
+      console.log(action.payload);
+      return {...state,
+        user: action.payload
+      }
+    }
+
     default:
       return state;
 
