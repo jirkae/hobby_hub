@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl } from "react-bootstrap"
 import AddEvent from "../components/events/AddEvent.js";
 
 export default class EventsCreatePage extends Component {
@@ -54,7 +53,7 @@ export default class EventsCreatePage extends Component {
 
     var that = this;
     http.onreadystatechange = function () {//Call a function when the state changes.
-      if (http.readyState == 4 && http.status == 200) {
+      if (http.readyState === 4 && http.status === 200) {
 
         that.clearForm();
       }
@@ -63,7 +62,6 @@ export default class EventsCreatePage extends Component {
   }
 
   render() {
-    const setName = this.setName;
     return (
       <div className="createEvent">
         <AddEvent />

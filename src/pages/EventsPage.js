@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { SearchBox } from '../components/events/SearchBox.js';
 
 const EventsPage = () => {
@@ -7,6 +7,6 @@ const EventsPage = () => {
       <SearchBox />
     </div>
   );
-}
+};
 
 export default EventsPage;

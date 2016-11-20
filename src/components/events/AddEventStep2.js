@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Checkbox, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap"
 
 export default class AddEventStep2 extends Component {
   constructor(params) {
@@ -12,7 +12,7 @@ export default class AddEventStep2 extends Component {
         zipCode: ''
       },
       errors: []
-    }
+    };
 
     this.formSubmit = this.formSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);

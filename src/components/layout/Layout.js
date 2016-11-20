@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import Header from './Header.js';
 import Footer from './Footer.js';
+import { changeModalVisibility } from './../../actions/index';
 
 import '../../scss/app.scss';
 import '../../css/style.css';
 import '../../css/fontello.css';
 import '../../css/animate.min.css';
 
-export default class Layout extends Component {
+class Layout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       modalContentGenerator: () => {return null;}
-    }
+    };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -26,11 +28,11 @@ export default class Layout extends Component {
   }
 
   closeModal() {
-    this.setState({modalContentGenerator: () => {return(null);}});
+    this.props.dispatch(changeModalVisibility(false))
   }
 
   render() {
-    const { children } = this.props;
+    const { children, modalVisible } = this.props;
     const { modalContentGenerator } = this.state;
 
     return (
@@ -49,3 +51,15 @@ export default class Layout extends Component {
     );
   }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    modalVisible: store.modalReducer.showModal
+  }
+};
+
+Layout = connect(
+  mapStateToProps
+)(Layout);
+
+export default Layout;

@@ -8,6 +8,7 @@ import EventDetailPage from './pages/EventDetailPage.js';
 import EventsCreatePage from './pages/EventsCreatePage.js';
 import UsersPage from './pages/UsersPage.js';
 import UserDetailPage from './pages/UserDetailPage.js';
+import ProfilePage from './pages/ProfilePage.js';
 import Page404 from './pages/Page404.js';
 
 export function createRoutes() {
@@ -23,6 +24,7 @@ export function createRoutes() {
         <IndexRoute component={UsersPage}/>
         <Route path=":userId" component={UserDetailPage}/>
       </Route>
+      <Route path="/profile" component={ProfilePage}></Route>
       <Route path="*" component={Page404}/>
     </Route>
   );

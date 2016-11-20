@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { baseUrl } from '../services/restApi.js';
 
 export default class EventDetailPage extends Component {

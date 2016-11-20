@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
-import { postLogin } from './../../services/restApi';
+import { loginUser } from './../../services/thunkReducer';
+import {connect} from 'react-redux';
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      email: null,
+      password: null,
+    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -16,11 +22,12 @@ class LoginForm extends Component {
 
     const formData = this.state;
 
-    postLogin(formData)
-      .then(({data}) => {
-        // zavřít modální okno a zobrazit zelenou hlášku
-      })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+    if(formData.email && formData.password){
+      this.props.dispatch(loginUser(formData))
+        .catch(error => {
+          // reagovat na případ, že se nepodaří přihlásit se
+        })
+    }
   }
 
   handleEmailChange(event) {
@@ -67,4 +74,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default LoginForm = connect()(LoginForm);
