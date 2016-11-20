@@ -41,9 +41,10 @@ class GuestNavRight extends Component{
   render() {
     return(
       <Nav pullRight>
-        <NavItem eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
-        <NavItem eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
-        <NavItem eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
+        <NavItem role="button" eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
+        <NavItem role="button" eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
+        <NavItem role="button" eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
+        <li className="postadd"><a className="btn btn-block btn-border btn-post btn-danger" href="#">Feedback</a></li>
       </Nav>
     )
   }

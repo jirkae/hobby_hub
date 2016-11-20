@@ -10,12 +10,9 @@ class MenuPane extends Component {
   render() {
     const {user} = this.props;
     return (
-      <Nav pullRight>
-        <NavItem eventKey={1} role="button" onClick={this.handleLoginClick}>Přihlásit se</NavItem>
-        <NavItem eventKey={2} role="button" onClick={this.handleRegisterClick}>Registrace</NavItem>
-        <li className="postadd"><a className="btn btn-block btn-border btn-post btn-danger" href="#">Feedback</a></li>
+      <div>
         {user === undefined ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} userId={user.id}/>}
-      </Nav>
+      </div>
     );
   }
 }
