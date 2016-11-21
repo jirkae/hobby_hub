@@ -7,6 +7,9 @@ import Footer from './Footer.js';
 import { changeModalVisibility } from './../../actions/index';
 
 import '../../scss/app.scss';
+import '../../css/style.css';
+import '../../css/fontello.css';
+import '../../css/animate.min.css';
 
 class Layout extends Component {
   constructor(props) {
@@ -33,18 +36,17 @@ class Layout extends Component {
     const { modalContentGenerator } = this.state;
 
     return (
-      <div className="container">
-        <Modal show={modalVisible}>
+      <div>
+        <Modal show={modalContentGenerator() !== null}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.closeModal}>Zavřít</Button>
+            <Button bsStyle="link" onClick={this.closeModal}>Zavřít</Button>
           </ModalFooter>
         </Modal>
         <Header openModalFc={this.openModal}/>
         {children}
-        <Footer/>
       </div>
     );
   }

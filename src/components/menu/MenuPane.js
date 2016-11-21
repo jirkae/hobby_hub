@@ -10,13 +10,9 @@ class MenuPane extends Component {
   render() {
     const {user} = this.props;
     return (
-      <Navbar>
-        <Nav>
-          <LinkContainer to="/events"><NavItem eventKey={1}>Výpis eventů</NavItem></LinkContainer>
-          <LinkContainer to="/create-event"><NavItem eventKey={2}>Přidat event</NavItem></LinkContainer>
-        </Nav>
+      <div>
         {user === undefined ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} userId={user.id}/>}
-      </Navbar>
+      </div>
     );
   }
 }

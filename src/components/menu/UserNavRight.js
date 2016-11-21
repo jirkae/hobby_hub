@@ -23,6 +23,7 @@ class GuestNavRight extends Component {
       <Nav pullRight>
         <LinkContainer to="/profile"><NavItem>Profil</NavItem></LinkContainer>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
+        <li className="postadd"><a className="btn btn-block btn-border btn-post btn-danger" href="#">Feedback</a></li>
       </Nav>
     )
   }
