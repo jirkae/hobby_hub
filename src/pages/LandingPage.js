@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {FormControl, Button, Col} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 
@@ -18,7 +18,7 @@ const LandingPage = () => {
                   <div className="row search-row animated fadeInUp">
                     <Col lg={4} sm={4} className="search-col relative locationicon">
                       <i className="icon-location-2 icon-append"></i>
-                      <FormControl name="country" id="autocomplete-ajax" className="locinput input-rel searchtag-input has-icon" placeholder="obec, městská část, psč" value="" autocomplete="off" type="text"/>
+                      <FormControl name="country" id="autoComplete-ajax" className="locinput input-rel searchtag-input has-icon" placeholder="obec, městská část, psč" value="" autoComplete="off" type="text"/>
                     </Col>
                     <Col lg={4} sm={4} className="search-col relative">
                       <i className="icon-docs icon-append"></i>

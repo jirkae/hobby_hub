@@ -3,8 +3,6 @@ import MenuPane from "../menu/MenuPane.js";
 import {
     Navbar,
     Nav,
-    NavDropdown,
-    MenuItem,
     NavItem,
     Button
 } from "react-bootstrap";

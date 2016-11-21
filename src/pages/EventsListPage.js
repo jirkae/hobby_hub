@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 

@@ -3,7 +3,6 @@ import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Header from './Header.js';
-import Footer from './Footer.js';
 import { changeModalVisibility } from './../../actions/index';
 
 import '../../scss/app.scss';
@@ -37,7 +36,7 @@ class Layout extends Component {
 
     return (
       <div>
-        <Modal show={modalContentGenerator() !== null}>
+        <Modal show={modalVisible}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
