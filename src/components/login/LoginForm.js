@@ -47,7 +47,7 @@ class LoginForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Email
             </Col>
-            <Col sm={9}>
+            <Col sm={7}>
               <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange}/>
             </Col>
           </FormGroup>
@@ -56,13 +56,13 @@ class LoginForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Heslo
             </Col>
-            <Col sm={9}>
+            <Col sm={7}>
               <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
             </Col>
           </FormGroup>
 
           <FormGroup>
-            <Col smOffset={3} sm={9}>
+            <Col smOffset={3} sm={7}>
               <Button bsStyle="primary" type="submit">
                 Přihlásit se
               </Button>

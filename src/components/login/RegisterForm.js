@@ -52,7 +52,7 @@ class RegisterForm extends Component {
 
   getValidationState() {
     const length = this.state.password.length;
-    if (length > 7) return 'success';
+    if (length > 8) return 'success';
     else if (length >= minPassLength) return 'warning';
     else if (length > 0) return 'error';
   }
@@ -89,7 +89,7 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Email
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
               <FormControl.Feedback />
             </Col>
@@ -99,7 +99,7 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Jméno a příjmení
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="text" placeholder="Jméno a příjmení" />
             </Col>
           </FormGroup>
@@ -108,7 +108,7 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Heslo
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
               <FormControl.Feedback />
             </Col>
@@ -118,14 +118,14 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Heslo znovu
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange}/>
               <FormControl.Feedback />
             </Col>
           </FormGroup>
 
           <FormGroup>
-            <Col smOffset={3} sm={9}>
+            <Col smOffset={3} sm={8}>
               <Button bsStyle="primary" type="submit">
                 Vytvořit nový účet
               </Button>

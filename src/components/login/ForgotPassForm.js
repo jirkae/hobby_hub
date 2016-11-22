@@ -20,13 +20,13 @@ class ForgotPassForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Email
             </Col>
-            <Col sm={9}>
+            <Col sm={7}>
               <FormControl type="email" placeholder="Email" />
             </Col>
           </FormGroup>
 
           <FormGroup>
-            <Col smOffset={3} sm={9}>
+            <Col smOffset={3} sm={7}>
               <Button type="submit">
                 Resetovat heslo
               </Button>
