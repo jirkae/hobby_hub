@@ -4,10 +4,12 @@ function userReducer(state={}, action) {
 
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
+      console.log(action.payload);
       return {...state,
         user: {
           email: action.payload.email,
-          id: action.payload.id
+          id: action.payload.id,
+          userId: action.payload.userId
         }
       }
     }

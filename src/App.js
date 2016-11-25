@@ -12,6 +12,7 @@ import { loadState, saveState } from './services/localState';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const persistedState = loadState();
+console.log('loaded state:', persistedState);
 const store = configureStore(persistedState, saveState, composeEnhancers(applyMiddleware(thunk)));
 
 class App extends Component {

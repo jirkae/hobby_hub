@@ -6,8 +6,9 @@ import reducers from '../reducers/reducers';
 function stateThatShouldBeSaved(state) {
   const {
     user,
-  } = state;
+  } = state.userReducer;
 
+  console.log('user:', user);
   return {
     user,
   };
