@@ -1,6 +1,6 @@
 import * as C from './../constants/hobbyConstants';
 
-function userReducer(state={}, action) {
+function userReducer(state={user: {}}, action) {
 
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
@@ -19,6 +19,15 @@ function userReducer(state={}, action) {
         user: {
           email: action.payload.email,
           id: action.payload.id
+        }
+      }
+    }
+
+    case C.REGISTER_USER_FAILURE: {
+      console.log('UserReducer failed registration: ', action);
+      return {...state,
+        user: {
+          registerError: action.payload
         }
       }
     }

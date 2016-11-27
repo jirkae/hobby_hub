@@ -13,21 +13,23 @@ import {
 
 export function loginUser(user) {
   return function (dispatch) {
-    return API.postLogin(user)
+    API.postLogin(user)
       .then(response => {
+        // console.log('setting auth token', response.data.user.id);
+        // API.setAuthToken(response.data.user.id);
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
         dispatch(loginUserFailure(user, error))
       });
   };
-} // hE1Pxe;O
-// ufvH~&lD
+}
 
 export function registerUser(user) {
   return function (dispatch) {
     return API.postRegister(user)
       .then(response => {
+        // API.setAuthToken(response.data.user.id);
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {

@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 
 ProfilePage = connect(
   mapStateToProps,
-  mapDispatchToProps()
+  mapDispatchToProps
 )(ProfilePage);
 
 export default ProfilePage;

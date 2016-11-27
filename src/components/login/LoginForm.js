@@ -24,9 +24,6 @@ class LoginForm extends Component {
 
     if(formData.email && formData.password){
       this.props.dispatch(loginUser(formData))
-        .catch(error => {
-          // reagovat na případ, že se nepodaří přihlásit se
-        })
     }
   }
 

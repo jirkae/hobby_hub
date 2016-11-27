@@ -129,6 +129,7 @@ class RegisterForm extends Component {
               <Button bsStyle="primary" type="submit">
                 Vytvořit nový účet
               </Button>
+              {this.props.registerError}
             </Col>
           </FormGroup>
         </Form>
@@ -137,4 +138,18 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm = connect()(RegisterForm);
+const mapStateToProps = (store) => {
+  console.log('store', store);
+  console.log('userreducer', store.userReducer);
+  console.log('registerError', store.userReducer.registerError);
+
+  return {
+    registerError: store.registerError
+  };
+};
+
+RegisterForm = connect(
+  mapStateToProps
+)(RegisterForm);
+
+export default RegisterForm;
