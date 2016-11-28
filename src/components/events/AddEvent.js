@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Alert } from "react-bootstrap"
+import { Alert, Col } from "react-bootstrap"
 
 import AddEventStep1 from './AddEventStep1.js';
 import AddEventStep2 from './AddEventStep2.js';
@@ -73,10 +73,12 @@ export default class AddEvent extends Component {
         return <AddEventStep3 onSubmit={this.handleStep3Submit}/>;
       case 4:
         return (
-          <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-            <h4>Událost vytvořena</h4>
-            <p>Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí</p>
-          </Alert>
+          <Col md={12}>
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
+              <h4>Událost vytvořena</h4>
+              <p>Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí</p>
+            </Alert>
+          </Col>
         );
       default:
         return null;
