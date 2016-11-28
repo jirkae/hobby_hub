@@ -12,7 +12,9 @@ class RegisterForm extends Component {
     this.state = {
       passValidationState: null,
       emailValidationState: null,
-      password: ''  // bez toho to nejede
+      password: '',  // bez toho to nejede
+      firstName: '',
+      lastName: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,6 +22,8 @@ class RegisterForm extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSecondPasswordChange = this.handleSecondPasswordChange.bind(this);
     this.validateFormAndCall = this.validateFormAndCall.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -27,8 +31,9 @@ class RegisterForm extends Component {
 
     const formData = {
       email: this.state.email,
-      name: this.state.name,
-      password: this.state.password
+      firstName: this.state.firstName,
+      password: this.state.password,
+        lastName: this.state.lastName
     };
 
     this.validateFormAndCall(formData);
@@ -38,8 +43,11 @@ class RegisterForm extends Component {
     this.setState({email: event.target.value});
   }
 
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
+  handleFirstNameChange(event) {
+    this.setState({firstName: event.target.value});
+  }
+  handleLastNameChange(event){
+    this.setState({lastName: event.target.value});
   }
 
   handlePasswordChange(event) {
@@ -95,12 +103,21 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword" onChange={this.handleNameChange}>
+          <FormGroup controlId="formHorizontalPassword" onChange={this.handleFirstNameChange}>
             <Col componentClass={ControlLabel} sm={3}>
-              Jméno a příjmení
+              Jméno
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="Jméno a příjmení" />
+              <FormControl type="text" placeholder="Jméno" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword" onChange={this.handleLastNameChange}>
+            <Col componentClass={ControlLabel} sm={3}>
+              Příjmení
+            </Col>
+            <Col sm={8}>
+              <FormControl type="text" placeholder="Příjmení" />
             </Col>
           </FormGroup>
 

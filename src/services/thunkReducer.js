@@ -15,9 +15,10 @@ export function loginUser(user) {
   return function (dispatch) {
     return API.postLogin(user)
       .then(response => {
-        // console.log('setting auth token', response.data.user.id);
-        // API.setAuthToken(response.data.user.id);
-
+        console.log("SUPER TOKEN");
+         //console.log('setting auth token', response.data.user.id);
+         API.setAuthToken(response.data.userId);
+        console.log("---------------------"+response.data.userId);
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
@@ -30,7 +31,7 @@ export function registerUser(user) {
   return function (dispatch) {
     return API.postRegister(user)
       .then(response => {
-        // API.setAuthToken(response.data.user.id);
+        API.setAuthToken(response.data.userId);
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
