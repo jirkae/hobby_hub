@@ -14,25 +14,25 @@ let api = axios.create({
 
 export const baseUrl = () => {return `${BASE_URL}`;}
 
-export const postLogin = (props) => {
+export function postLogin(props) {
   return api.post(`${BASE_URL}AuthUsers/login`,props)
-};
+}
 
-export const postRegister = (props) => {
+export function postRegister(props) {
   return api.post(`${BASE_URL}AuthUsers`,props);
-};
+}
 
-export const postEvent = (event) => {
+export function postEvent(event) {
   return api.post(`${BASE_URL}Events`, event)
-};
+}
 
-export const postLogout = (userId) => {
+export function postLogout(userId) {
   return api.post(`${BASE_URL}AuthUser/logout`, userId)
-};
+}
 
-export const getUserData = (userId) => {
+export function getUserData(userId) {
   return api.get(`${BASE_URL}AuthUser/${userId}`)
-};
+}
 
 export function getCancelTokenSource() {
   return CancelToken.source();

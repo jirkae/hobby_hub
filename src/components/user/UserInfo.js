@@ -24,14 +24,13 @@ class UserInfo extends Component {
                     </FormGroup>
                     <FormGroup controlId="formEmail">
                       <ControlLabel>Email</ControlLabel>
-                      <FormControl type="text" value={user.email}/>
+                      <FormControl type="email" value={user.email}/>
                     </FormGroup>
                   </form>
                 </Col>
                 <Col sm={2} className="col-offset-xs-4 pull-right button-wrapper vcenter">
-                  <Button classNmae="btn-info">Změnit email</Button>
-                  <Button classNmae="btn-info">Změnit heslo</Button>
-                  <Button classNmae="btn-primary">Uložit změny</Button>
+                  <Button>Změnit heslo</Button>
+                  <Button bsStyle="primary">Uložit změny</Button>
                 </Col>
               </Row>
               <Row>

@@ -13,10 +13,11 @@ import {
 
 export function loginUser(user) {
   return function (dispatch) {
-    API.postLogin(user)
+    return API.postLogin(user)
       .then(response => {
         // console.log('setting auth token', response.data.user.id);
         // API.setAuthToken(response.data.user.id);
+
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {

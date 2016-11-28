@@ -6,6 +6,10 @@ import UserInfo from './../components/user/UserInfo';
 import EventsBox from './../components/events/EventsBox';
 
 class ProfilePage extends Component{
+  componentWillMount() {
+    this.props.getUserEvents(this.props.user.id);
+  }
+
   render() {
     const { user } = this.props;
     return (
