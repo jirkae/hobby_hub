@@ -106,3 +106,18 @@
     height: 150px;
   }
 }
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+  margin-top:5px;
+}
+
+.button-wrapper .btn {
+  margin-bottom:5px;
+}
+
+.basic-padding {
+  padding: 5px 5px 5px 5px;
+}
