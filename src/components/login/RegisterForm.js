@@ -12,6 +12,10 @@ class RegisterForm extends Component {
     this.state = {
       passValidationState: null,
       emailValidationState: null,
+
+      firstNameValidationState: null,
+      lastNameValidationState: null,
+
       password: '',  // bez toho to nejede
       firstName: '',
       lastName: ''
@@ -81,6 +85,25 @@ class RegisterForm extends Component {
     } else {
       this.setState({passValidationState: null});
     }
+      /**
+       * Validace prázdného křestního jméne
+       */
+    if(!this.state.firstName){
+      this.setState({firstNameValidationState: 'error'});
+      valid = false;
+    }else {
+        this.setState({firstNameValidationState: 'success'});
+    }
+      /**
+       * Validace prázdného příjmení
+       */
+      if(!this.state.lastName){
+          this.setState({lastNameValidationState: 'error'});
+          valid = false;
+      }else {
+        this.setState({lastNameValidationState: 'success'});
+      }
+
 
     if (valid) {
 
@@ -103,21 +126,22 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword" onChange={this.handleFirstNameChange}>
+          <FormGroup controlId="formHorizontalPassword" validationState={this.state.firstNameValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
               Jméno
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="Jméno" />
+              <FormControl type="text" placeholder="Jméno" onChange={this.handleFirstNameChange} />
+              <FormControl.Feedback/>
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword" onChange={this.handleLastNameChange}>
+          <FormGroup controlId="formHorizontalPassword" validationState={this.state.lastNameValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
               Příjmení
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="Příjmení" />
+              <FormControl type="text" placeholder="Příjmení" onChange={this.handleLastNameChange}/>
             </Col>
           </FormGroup>
 
