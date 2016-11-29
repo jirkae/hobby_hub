@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bootstrap"
 
 export default class AddEventStep1 extends Component {
   constructor(params) {
@@ -66,67 +66,81 @@ export default class AddEventStep1 extends Component {
 
   render() {
     return (
-      <Row>
-        <form onSubmit={this.formSubmit}>
-          <div className="col-md-6">
+        <form onSubmit={this.formSubmit} className="form-horizontal">
+          <Col md={12}>
 
+              <fieldset>
 
-            <FormGroup controlId="eventName" validationState={this.getValidationState('name')}>
-              <ControlLabel>Název události</ControlLabel>
-              <FormControl type="text" value={this.state.event.name} onChange={(e) => {this.handleFieldChange(e, 'name')}}/>
-            </FormGroup>
-
-            <FormGroup controlId="eventSortDesc" validationState={this.getValidationState('description')}>
-              <ControlLabel>Krátký popis</ControlLabel>
-              <FormControl type="text" value={this.state.event.description} onChange={(e) => {this.handleFieldChange(e, 'description')}}/>
-            </FormGroup>
-
-            <FormGroup controlId="eventLongDesc" validationState={this.getValidationState('detailDescription')}>
-              <ControlLabel>Dlouhý popis</ControlLabel>
-              <FormControl componentClass="textarea"
-                           placeholder="Dopište detailní popis události"
-                           value={this.state.event.detailDescription}
-                           onChange={(e) => {this.handleFieldChange(e, 'detailDescription')}}/>{/**/}
-            </FormGroup>
-
-          </div>
-          <div className="col-md-3">
-            <div className='row'>
-              <div className="col-md-6">
-                <FormGroup controlId="eventParticipantsMin" validationState={this.getValidationState('participantsMin')}>
-                  <ControlLabel>Min účastníků</ControlLabel>
-                  <FormControl componentClass="select"
-                      placeholder="select"
-                      onChange={(e) => {this.handleFieldChange(e, 'participantsMin')}}
-                      value={this.state.event.participantsMin}>
-                    <option value="0">Vyberte</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </FormControl>
+                <FormGroup controlId="eventName" validationState={this.getValidationState('name')}>
+                  <ControlLabel className="col-md-3 control-label">Název události</ControlLabel>
+                  <div className="col-md-8">
+                    <FormControl type="text" value={this.state.event.name} onChange={(e) => {this.handleFieldChange(e, 'name')}}/>
+                  </div>
                 </FormGroup>
-              </div>
-              <div className="col-md-6">
-                <FormGroup controlId="eventParticipantsMax" validationState={this.getValidationState('participantsMax')}>
-                  <ControlLabel>Max účastníků</ControlLabel>
-                  <FormControl componentClass="select"
-                      placeholder="select"
-                      onChange={(e) => {this.handleFieldChange(e, 'participantsMax')}}
-                      value={this.state.event.participantsMax}>
-                    <option value="0">Vyberte</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </FormControl>
+
+                <FormGroup controlId="eventSortDesc" validationState={this.getValidationState('description')}>
+                  <ControlLabel className="col-md-3 control-label">Krátký popis</ControlLabel>
+                  <div className="col-md-8">
+                    <FormControl type="text" value={this.state.event.description} onChange={(e) => {this.handleFieldChange(e, 'description')}}/>
+                  </div>
                 </FormGroup>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <Button bsStyle="primary" type="submit">Pokračovat</Button>
-          </div>
+
+                <FormGroup controlId="eventLongDesc" validationState={this.getValidationState('detailDescription')}>
+                  <ControlLabel className="col-md-3 control-label">Dlouhý popis</ControlLabel>
+                  <div className="col-md-8">
+                    <FormControl componentClass="textarea"
+                                 placeholder="Dopište detailní popis události"
+                                 value={this.state.event.detailDescription}
+                                 onChange={(e) => {this.handleFieldChange(e, 'detailDescription')}}/>{/**/}
+                 </div>
+                </FormGroup>
+
+                <FormGroup controlId="eventParticipants">
+                  <ControlLabel className="col-md-3 control-label">Počet účastníků</ControlLabel>
+                  <div className="col-md-8">
+                    <Row>
+                      <Col md={6}>
+                        <Col md={12}>
+                          <FormGroup controlId="eventParticipantsMin" validationState={this.getValidationState('participantsMin')}>
+                            <FormControl componentClass="select"
+                                placeholder="select"
+                                onChange={(e) => {this.handleFieldChange(e, 'participantsMin')}}
+                                value={this.state.event.participantsMin}>
+                              <option value="0">Minimálně</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                            </FormControl>
+                          </FormGroup>
+                        </Col>
+                      </Col>
+                      <Col md={6}>
+                        <Col md={12}>
+                          <FormGroup controlId="eventParticipantsMax" validationState={this.getValidationState('participantsMax')}>
+                            <FormControl componentClass="select"
+                                placeholder="select"
+                                onChange={(e) => {this.handleFieldChange(e, 'participantsMax')}}
+                                value={this.state.event.participantsMax}>
+                              <option value="0">Maximálně</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                            </FormControl>
+                          </FormGroup>
+                        </Col>
+                      </Col>
+                    </Row>
+                  </div>
+                </FormGroup>
+                <FormGroup controlId="submit">
+                  <Col md={2} mdOffset={10}>
+                    <Button className="pull-right" bsStyle="primary" type="submit">Pokračovat</Button>
+                  </Col>
+                </FormGroup>
+              </fieldset>
+
+          </Col>
         </form>
-      </Row>
     );
   }
 }

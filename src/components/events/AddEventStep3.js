@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, Row, Col } from "react-bootstrap";
 import Datetime from 'react-datetime';
 
 import '../../../node_modules/react-datetime/css/react-datetime.css';
@@ -56,22 +56,30 @@ export default class AddEventStep3 extends Component {
 
   render() {
     return(
-      <form onSubmit={this.formSubmit}>
-        <Row>
-          <div className="col-md-4">
+      <form onSubmit={this.formSubmit} className="form-horizontal">
+        <Col md={12}>
+          <fieldset>
             <FormGroup controlId="eventStreet" validationState={this.getValidationState('startDate')}>
-              <ControlLabel>Začátek akce</ControlLabel>
-              <Datetime locale="cs" value={this.state.event.startDate !== '' ? this.state.event.startDate.format('DD. MM. YYYY h:mm') : ''} onChange={(e) => {this.handleFieldChange(e, 'startDate')}}/>
+              <ControlLabel className="col-md-3 control-label">Začátek akce</ControlLabel>
+              <div className="col-md-8">
+                <Datetime locale="cs" value={this.state.event.startDate !== '' ? this.state.event.startDate.format('DD. MM. YYYY h:mm') : ''} onChange={(e) => {this.handleFieldChange(e, 'startDate')}}/>
+              </div>
             </FormGroup>
+
             <FormGroup controlId="eventCity" validationState={this.getValidationState('endDate')}>
-              <ControlLabel>Konec akce</ControlLabel>
-              <Datetime locale="cs" value={this.state.event.endDate !== '' ? this.state.event.endDate.format('DD. MM. YYYY h:mm') : ''} onChange={(e) => {this.handleFieldChange(e, 'endDate')}}/>
+              <ControlLabel className="col-md-3 control-label">Konec akce</ControlLabel>
+              <div className="col-md-8">
+                <Datetime locale="cs" value={this.state.event.endDate !== '' ? this.state.event.endDate.format('DD. MM. YYYY h:mm') : ''} onChange={(e) => {this.handleFieldChange(e, 'endDate')}}/>
+              </div>
             </FormGroup>
-          </div>
-          <div className="col-md-3 col-md-offset-5">
-            <Button bsStyle="primary" type="submit">Uložit</Button>
-          </div>
-        </Row>
+
+            <FormGroup controlId="submit">
+              <Col md={2} mdOffset={10}>
+                <Button className="pull-right" bsStyle="primary" type="submit">Vytvořit</Button>
+              </Col>
+            </FormGroup>
+          </fieldset>
+        </Col>
       </form>
     );
   }
