@@ -17,8 +17,9 @@ export function loginUser(user) {
       .then(response => {
         console.log("SUPER TOKEN");
          //console.log('setting auth token', response.data.user.id);
-         API.setAuthToken(response.data.userId);
+         API.setAuthToken(response.data.id);
         console.log("---------------------"+response.data.userId);
+        console.log("---------------------"+response.data.id);
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
@@ -40,13 +41,13 @@ export function registerUser(user) {
   };
 }
 
-export function logoutUser(userId) {
+export function logoutUser(token) {
   return function (dispatch) {
-    return API.postLogout(userId)
+    return API.postLogout(token)
       .then(response => {
         dispatch(logoutUserSuccess(response.data));
       }).catch(error => {
-        dispatch(logoutUserFailure(userId, error))
+        dispatch(logoutUserFailure(token, error))
       });
   };
 }

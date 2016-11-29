@@ -26,8 +26,8 @@ export function postEvent(event) {
   return api.post(`${BASE_URL}Events`, event)
 }
 
-export function postLogout(userId) {
-  return api.post(`${BASE_URL}AuthUser/logout`, userId)
+export function postLogout(token) {
+  return api.post(`${BASE_URL}AuthUser/logout?access_token=${token}`)
 }
 
 export function getUserData(userId) {
