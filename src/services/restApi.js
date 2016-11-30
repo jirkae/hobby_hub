@@ -57,3 +57,7 @@ export function getParticipants(eventId) {
 export function postToggleParticipation(props, authToken) {
   return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
 }
+
+export function getEventOwnedByuser(user, event) {
+  return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
+}
