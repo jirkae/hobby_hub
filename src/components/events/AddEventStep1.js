@@ -35,7 +35,7 @@ export default class AddEventStep1 extends Component {
     e.preventDefault();
 
     const {event} = this.state;
-    var errors = [];
+    let errors = [];
 
     if (event.name.length === 0) {
       errors.push('name');
@@ -144,41 +144,3 @@ export default class AddEventStep1 extends Component {
     );
   }
 }
-
-/*
-<div className='row'>
-  <div className="col-md-4">
-    <label>Vyberte kategorii:</label>
-  </div>
-  <div className="col-md-4">
-    <FormGroup controlId="eventCategory">
-      <FormControl componentClass="select"
-          placeholder="select"
-          onChange={(e) => {this.handleFieldChange(e, 'category')}}
-          value={this.state.event.category}>
-        <option value="outdoor">Venkovní</option>
-        <option value="indoor">Vnitřní</option>
-      </FormControl>
-    </FormGroup>
-  </div>
-  <div className="col-md-4">
-    <FormGroup controlId="eventSubcategory">
-      <FormControl componentClass="select"
-          placeholder="select"
-          onChange={(e) => {this.handleFieldChange(e, 'subcategory')}}
-          value={this.state.event.subcategory}>
-        <option value="sport1">Sport 1</option>
-        <option value="sport2">Sport 2</option>
-      </FormControl>
-    </FormGroup>
-  </div>
-</div>
-
-<FormGroup>
-  <Checkbox
-      onChange={(e) => {this.handleFieldChange(e, 'participantsConfirm')}}>
-    Schvalování přihlášek
-  </Checkbox>
-</FormGroup>
-
-*/

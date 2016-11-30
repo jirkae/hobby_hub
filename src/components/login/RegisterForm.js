@@ -87,18 +87,14 @@ class RegisterForm extends Component {
     } else {
       this.setState({passValidationState: null});
     }
-      /**
-       * Validace prázdného křestního jméne
-       */
+
     if(!this.state.firstName){
       this.setState({firstNameValidationState: 'error'});
       valid = false;
     }else {
         this.setState({firstNameValidationState: 'success'});
     }
-      /**
-       * Validace prázdného příjmení
-       */
+
       if(!this.state.lastName){
           this.setState({lastNameValidationState: 'error'});
           valid = false;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstrap"
 
 export default class AddEventStep2 extends Component {
   constructor(params) {
@@ -33,7 +33,7 @@ export default class AddEventStep2 extends Component {
     e.preventDefault();
 
     const {event} = this.state;
-    var errors = [];
+    let errors = [];
 
     if (event.street.length === 0) {
       errors.push('street');

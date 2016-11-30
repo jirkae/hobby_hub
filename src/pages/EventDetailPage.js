@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap'
 import { baseUrl } from '../services/restApi.js';
 import ContentWrapper from '../components/layout/ContentWrapper.js';
 import MainContent from '../components/layout/MainContent.js';
@@ -62,8 +61,6 @@ export default class EventDetailPage extends Component {
   }
 
   render() {
-    const { data } = this.state;
-
     return (
       <ContentWrapper>
         <MainContent className="col-sm-9">

@@ -23,7 +23,7 @@ class UserInfo extends Component {
     componentWillReceiveProps(newProps) {
       const { props } = this;
 
-        if(newProps != props) {
+        if(newProps !== props) {
             this.setState({ ...newProps.user });
         }
     }

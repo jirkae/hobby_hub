@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, Row, Col } from "react-bootstrap";
+import { Button, FormGroup, ControlLabel, Col } from "react-bootstrap";
 import Datetime from 'react-datetime';
 
 import '../../../node_modules/react-datetime/css/react-datetime.css';
@@ -37,7 +37,7 @@ export default class AddEventStep3 extends Component {
     let {event} = this.state;
     event.startDate = event.startDate.format();
     event.endDate = event.endDate.format();
-    var errors = [];
+    let errors = [];
 
     if (event.endDate === '') {
       errors.push('endDate');
