@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
 import { registerUser } from './../../services/thunkReducer';
 import { connect } from 'react-redux';
+import ConditionalErrorLabel from './ConditionalErrorLabel';
 
 const minPassLength = 6;
 
@@ -171,9 +172,10 @@ class RegisterForm extends Component {
               <Button bsStyle="primary" type="submit">
                 Vytvořit nový účet
               </Button>
-              {this.props.registerError}
             </Col>
           </FormGroup>
+
+          <ConditionalErrorLabel error={this.props.error}/>
         </Form>
       </div>
     )
@@ -181,12 +183,8 @@ class RegisterForm extends Component {
 }
 
 const mapStateToProps = (store) => {
-  console.log('store', store);
-  console.log('userreducer', store.userReducer);
-  console.log('registerError', store.userReducer.registerError);
-
   return {
-    registerError: store.registerError
+      error: store.modalReducer.error
   };
 };
 

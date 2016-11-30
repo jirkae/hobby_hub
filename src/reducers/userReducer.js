@@ -5,21 +5,22 @@ function userReducer(state={user: {}}, action) {
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
       console.log(action.payload);
-      return {...state,
-        user: {
-          email: action.payload.email,
-          id: action.payload.id,
-          userId: action.payload.userId
-        }
+      return {...state, ...action.data
+        // user: {
+        //   email: action.payload.email,
+        //   id: action.payload.id,
+        //   userId: action.payload.userId
+        // }
       }
     }
 
     case C.REGISTER_USER_SUCCESS: {
-      return {...state,
-        user: {
-          email: action.payload.email,
-          id: action.payload.id
-        }
+      return {...state, ...action.data
+        // user: {
+        //   email: action.payload.email,
+        //   id: action.payload.id,
+        //   userId: action.payload.userId
+        // }
       }
     }
 

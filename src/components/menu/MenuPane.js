@@ -17,7 +17,6 @@ class MenuPane extends Component {
 }
 
 const mapStateToProps = (store) => {
-  console.log('menuPane store contents', store);
   return {
     user: store.userReducer.user
   }

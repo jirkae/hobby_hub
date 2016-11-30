@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
 import { loginUser } from './../../services/thunkReducer';
 import {connect} from 'react-redux';
+import ConditionalErrorLabel from './ConditionalErrorLabel';
 
 class LoginForm extends Component {
   constructor(props) {
@@ -65,10 +66,22 @@ class LoginForm extends Component {
               </Button>
             </Col>
           </FormGroup>
+
+          <ConditionalErrorLabel error={this.props.error}/>
         </Form>
       </div>
     )
   }
 }
 
-export default LoginForm = connect()(LoginForm);
+const mapStateToProps = (store) => {
+    return {
+        error: store.modalReducer.error
+    }
+};
+
+LoginForm = connect(
+    mapStateToProps
+)(LoginForm);
+
+export default LoginForm;

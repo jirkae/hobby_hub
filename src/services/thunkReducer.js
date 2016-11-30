@@ -13,16 +13,18 @@ import {
 
 export function loginUser(user) {
   return function (dispatch) {
+      console.log("THUNK REDUCER");
     return API.postLogin(user)
       .then(response => {
         console.log("SUPER TOKEN");
-         //console.log('setting auth token', response.data.user.id);
+         console.log('setting auth token', response.data.user.id);
          API.setAuthToken(response.data.id);
         console.log("---------------------"+response.data.userId);
         console.log("---------------------"+response.data.id);
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
+          console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(loginUserFailure(user, error))
       });
   };
@@ -36,6 +38,7 @@ export function registerUser(user) {
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
+            console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(registerUserFailure(user, error))
       });
   };
