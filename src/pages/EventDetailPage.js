@@ -70,7 +70,7 @@ export default class EventDetailPage extends Component {
           {this.generateContent()}
         </MainContent>
         <AsideContent className="col-sm-3">
-          <ParticipantPanel />
+          <ParticipantPanel event = {data}/>
         </AsideContent>
       </ContentWrapper>
     );

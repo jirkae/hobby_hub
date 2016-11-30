@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { SearchBox } from '../components/events/SearchBox.js';
 
-const EventsPage = () => {
-  return (
-    <div>
-      <SearchBox />
-    </div>
-  );
-};
+export default class EventsPage extends Component {
+  componentDidMount() {
+    console.log(this.props.location.query);
+  }
 
-export default EventsPage;
+  render() {
+    return (
+      <div>
+        <SearchBox />
+      </div>
+    );
+  }
+};

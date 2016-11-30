@@ -44,6 +44,8 @@ class GuestNavRight extends Component{
         <NavItem role="button" eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
         <NavItem role="button" eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
         <NavItem role="button" eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
+        <NavItem role="button" eventKey={8} className="postadd" href="/create-event">Přidat akci</NavItem>
+
       </Nav>
     )
   }

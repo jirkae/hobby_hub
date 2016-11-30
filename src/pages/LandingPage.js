@@ -1,8 +1,19 @@
-import React from "react";
+import React, { Component } from "react";
 import {FormControl, Button, Col} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 
-const LandingPage = () => {
+export default class LandingPage extends Component {
+  constructor(params) {
+    super(params);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  handleButtonClick() {
+    //this.props.router.push({pathname:'/events',query: {a:'c'}});
+    this.context.router.push({pathname:'/events',query: {a:'c'}});
+  }
+
+  render() {
     return (
         <div>
           <div className="intro jobs-intro hasOverly landingBackground">
@@ -25,7 +36,7 @@ const LandingPage = () => {
                       <FormControl name="ads" className="has-icon" placeholder="sport, koníček, událost" value="" type="text"/>
                     </Col>
                     <Col lg={4} sm={4} className="search-col">
-                      <Button bsStyle="primary" className="btn-search btn-block" role="button">
+                      <Button bsStyle="primary" className="btn-search btn-block" role="button" onClick={this.handleButtonClick}>
                         <i className="icon-search"></i>
                         <strong>Najít událost</strong>
                       </Button>
@@ -47,6 +58,9 @@ const LandingPage = () => {
           <EventsBox/>
         </div>
     );
+  }
 }
 
-export default LandingPage;
+LandingPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}

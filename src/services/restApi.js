@@ -41,3 +41,11 @@ export function getCancelTokenSource() {
 export function setAuthToken(authToken) {
   api.defaults.headers.common['Authorization'] = authToken;
 }
+
+export function getParticipants(eventId) {
+  return api.get(`${BASE_URL}AuthUser/${eventId}`)
+}
+
+export function postToggleParticipation(props) {
+  return api.post(`${BASE_URL}Participations/toggleParticipation`, props)
+}
