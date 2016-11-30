@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Image, Col} from "react-bootstrap";
 import grill from "../../images/grill.jpg";
-import {LinkContainer} from "react-router-bootstrap";
+import {Link} from "react-router";
 
 export default class EventsBoxItem extends Component {
     render()
@@ -10,24 +10,21 @@ export default class EventsBoxItem extends Component {
             <div className="item-list job-item">
               <Col sm={1} xs={2} className="no-padding photobox">
                 <div className="add-image">
-                  <LinkContainer to={{
+                  <Link to={{
                     pathname: '/events/' + this.props.event.id
                   }}>
-                    <a>
                       <Image className="thumbnail no-margin" alt="POPISEK" src={grill} responsive/>
-                    </a>
-                  </LinkContainer>
+                  </Link>
                 </div>
               </Col>
               <Col sm={10} xs={10} className="add-desc-box">
                 <div className="add-details jobs-item">
                   <h4 className="job-title">
-                    <LinkContainer to={{
+                    <Link to={{
                       pathname: '/events/' + this.props.event.id
                     }}>
-                      <a href="#">{this.props.event.name}
-                      </a>
-                    </LinkContainer>
+                      {this.props.event.name}
+                    </Link>
                   </h4>
                   <span className="info-row">
                     <span className="item-location">

@@ -1,7 +1,7 @@
 import * as C from './../constants/hobbyConstants';
 
 function userReducer(state={user: {}}, action) {
-
+console.log(action);
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
       return {...state,

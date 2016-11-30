@@ -1,27 +1,26 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import {Grid, Row, Col, Glyphicon} from "react-bootstrap";
 import EventsBoxItem from "./EventsBoxItem.js";
-import {baseUrl} from '../../services/restApi.js';
+import {getLatestEvents} from '../../services/restApi.js';
 
-export default class EventsBox extends Component {
+export default class LatestEventsBox extends Component {
 
     state = {
-        events: [],
-        url: ""
+        events: []
     };
 
     componentDidMount()
     {
-        const url = baseUrl() + 'events';
-        fetch(url).then(r => r.json()).then(json => {
-            this.setState({events: json})
-        }).catch(e => console.log("Error"));
+      getLatestEvents().then(response => {
+        this.setState({events: response.data});
+      });
     }
 
     getEventsBoxItems(events)
     {
-        var items = events.map((data) => {
-            return (<EventsBoxItem event={data}/>);
+        var items = this.state.events.map((data) => {
+            return (<EventsBoxItem event={data} key={data.id}/>);
         })
         return items;
     }
@@ -29,6 +28,7 @@ export default class EventsBox extends Component {
     render()
     {
         const {events} = this.state;
+
         return (
             <Grid className="container-top-margin">
                 <Row>
@@ -38,10 +38,10 @@ export default class EventsBox extends Component {
                                 <Col lg={12} className="box-title no-border">
                                     <div className="inner">
                                         <h2>
-                                            <span>Akce</span>
-                                            <a href="#" className="sell-your-item">
+                                            <span>Poslední</span> akce
+                                              <Link to="/events" className="sell-your-item">
                                                 Zobrazit více akcí <Glyphicon glyph="th-list"></Glyphicon>
-                                            </a>
+                                              </Link>
                                         </h2>
                                     </div>
                                 </Col>
@@ -51,10 +51,9 @@ export default class EventsBox extends Component {
 
                                 </div>
                                 <div className="tab-box save-search-bar text-center">
-                                    <a className="text-uppercase" href="#">
-                                        <i className="icon-briefcase"></i>
-                                        Zobrazit všechny akce
-                                    </a>
+                                  <Link to="/events" className="sell-your-item">
+                                    <i className="icon-briefcase"></i> Zobrazit všechny akce
+                                  </Link>
                                 </div>
                             </Row>
                         </Col>

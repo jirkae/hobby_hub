@@ -13,24 +13,42 @@ class ParticipantPanel extends Component {
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
   }
 
-  componentDidMout() {
-    this.setState({
-      participants: getParticipants(this.props.params.event.id)
-    });
+  componentDidMount() {
+    this.updateParticipantsList();
+  }
+
+  updateParticipantsList() {
+    getParticipants(this.props.event.id).then(response => {
+      console.log(response);
+      this.setState({
+        participants: response.data
+      });
+    })
   }
 
   handleParticipationClick(e) {
     e.preventDefault();
-    postToggleParticipation({
+    console.log({
       userId: this.props.user.id,
-      eventId: this.props.params.event.id
+      eventId: this.props.event.id
     });
+    var test = postToggleParticipation({
+      userId: this.props.user.userId,
+      eventId: this.props.event.id
+    }, this.props.user.id).then(this.updateParticipantsList.bind(this));
   }
 
   renderActions() {
     const { user } = this.props;
+
     if (user.id !== undefined) {
-      return (<a href="" onClick={this.handleParticipationClick}>Přihlásit se</a>);
+      var attempting = false;
+      this.state.participants.map(function(item) {
+        if (item.id === user.userId) {
+          attempting = true;
+        }
+      });
+      return (<a href="" onClick={this.handleParticipationClick}>{attempting ? 'Odhlásit se' : 'Přihlásit se'}</a>);
     }
   }
 
@@ -43,7 +61,7 @@ class ParticipantPanel extends Component {
 
     return (
       <Panel heading="Přihlášení uživatelé">
-        <small>Přihlášeno 1 z 10</small>
+        <small>Přihlášeno {participants.length} z 10</small>
         <ul>
           {items}
         </ul>

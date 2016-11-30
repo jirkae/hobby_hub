@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {FormControl, Button, Col} from "react-bootstrap";
-import EventsBox from "../components/events/EventsBox.js";
+import LatestEventsBox from "../components/events/LatestEventsBox.js";
 
 export default class LandingPage extends Component {
   constructor(params) {
@@ -9,7 +9,6 @@ export default class LandingPage extends Component {
   }
 
   handleButtonClick() {
-    //this.props.router.push({pathname:'/events',query: {a:'c'}});
     this.context.router.push({pathname:'/events',query: {a:'c'}});
   }
 
@@ -55,7 +54,7 @@ export default class LandingPage extends Component {
               </div>
             </div>
           </div>
-          <EventsBox/>
+          <LatestEventsBox/>
         </div>
     );
   }

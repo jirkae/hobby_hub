@@ -60,14 +60,30 @@ export default class EventDetailPage extends Component {
     }
   }
 
+  generateAsideContent() {
+    const { data } = this.state;
+
+    if (data === null) {
+      return (
+        <p>Načítám data...</p>
+      );
+    } else {
+      return (
+        <ParticipantPanel event = {data}/>
+      );
+    }
+  }
+
   render() {
+    const { data } = this.state;
+
     return (
       <ContentWrapper>
         <MainContent className="col-sm-9">
           {this.generateContent()}
         </MainContent>
         <AsideContent className="col-sm-3">
-          <ParticipantPanel event = {data}/>
+          {this.generateAsideContent()}
         </AsideContent>
       </ContentWrapper>
     );

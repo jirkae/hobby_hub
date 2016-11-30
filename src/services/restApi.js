@@ -14,6 +14,10 @@ let api = axios.create({
 
 export const baseUrl = () => {return `${BASE_URL}`;}
 
+export function getLatestEvents() {
+  return api.get(`${BASE_URL}Events?filter[limit]=10&filter[order]=name DESC`);
+}
+
 export function postLogin(props) {
   return api.post(`${BASE_URL}AuthUsers/login`,props)
 }
@@ -47,9 +51,9 @@ export function setAuthToken(authToken) {
 }
 
 export function getParticipants(eventId) {
-  return api.get(`${BASE_URL}AuthUser/${eventId}`)
+  return api.get(`${BASE_URL}Events/${eventId}/participants`);
 }
 
-export function postToggleParticipation(props) {
-  return api.post(`${BASE_URL}Participations/toggleParticipation`, props)
+export function postToggleParticipation(props, authToken) {
+  return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
 }
