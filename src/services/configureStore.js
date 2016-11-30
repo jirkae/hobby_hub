@@ -8,7 +8,6 @@ function stateThatShouldBeSaved(state) {
     user,
   } = state.userReducer;
 
-  console.log('user:', user);
   return {
     user,
   };

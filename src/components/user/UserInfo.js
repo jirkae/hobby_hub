@@ -3,10 +3,60 @@ import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, Image } f
 import userShadow from './../../images/user-shadow.jpg';
 
 class UserInfo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        email: '',
+        firstName: '',
+        lastName:'',
+        about:''
+    };
+
+      this.onClick = this.onClick.bind(this);
+      this.handleEmailChange = this.handleEmailChange.bind(this);
+      this.handleAboutChange = this.handleAboutChange.bind(this);
+      this.handleLastNameChange = this.handleLastNameChange.bind(this);
+      this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+  }
+
+    componentWillReceiveProps(newProps) {
+      const { props } = this;
+
+        if(newProps != props) {
+            this.setState({ ...newProps.user });
+        }
+    }
+
+  onClick(event) {
+    event.preventDefault();
+
+      const formData = this.state;
+
+      if(formData.email){
+          this.props.saveUserInfo(formData);
+      }
+  }
+
+  handleFirstNameChange(event) {
+      this.setState({firstName: event.target.value});
+  }
+
+    handleLastNameChange(event) {
+        this.setState({lastName: event.target.value});
+    }
+
+    handleAboutChange(event) {
+        this.setState({about: event.target.value});
+    }
+
+    handleEmailChange(event) {
+        this.setState({email: event.target.value});
+    }
+
   render() {
-    let {user, imageUrl} = this.props;
-    console.log('user profile props', user);
-    // let { email } = this.props.user;
+    let { firstName, lastName, email, about } = this.state;
+
     return (
       <Grid className="container-top-margin">
         <Row>
@@ -19,18 +69,22 @@ class UserInfo extends Component {
                 <Col sm={3}>
                   <form>
                     <FormGroup controlId="formName">
-                      <ControlLabel>Jméno a příjmení</ControlLabel>
-                      <FormControl type="text" value={user.name}/>
+                      <ControlLabel>Jméno</ControlLabel>
+                      <FormControl type="text" value={firstName} onChange={this.handleFirstNameChange}/>
+                    </FormGroup>
+                    <FormGroup controlId="formSurname">
+                      <ControlLabel>Příjmení</ControlLabel>
+                      <FormControl type="text" value={lastName} onChange={this.handleLastNameChange}/>
                     </FormGroup>
                     <FormGroup controlId="formEmail">
                       <ControlLabel>Email</ControlLabel>
-                      <FormControl type="email" value={user.email}/>
+                      <FormControl type="email" value={email} onChange={this.handleEmailChange}/>
                     </FormGroup>
                   </form>
                 </Col>
                 <Col sm={2} className="col-offset-xs-4 pull-right button-wrapper vcenter">
                   <Button>Změnit heslo</Button>
-                  <Button bsStyle="primary">Uložit změny</Button>
+                  <Button bsStyle="primary" onClick={this.onClick}>Uložit změny</Button>
                 </Col>
               </Row>
               <Row>
@@ -38,7 +92,7 @@ class UserInfo extends Component {
                   <form>
                     <FormGroup controlId="formAbout">
                       <ControlLabel>O mě</ControlLabel>
-                      <FormControl type="text" value={user.about}/>
+                      <FormControl type="text" value={about} onChange={this.handleAboutChange}/>
                     </FormGroup>
                   </form>
                 </Col>
