@@ -26,12 +26,16 @@ export function postEvent(event) {
   return api.post(`${BASE_URL}Events`, event)
 }
 
-export function postLogout(userId) {
-  return api.post(`${BASE_URL}AuthUser/logout`, userId)
+export function postLogout(token) {
+  return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
 }
 
 export function getUserData(userId) {
-  return api.get(`${BASE_URL}AuthUser/${userId}`)
+  return api.get(`${BASE_URL}AuthUsers/getCurrentUser`)
+}
+
+export function putUserData(user) {
+    return api.put(`${BASE_URL}AuthUsers/${user.id}`, user)
 }
 
 export function getCancelTokenSource() {

@@ -15,13 +15,14 @@ export function loginUser(user) {
   return function (dispatch) {
     return API.postLogin(user)
       .then(response => {
-        console.log("SUPER TOKEN");
-         //console.log('setting auth token', response.data.user.id);
-         API.setAuthToken(response.data.userId);
-        console.log("---------------------"+response.data.userId);
+         API.setAuthToken(response.data.id);
+         // API.setAuthToken(response.data.userId);
+
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
+
       }).catch(error => {
+          console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(loginUserFailure(user, error))
       });
   };
@@ -31,33 +32,48 @@ export function registerUser(user) {
   return function (dispatch) {
     return API.postRegister(user)
       .then(response => {
-        API.setAuthToken(response.data.userId);
+          API.setAuthToken(response.data.id);
+          // API.setAuthToken(response.data.userId);
+
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
+
       }).catch(error => {
+            console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(registerUserFailure(user, error))
       });
   };
 }
 
-export function logoutUser(userId) {
+export function logoutUser(token) {
   return function (dispatch) {
-    return API.postLogout(userId)
+    return API.postLogout(token)
       .then(response => {
         dispatch(logoutUserSuccess(response.data));
       }).catch(error => {
-        dispatch(logoutUserFailure(userId, error))
+        dispatch(logoutUserFailure(token, error))
       });
   };
 }
 
-export function getUserProfileInfo(userId) {
+export function getUserProfileInfo(id) {
   return function (dispatch) {
-    return API.getUserData(userId)
+    return API.getUserData(id)
       .then(response => {
-        dispatch(getUserDataSuccess(response));
+        dispatch(getUserDataSuccess(response.data));
       }).catch(error => {
-        dispatch(getUserDataFailure(userId, error))
+        dispatch(getUserDataFailure(id, error))
       });
   };
+}
+
+export function putUserProfileInfo(user) {
+    return function (dispatch) {
+        return API.putUserData(user)
+            .then(response => {
+                dispatch(getUserDataSuccess(response.data));
+            }).catch(error => {
+                dispatch(getUserDataFailure(user, error))
+            });
+    };
 }

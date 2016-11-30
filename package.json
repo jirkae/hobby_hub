@@ -53,6 +53,7 @@
   "dependencies": {
     "axios": "^0.15.2",
     "font-awesome": "^4.7.0",
+    "lodash": "^4.17.2",
     "moment": "^2.16.0",
     "node-sass": "^3.10.1",
     "react": "^15.3.2",
