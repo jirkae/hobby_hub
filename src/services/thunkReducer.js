@@ -16,11 +16,11 @@ export function loginUser(user) {
       console.log("THUNK REDUCER");
     return API.postLogin(user)
       .then(response => {
-        console.log("SUPER TOKEN");
-         console.log('setting auth token', response.data.user.id);
          API.setAuthToken(response.data.id);
+
         console.log("---------------------"+response.data.userId);
         console.log("---------------------"+response.data.id);
+
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
       }).catch(error => {
@@ -55,13 +55,13 @@ export function logoutUser(token) {
   };
 }
 
-export function getUserProfileInfo(userId) {
+export function getUserProfileInfo(id) {
   return function (dispatch) {
-    return API.getUserData(userId)
+    return API.getUserData(id)
       .then(response => {
         dispatch(getUserDataSuccess(response));
       }).catch(error => {
-        dispatch(getUserDataFailure(userId, error))
+        dispatch(getUserDataFailure(id, error))
       });
   };
 }

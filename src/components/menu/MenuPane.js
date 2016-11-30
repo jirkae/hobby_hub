@@ -7,7 +7,6 @@ import UserNavRight from "./../menu/UserNavRight";
 class MenuPane extends Component {
   render() {
     const {user} = this.props;
-    console.log('menuPane user', user);
     return (
       <div>
         {user.id === undefined ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} userId={user.id}/>}

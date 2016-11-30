@@ -22,6 +22,7 @@ class ProfilePage extends Component{
 }
 
 const mapStateToProps = (store) => {
+  console.log('profile store', store.userReducer.user);
   return {
     user: store.userReducer.user
   }
