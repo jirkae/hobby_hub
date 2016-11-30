@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Row } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bootstrap"
 
 export default class AddEventStep2 extends Component {
   constructor(params) {
@@ -56,26 +56,37 @@ export default class AddEventStep2 extends Component {
 
   render() {
     return(
-      <form onSubmit={this.formSubmit}>
-        <Row>
-          <div className="col-md-4">
+      <form onSubmit={this.formSubmit} className="form-horizontal">
+        <Col md={12}>
+          <fieldset>
             <FormGroup controlId="eventStreet" validationState={this.getValidationState('street')}>
-              <ControlLabel>Ulice a cp.</ControlLabel>
-              <FormControl type="text" value={this.state.event.street} onChange={(e) => {this.handleFieldChange(e, 'street')}}/>
+              <ControlLabel className="col-md-3 control-label">Ulice a cp.</ControlLabel>
+              <div className="col-md-8">
+                <FormControl type="text" value={this.state.event.street} onChange={(e) => {this.handleFieldChange(e, 'street')}}/>
+              </div>
             </FormGroup>
+
             <FormGroup controlId="eventCity" validationState={this.getValidationState('city')}>
-              <ControlLabel>Město</ControlLabel>
-              <FormControl type="text" value={this.state.event.city} onChange={(e) => {this.handleFieldChange(e, 'city')}}/>
+              <ControlLabel className="col-md-3 control-label">Město</ControlLabel>
+              <div className="col-md-8">
+                <FormControl type="text" value={this.state.event.city} onChange={(e) => {this.handleFieldChange(e, 'city')}}/>
+              </div>
             </FormGroup>
+
             <FormGroup controlId="zipCode" validationState={this.getValidationState('zipCode')}>
-              <ControlLabel>PSČ</ControlLabel>
-              <FormControl type="text" value={this.state.event.zipCode} onChange={(e) => {this.handleFieldChange(e, 'zipCode')}}/>
+              <ControlLabel className="col-md-3 control-label">PSČ</ControlLabel>
+              <div className="col-md-8">
+                <FormControl type="text" value={this.state.event.zipCode} onChange={(e) => {this.handleFieldChange(e, 'zipCode')}}/>
+              </div>
             </FormGroup>
-          </div>
-          <div className="col-md-3 col-md-offset-5">
-            <Button bsStyle="primary" type="submit">Pokračovat</Button>
-          </div>
-        </Row>
+
+            <FormGroup controlId="submit">
+              <Col md={2} mdOffset={10}>
+                <Button className="pull-right" bsStyle="primary" type="submit">Pokračovat</Button>
+              </Col>
+            </FormGroup>
+          </fieldset>
+        </Col>
       </form>
     );
   }

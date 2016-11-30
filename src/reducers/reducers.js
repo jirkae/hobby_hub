@@ -1,9 +1,11 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import modalReducer from './modalReducer';
 import userReducer from './userReducer';
 
-export default combineReducers({
+const hobbyReducers = combineReducers({
   modalReducer,
   userReducer
 });
+
+export default hobbyReducers;

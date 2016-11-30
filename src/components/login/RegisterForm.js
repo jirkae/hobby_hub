@@ -12,7 +12,9 @@ class RegisterForm extends Component {
     this.state = {
       passValidationState: null,
       emailValidationState: null,
-      password: ''  // bez toho to nejede
+      password: '',  // bez toho to nejede
+      firstName: '',
+      lastName: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,6 +22,8 @@ class RegisterForm extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSecondPasswordChange = this.handleSecondPasswordChange.bind(this);
     this.validateFormAndCall = this.validateFormAndCall.bind(this);
+    this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
   }
 
   handleSubmit(event) {
@@ -27,8 +31,9 @@ class RegisterForm extends Component {
 
     const formData = {
       email: this.state.email,
-      name: this.state.name,
-      password: this.state.password
+      firstName: this.state.firstName,
+      password: this.state.password,
+        lastName: this.state.lastName
     };
 
     this.validateFormAndCall(formData);
@@ -38,8 +43,11 @@ class RegisterForm extends Component {
     this.setState({email: event.target.value});
   }
 
-  handleNameChange(event) {
-    this.setState({name: event.target.value});
+  handleFirstNameChange(event) {
+    this.setState({firstName: event.target.value});
+  }
+  handleLastNameChange(event){
+    this.setState({lastName: event.target.value});
   }
 
   handlePasswordChange(event) {
@@ -52,7 +60,7 @@ class RegisterForm extends Component {
 
   getValidationState() {
     const length = this.state.password.length;
-    if (length > 7) return 'success';
+    if (length > 8) return 'success';
     else if (length >= minPassLength) return 'warning';
     else if (length > 0) return 'error';
   }
@@ -89,18 +97,27 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Email
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
               <FormControl.Feedback />
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword" onChange={this.handleNameChange}>
+          <FormGroup controlId="formHorizontalPassword" onChange={this.handleFirstNameChange}>
             <Col componentClass={ControlLabel} sm={3}>
-              Jméno a příjmení
+              Jméno
             </Col>
-            <Col sm={9}>
-              <FormControl type="text" placeholder="Jméno a příjmení" />
+            <Col sm={8}>
+              <FormControl type="text" placeholder="Jméno" />
+            </Col>
+          </FormGroup>
+
+          <FormGroup controlId="formHorizontalPassword" onChange={this.handleLastNameChange}>
+            <Col componentClass={ControlLabel} sm={3}>
+              Příjmení
+            </Col>
+            <Col sm={8}>
+              <FormControl type="text" placeholder="Příjmení" />
             </Col>
           </FormGroup>
 
@@ -108,7 +125,7 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Heslo
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
               <FormControl.Feedback />
             </Col>
@@ -118,17 +135,18 @@ class RegisterForm extends Component {
             <Col componentClass={ControlLabel} sm={3}>
               Heslo znovu
             </Col>
-            <Col sm={9}>
+            <Col sm={8}>
               <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange}/>
               <FormControl.Feedback />
             </Col>
           </FormGroup>
 
           <FormGroup>
-            <Col smOffset={3} sm={9}>
+            <Col smOffset={3} sm={8}>
               <Button bsStyle="primary" type="submit">
                 Vytvořit nový účet
               </Button>
+              {this.props.registerError}
             </Col>
           </FormGroup>
         </Form>
@@ -137,4 +155,18 @@ class RegisterForm extends Component {
   }
 }
 
-export default RegisterForm = connect()(RegisterForm);
+const mapStateToProps = (store) => {
+  console.log('store', store);
+  console.log('userreducer', store.userReducer);
+  console.log('registerError', store.userReducer.registerError);
+
+  return {
+    registerError: store.registerError
+  };
+};
+
+RegisterForm = connect(
+  mapStateToProps
+)(RegisterForm);
+
+export default RegisterForm;

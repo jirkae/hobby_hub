@@ -9,9 +9,9 @@ export class SearchResults extends Component {
 
     render() {
       console.log(this.state.data);
-        var items = this.state.data.map((data) => {
+        let items = this.state.data.map((data) => {
             return <SearchItem name={data.name} description={data.description} id={data.id} key={data.id}/>
-        })
+        });
         return (
             <div className="searchResults">{items}</div>
         );

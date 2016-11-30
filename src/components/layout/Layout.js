@@ -45,7 +45,9 @@ class Layout extends Component {
           </ModalFooter>
         </Modal>
         <Header openModalFc={this.openModal}/>
-        {children}
+        <div className="main-container">
+          {children}
+        </div>
       </div>
     );
   }
