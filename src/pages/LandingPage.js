@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import {FormControl, Button, Col} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 
-const LandingPage = () => {
+
+export default class LandingPage extends Component {
+
+render() {
     return (
         <div>
           <div className="intro jobs-intro hasOverly landingBackground">
@@ -48,5 +51,4 @@ const LandingPage = () => {
         </div>
     );
 }
-
-export default LandingPage;
+}
