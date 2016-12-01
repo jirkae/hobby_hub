@@ -3,6 +3,7 @@ import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 import { getEvents } from '../services/restApi';
 import { getLatestEvents } from '../services/restApi';
+import {baseUrl} from '../services/restApi.js';
 
 export default class EventsListPage extends Component {
 
@@ -12,13 +13,21 @@ constructor(props)
 
   this.state = {
     city: this.props.location.query["city"],
-    tags: this.props.location.query["tags"]
+    tags: this.props.location.query["tags"],
+    events: []
   };
+}
+
+componentDidMount()
+{
+  var params = {city: this.state.city, tags: this.state.tags};
+  var events = getEvents(params).then(response => {
+    this.setState({events: response.data.events});
+  });
 }
 
   render() {
     const {events} = this.state;
-
     return (
         <div>
           <div className="search-row-wrapper landingBackgroundEvents">
@@ -48,8 +57,12 @@ constructor(props)
             </Grid>
           </div>
 
-          <EventsBox city={this.state.city} tags={this.state.tags} />
+          <EventsBox events={events} />
         </div>
     );
   }
+}
+
+EventsListPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }

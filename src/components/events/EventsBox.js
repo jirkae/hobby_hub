@@ -1,32 +1,18 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Glyphicon} from "react-bootstrap";
 import EventsBoxItem from "./EventsBoxItem.js";
-import {baseUrl} from '../../services/restApi.js';
-import { getEvents } from '../../services/restApi';
 
 export default class EventsBox extends Component {
+constructor(props)
+{
+  super(props);
 
-  state = {
-      city: this.props.city,
-      tags: this.props.tags,
-      events: []
+console.log(this.props);
+
+  this.state = {
+    events: [],
   };
-
-  componentDidMount()
-  {
-    var params = {city: this.state.city, tags: this.state.tags};
-    var events = getEvents(params).then(response => {
-      this.setState({events: response.data.events});
-    });
-  }
-
-  getEventsBoxItems()
-  {
-      var items = this.state.events.map((data) => {
-          return (<EventsBoxItem event={data} key={data.id}/>);
-      })
-      return items;
-  }
+}
 
     render()
     {
@@ -49,7 +35,7 @@ export default class EventsBox extends Component {
                       </Col>
                       <div className="adds-wrapper">
 
-                        {this.getEventsBoxItems()}
+
 
                       </div>
                       <div className="tab-box save-search-bar text-center">
