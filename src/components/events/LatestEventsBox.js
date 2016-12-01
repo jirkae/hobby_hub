@@ -31,23 +31,23 @@ export default class LatestEventsBox extends Component {
 
         return (
             <Grid className="container-top-margin">
-                <Row>
-                    <Col sm={12} className="page-content col-thin-right">
-                        <Col lg={12} className="content-box">
-                            <Row className="row-featured row-featured-category">
-                                <Col lg={12} className="box-title no-border">
-                                    <div className="inner">
-                                        <h2>
-                                            <span>Poslední</span> akce
-                                              <Link to="/events" className="sell-your-item">
-                                                Zobrazit více akcí <Glyphicon glyph="th-list"></Glyphicon>
-                                              </Link>
-                                        </h2>
-                                    </div>
-                                </Col>
-                                <div className="adds-wrapper">
+              <Row>
+                <Col sm={12} className="page-content col-thin-right">
+                  <Col lg={12} className="content-box">
+                    <Row className="row-featured row-featured-category">
+                      <Col lg={12} className="box-title no-border">
+                        <div className="inner">
+                          <h2>
+                            <span>Poslední</span> akce
+                            <Link to="/events" className="sell-your-item">
+                              Zobrazit více akcí <Glyphicon glyph="th-list"></Glyphicon>
+                            </Link>
+                          </h2>
+                        </div>
+                      </Col>
+                      <div className="adds-wrapper">
 
-                                    {this.getEventsBoxItems(events)}
+                        {this.getEventsBoxItems(events)}
 
                                 </div>
                                 <div className="tab-box save-search-bar text-center">

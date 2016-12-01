@@ -1,0 +1,19 @@
+.react-tagsinput-input {
+    line-height: 1.42857;
+    height: 34.4px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    line-height: 21px;
+    display: block;
+    margin-left: 30px;
+    width: 100%;
+}
+
+#react-autowhatever-1 {
+    text-align: left !important;
+    margin-left: 10px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
