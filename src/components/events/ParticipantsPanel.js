@@ -2,24 +2,32 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 
 import Panel from '../layout/Panel.js';
-import { getParticipants, postToggleParticipation } from '../../services/restApi.js';
+import { getParticipants, postToggleParticipation, getOwnedEvents } from '../../services/restApi.js';
 
 class ParticipantPanel extends Component {
   constructor(params) {
     super(params);
     this.state = {
-      participants: []
+      participants: [],
+      ewnedEvents: []
     };
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
     this.updateParticipantsList();
+    if (this.props.user.id !== undefined) {
+      getOwnedEvents(this.props.user).then(response => {
+        this.setState({
+          ownedEvents: response.data
+        });
+      });
+    }
   }
 
   updateParticipantsList() {
     getParticipants(this.props.event.id).then(response => {
-      console.log(response);
       this.setState({
         participants: response.data
       });
@@ -28,14 +36,15 @@ class ParticipantPanel extends Component {
 
   handleParticipationClick(e) {
     e.preventDefault();
-    console.log({
-      userId: this.props.user.id,
-      eventId: this.props.event.id
-    });
     var test = postToggleParticipation({
       userId: this.props.user.userId,
       eventId: this.props.event.id
     }, this.props.user.id).then(this.updateParticipantsList.bind(this));
+  }
+
+  handleRemoveClick(e) {
+    e.preventDefault();
+    console.log(e.target);
   }
 
   renderActions() {
@@ -53,10 +62,24 @@ class ParticipantPanel extends Component {
   }
 
   render () {
-    const { participants } = this.state;
+    const { participants, ownedEvents } = this.state;
 
-    let items = participants.map(function(item){
-      return <li>{item.firstName} {item.lastName}</li>
+    var owningThisEvent = false;
+
+    if (ownedEvents !== undefined && ownedEvents.length > 0) {
+      ownedEvents.map(item => {
+        if (item.ownerId === this.props.user.userId) {
+          owningThisEvent = true;
+        }
+      });
+    }
+
+    let items = participants.map(item => {
+      /*if (owningThisEvent) {
+        return <li>{item.firstName} {item.lastName} <a href="#" onClick={this.handleRemoveClick} data-id={item.userId}>odebrat</a></li>
+      } else {*/
+        return <li>{item.firstName} {item.lastName} </li>
+      //}
     });
 
     return (

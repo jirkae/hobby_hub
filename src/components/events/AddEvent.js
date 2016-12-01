@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import { Alert, Col } from "react-bootstrap"
+import { Alert, Col } from "react-bootstrap";
+import { connect } from "react-redux";
 
 import AddEventStep1 from './AddEventStep1.js';
 import AddEventStep2 from './AddEventStep2.js';
@@ -9,7 +10,7 @@ import { postEvent } from './../../services/restApi';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
-export default class AddEvent extends Component {
+class AddEvent extends Component {
   constructor(params) {
     super(params);
 
@@ -52,7 +53,7 @@ export default class AddEvent extends Component {
   handleStep3Submit(event) {
     const newEvent = Object.assign(this.state.event, event);
     console.log(newEvent);
-    postEvent(newEvent)
+    postEvent(newEvent, this.props.user)
       .then(({data}) => {
           console.log(data);
           this.setState({
@@ -111,3 +112,15 @@ export default class AddEvent extends Component {
     );
   }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    user: store.userReducer.user
+  }
+};
+
+AddEvent = connect(
+  mapStateToProps
+)(AddEvent);
+
+export default AddEvent;

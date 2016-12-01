@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, NavItem } from 'react-bootstrap';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import { logoutUser } from './../../services/thunkReducer';
@@ -23,7 +24,7 @@ class GuestNavRight extends Component {
       <Nav pullRight>
         <LinkContainer to="/profile"><NavItem>Profil</NavItem></LinkContainer>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
-        <li className="postadd"><a className="btn btn-block   btn-border btn-post btn-danger" href="/create-event">Přidat akci</a></li>
+        <li className="postadd"><Link to="/create-event"><a className="btn btn-block   btn-border btn-post btn-danger" href="#">Přidat akci</a></Link></li>
       </Nav>
     )
   }

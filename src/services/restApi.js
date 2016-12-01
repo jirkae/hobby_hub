@@ -26,8 +26,9 @@ export function postRegister(props) {
   return api.post(`${BASE_URL}AuthUsers`,props);
 }
 
-export function postEvent(event) {
-  return api.post(`${BASE_URL}Events`, event)
+export function postEvent(event, user) {
+  console.log(event);
+  return api.post(`${BASE_URL}AuthUsers/${user.userId}/ownEvents`, event);
 }
 
 export function postLogout(token) {
@@ -60,4 +61,8 @@ export function postToggleParticipation(props, authToken) {
 
 export function getEventOwnedByuser(user, event) {
   return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
+}
+
+export function getOwnedEvents(user) {
+  return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents`)
 }
