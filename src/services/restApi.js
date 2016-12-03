@@ -1,7 +1,7 @@
 import axios, { CancelToken } from 'axios';
+// const BASE_URL = "http://localhost:3000/api/";
+const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
-const BASE_URL = "http://localhost:3000/api/";
-// const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 let api = axios.create({
   baseURL: BASE_URL,
@@ -12,7 +12,11 @@ let api = axios.create({
   }
 });
 
-export const baseUrl = () => {return `${BASE_URL}`;}
+export const baseUrl = () => {return `${BASE_URL}`};
+
+export function setAuthToken(authToken) {
+    api.defaults.headers.common['Authorization'] = authToken;
+}
 
 export function getLatestEvents() {
   return api.get(`${BASE_URL}Events?filter[limit]=10&filter[order]=name DESC`);
@@ -34,7 +38,7 @@ export function postLogout(token) {
   return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
 }
 
-export function getUserData(userId) {
+export function getUserData() {
   return api.get(`${BASE_URL}AuthUsers/getCurrentUser`)
 }
 
@@ -44,10 +48,6 @@ export function putUserData(user) {
 
 export function getCancelTokenSource() {
   return CancelToken.source();
-}
-
-export function setAuthToken(authToken) {
-  api.defaults.headers.common['Authorization'] = authToken;
 }
 
 export function getParticipants(eventId) {
@@ -60,4 +60,8 @@ export function postToggleParticipation(props, authToken) {
 
 export function getEventOwnedByuser(user, event) {
   return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
+}
+
+export function getUserEvents(userId) {
+    return api.get(`${BASE_URL}AuthUsers/${userId}/ownEvents`)
 }

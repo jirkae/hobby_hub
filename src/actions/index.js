@@ -35,3 +35,7 @@ export function getUserDataSuccess(payload) {
 export function getUserDataFailure(payload) {
   return { type: C.GET_USER_DATA_FAILURE, payload };
 }
+
+export function getUserEvents(payload) {
+    return { type: C.GET_USER_EVENTS_SUCCESS, payload };
+}

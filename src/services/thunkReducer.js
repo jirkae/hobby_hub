@@ -77,3 +77,14 @@ export function putUserProfileInfo(user) {
             });
     };
 }
+
+export function getUserEvents(userId) {
+    return function (dispatch) {
+        return API.getUserEvents(userId)
+            .then(response => {
+                dispatch(getUserEvents(response.data));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+            });
+    };
+}

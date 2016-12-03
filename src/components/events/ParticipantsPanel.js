@@ -32,7 +32,7 @@ class ParticipantPanel extends Component {
       userId: this.props.user.id,
       eventId: this.props.event.id
     });
-    var test = postToggleParticipation({
+    let test = postToggleParticipation({
       userId: this.props.user.userId,
       eventId: this.props.event.id
     }, this.props.user.id).then(this.updateParticipantsList.bind(this));
@@ -42,7 +42,7 @@ class ParticipantPanel extends Component {
     const { user } = this.props;
 
     if (user.id !== undefined) {
-      var attempting = false;
+      let attempting = false;
       this.state.participants.map(function(item) {
         if (item.id === user.userId) {
           attempting = true;
