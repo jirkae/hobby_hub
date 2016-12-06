@@ -10,13 +10,12 @@ class EventsListPage extends Component {
     }
 
   render() {
-    const { query } = this.props.location;
     return (
         <div>
           <div className="search-row-wrapper landingBackgroundEvents">
             <Grid className="text-center">
               <Col sm={3}>
-                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text" value={query.a===undefined ? '' : query.a}/>
+                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text"/>
               </Col>
               <Col sm={3}>
                 <FormControl componentClass="select">

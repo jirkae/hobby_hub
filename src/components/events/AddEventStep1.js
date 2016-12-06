@@ -9,7 +9,7 @@ export default class AddEventStep1 extends Component {
       event: {
         name: '',
         description: '',
-        detailDescription: '',
+        detailedDescription: '',
         participantsMin: 0,
         participantsMax: 0,
       },
@@ -45,8 +45,8 @@ export default class AddEventStep1 extends Component {
       errors.push('description');
     }
 
-    if (event.detailDescription.length === 0) {
-      errors.push('detailDescription');
+    if (event.detailedDescription.length === 0) {
+      errors.push('detailedDescription');
     }
 
     if (parseInt(event.participantsMin, 10) === 0) {
@@ -85,13 +85,13 @@ export default class AddEventStep1 extends Component {
                   </div>
                 </FormGroup>
 
-                <FormGroup controlId="eventLongDesc" validationState={this.getValidationState('detailDescription')}>
+                <FormGroup controlId="eventLongDesc" validationState={this.getValidationState('detailedDescription')}>
                   <ControlLabel className="col-md-3 control-label">Dlouhý popis</ControlLabel>
                   <div className="col-md-8">
                     <FormControl componentClass="textarea"
                                  placeholder="Dopište detailní popis události"
-                                 value={this.state.event.detailDescription}
-                                 onChange={(e) => {this.handleFieldChange(e, 'detailDescription')}}/>{/**/}
+                                 value={this.state.event.detailedDescription}
+                                 onChange={(e) => {this.handleFieldChange(e, 'detailedDescription')}}/>{/**/}
                  </div>
                 </FormGroup>
 
