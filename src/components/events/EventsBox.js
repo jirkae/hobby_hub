@@ -4,28 +4,27 @@ import EventsBoxItem from "./EventsBoxItem.js";
 import { baseUrl } from '../../services/restApi.js';
 
 export default class EventsBox extends Component {
+    constructor(props) {
+        super(props);
 
-    state = {
-        events: [],
-        url: ""
-    };
-
-    componentDidMount() {
-        const url = baseUrl() + 'events';
-        fetch(url).then(r => r.json()).then(json => {
-            this.setState({ events: json })
-        }).catch(e => console.log("Error"));
+        this.state = {
+            events: []
+        }
     }
 
-    getEventsBoxItems(events) {
-        let items = events.map((data) => {
-            return (<EventsBoxItem event={data} />);
-        });
-        return items;
+    componentWillReceiveProps(props) {
+        this.setState(props);
     }
 
     render() {
+        console.log('EventsBox props', this.props);
+        console.log('EventsBox props.events', this.props.events);
+        console.log('EventsBox state.events', this.state.events);
+
         const { events } = this.state;
+        let mappedEvents = events.map((data) => {
+            return (<EventsBoxItem event={data} />);
+        });
         return (
             <Grid className="container-top-margin">
                 <Row>
@@ -43,9 +42,7 @@ export default class EventsBox extends Component {
                                     </div>
                                 </Col>
                                 <div className="adds-wrapper">
-
-                                    {this.getEventsBoxItems(events)}
-
+                                    {mappedEvents}
                                 </div>
                                 <div className="tab-box save-search-bar text-center">
                                     <a className="text-uppercase" href="#">

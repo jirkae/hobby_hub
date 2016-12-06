@@ -5,11 +5,11 @@ import reducers from '../reducers/reducers';
 
 function stateThatShouldBeSaved(state) {
   const {
-    user,
-  } = state.userReducer;
+    userReducer: { user },
+  } = state;
 
   return {
-    user,
+    userReducer: { user },
   };
 }
 

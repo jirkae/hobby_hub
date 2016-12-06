@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
+import { connect } from 'react-redux';
+import { getEvents } from './../services/thunkReducer';
 
-export default class EventsListPage extends Component {
-componentDidMount () {
-  console.log(this.props.location.query);
-}
+class EventsListPage extends Component {
+    componentDidMount () {
+        this.props.getEvents();
+    }
 
   render() {
     const { query } = this.props.location;
@@ -37,8 +39,24 @@ componentDidMount () {
               </Col>
             </Grid>
           </div>
-          <EventsBox/>
+          <EventsBox events={this.props.events}/>
         </div>
     );
   }
 }
+
+const mapStateToProps = (store) => {
+    return {
+        user: store.userReducer.user,
+        events: store.eventReducer
+    }
+};
+
+EventsListPage = connect(
+    mapStateToProps,
+    {
+        getEvents, /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
+    }
+)(EventsListPage);
+
+export default EventsListPage;

@@ -36,6 +36,6 @@ export function getUserDataFailure(payload) {
   return { type: C.GET_USER_DATA_FAILURE, payload };
 }
 
-export function getUserEvents(payload) {
+export function getUserEventsSuccess(payload) {
     return { type: C.GET_USER_EVENTS_SUCCESS, payload };
 }

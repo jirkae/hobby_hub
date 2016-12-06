@@ -1,12 +1,12 @@
 import * as C from './../constants/hobbyConstants';
 
 function eventReducer(state=[], action) {
-console.log(action);
+
   switch (action.type) {
     case C.GET_USER_EVENTS_SUCCESS: {
-      return {...state,
+      return [
           ...action.payload
-        }
+        ]
     }
 
     default:

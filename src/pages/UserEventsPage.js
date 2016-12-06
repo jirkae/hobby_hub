@@ -45,6 +45,7 @@ class UserEventsPage extends Component {
     );
   }
 }
+// react dimensions
 
 const mapStateToProps = (store) => {
   return {
@@ -53,17 +54,11 @@ const mapStateToProps = (store) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-      getUserEvents: (id) => {
-          dispatch(getUserEvents(id));
-      },
-  }
-};
-
 UserEventsPage = connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+        getUserEvents, /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
+    }
 )(UserEventsPage);
 
 export default UserEventsPage;

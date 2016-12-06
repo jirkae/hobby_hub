@@ -15,7 +15,6 @@ class GuestNavRight extends Component {
 
   handleLogoutClick(e) {
     e.preventDefault();
-    console.log('pokus o logout');
     this.props.dispatch(logoutUser(this.props.userId));
   }
 
