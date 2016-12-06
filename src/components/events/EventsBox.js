@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Glyphicon } from "react-bootstrap";
 import EventsBoxItem from "./EventsBoxItem.js";
-import { baseUrl } from '../../services/restApi.js';
 
 export default class EventsBox extends Component {
     constructor(props) {

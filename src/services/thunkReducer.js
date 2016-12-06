@@ -95,7 +95,7 @@ export function getEvents(userId) {
 
 export function getUserEvents(userId) {
     return function (dispatch) {
-        return API.getUserEvents(userId)
+        return API.getOwnedEvents(userId)
             .then(response => {
                 console.log(response.data);
                 dispatch(getUserEventsSuccess(response.data));

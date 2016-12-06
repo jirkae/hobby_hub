@@ -40,8 +40,7 @@ class ParticipantPanel extends Component {
       userId: this.props.user.id,
       eventId: this.props.event.id
     });
-    let test = postToggleParticipation({
-    var test = postToggleParticipation({
+    postToggleParticipation({
       userId: this.props.user.userId,
       eventId: this.props.event.id
     }, this.props.user.id).then(this.updateParticipantsList.bind(this));
@@ -69,7 +68,7 @@ class ParticipantPanel extends Component {
   render () {
     const { participants, ownedEvents } = this.state;
 
-    var owningThisEvent = false;
+    let owningThisEvent = false;
 
     if (ownedEvents !== undefined && ownedEvents.length > 0) {
       ownedEvents.map(item => {
@@ -80,11 +79,7 @@ class ParticipantPanel extends Component {
     }
 
     let items = participants.map(item => {
-      /*if (owningThisEvent) {
-        return <li>{item.firstName} {item.lastName} <a href="#" onClick={this.handleRemoveClick} data-id={item.userId}>odebrat</a></li>
-      } else {*/
         return <li>{item.firstName} {item.lastName} </li>
-      //}
     });
 
     return (

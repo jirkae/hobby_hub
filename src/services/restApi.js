@@ -12,8 +12,6 @@ let api = axios.create({
   }
 });
 
-export const baseUrl = () => {return `${BASE_URL}`};
-
 export function setAuthToken(authToken) {
     api.defaults.headers.common['Authorization'] = authToken;
 }
