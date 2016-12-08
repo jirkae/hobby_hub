@@ -2,20 +2,22 @@ import React, { Component } from "react";
 import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 import { connect } from 'react-redux';
-import { getEvents } from './../services/thunkReducer';
+import { getUserEvents } from './../services/thunkReducer';
 
-class EventsListPage extends Component {
-    componentDidMount () {
-        this.props.getEvents();
-    }
+class UserEventsPage extends Component {
+  componentDidMount () {
+    let userId = this.props.user.userId;
+    this.props.getUserEvents(userId);
+  }
 
   render() {
+    const { query } = this.props.location;
     return (
         <div>
           <div className="search-row-wrapper landingBackgroundEvents">
             <Grid className="text-center">
               <Col sm={3}>
-                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text"/>
+                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text" value={query.a===undefined ? '' : query.a}/>
               </Col>
               <Col sm={3}>
                 <FormControl componentClass="select">
@@ -38,24 +40,25 @@ class EventsListPage extends Component {
               </Col>
             </Grid>
           </div>
-          <EventsBox events={this.props.events}/>
+          <EventsBox title="Moje akce" events={this.props.events}/>
         </div>
     );
   }
 }
+// react dimensions
 
 const mapStateToProps = (store) => {
-    return {
-        user: store.userReducer.user,
-        events: store.eventReducer
-    }
+  return {
+      user: store.userReducer.user,
+      events: store.eventReducer
+  }
 };
 
-EventsListPage = connect(
+UserEventsPage = connect(
     mapStateToProps,
     {
-        getEvents, /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
+        getUserEvents, /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
     }
-)(EventsListPage);
+)(UserEventsPage);
 
-export default EventsListPage;
+export default UserEventsPage;

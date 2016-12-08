@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {FormControl, Button, Col} from "react-bootstrap";
+import {  Button, Col } from "react-bootstrap";
 import LatestEventsBox from "../components/events/LatestEventsBox.js";
 import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
@@ -41,25 +41,23 @@ export default class LandingPage extends Component {
 
         const cityAutoComplete = (props) => {
             const {
-                addTag,
                 ...other
-            } = props
+            } = props;
 
-            const handleOnChange = (e, {newValue, method}) => {
+            const handleOnChange = (e, { method }) => {
                 if (method === 'enter') {
                     e.preventDefault()
                 } else {
                     props.onChange(e)
                 }
-            }
+            };
 
-            const inputValue = (props.value && props.value.trim().toLowerCase()) || ""
-            const inputLength = inputValue.length
+            const inputValue = (props.value && props.value.trim().toLowerCase()) || "";
+            const inputLength = inputValue.length;
 
-            let {tags} = this.state
             let suggestions = mesta().filter((state) => {
                 return state.name.toLowerCase().slice(0, inputLength) === inputValue
-            })
+            });
 
             return (<Autosuggest theme={theme} ref={props.ref} suggestions={suggestions} shouldRenderSuggestions={(value) => value && value.trim().length > 0} getSuggestionValue={(suggestion) => suggestion.name} renderSuggestion={(suggestion) => <span>{suggestion.name}</span>} inputProps={{
               ...other,
@@ -68,29 +66,27 @@ export default class LandingPage extends Component {
             }} onSuggestionSelected={(e, {suggestion}) => {
               props.addTag(suggestion.name)
             }}/>)
-        }
+        };
 
         const tagsAutoComplete = (props) => {
             const {
-                addTag,
                 ...other
-            } = props
+            } = props;
 
-            const handleOnChange = (e, {newValue, method}) => {
+            const handleOnChange = (e, { method }) => {
                 if (method === 'enter') {
                     e.preventDefault()
                 } else {
                     props.onChange(e)
                 }
-            }
+            };
 
-            const inputValue = (props.value && props.value.trim().toLowerCase()) || ""
-            const inputLength = inputValue.length
+            const inputValue = (props.value && props.value.trim().toLowerCase()) || "";
+            const inputLength = inputValue.length;
 
-            let {tags} = this.state
             let suggestions = tagy().filter((state) => {
                 return state.name.toLowerCase().slice(0, inputLength) === inputValue
-            })
+            });
 
             return (<Autosuggest theme={theme} ref={props.ref} suggestions={suggestions} shouldRenderSuggestions={(value) => value && value.trim().length > 0} getSuggestionValue={(suggestion) => suggestion.name} renderSuggestion={(suggestion) => <span>{suggestion.name}</span>} inputProps={{
               ...other,
@@ -99,7 +95,7 @@ export default class LandingPage extends Component {
             }} onSuggestionSelected={(e, {suggestion}) => {
               props.addTag(suggestion.name)
             }}/>)
-        }
+        };
 
         return (
 
@@ -226,4 +222,4 @@ function tagy() {
 
 LandingPage.contextTypes = {
     router: React.PropTypes.object.isRequired
-}
+};

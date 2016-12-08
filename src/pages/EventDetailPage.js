@@ -69,14 +69,12 @@ export default class EventDetailPage extends Component {
       );
     } else {
       return (
-        <ParticipantPanel event = {data}/>
+        <ParticipantPanel event={data}/>
       );
     }
   }
 
   render() {
-    const { data } = this.state;
-
     return (
       <ContentWrapper>
         <MainContent className="col-sm-9">
