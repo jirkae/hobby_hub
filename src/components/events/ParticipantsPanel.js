@@ -12,7 +12,7 @@ class ParticipantPanel extends Component {
       ewnedEvents: []
     };
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
-    this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    //this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   componentDidMount() {
@@ -42,9 +42,10 @@ class ParticipantPanel extends Component {
     }, this.props.user.id).then(this.updateParticipantsList.bind(this));
   }
 
-  handleRemoveClick(e) {
-    e.preventDefault();
-    console.log(e.target);
+  handleRemoveClick(id, event) {
+    //e.preventDefault();
+    console.log(id);
+    console.log(event);
   }
 
   renderActions() {
@@ -75,11 +76,12 @@ class ParticipantPanel extends Component {
     }
 
     let items = participants.map(item => {
-      /*if (owningThisEvent) {
-        return <li>{item.firstName} {item.lastName} <a href="#" onClick={this.handleRemoveClick} data-id={item.userId}>odebrat</a></li>
-      } else {*/
+      if (owningThisEvent) {
+        const {userId} = item;
+        return <li>{item.firstName} {item.lastName} <a onClick={(e) => this.handleRemoveClick(e, item)} data-id={item.userId}>odebrat</a></li>
+      } else {
         return <li>{item.firstName} {item.lastName} </li>
-      //}
+      }
     });
 
     return (
