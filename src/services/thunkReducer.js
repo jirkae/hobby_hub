@@ -85,7 +85,6 @@ export function getEvents(userId) {
     return function (dispatch) {
         return API.getLatestEvents(userId)
             .then(response => {
-                console.log('Get events response: ', response.data);
                 dispatch(getUserEventsSuccess(response.data));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
@@ -97,7 +96,6 @@ export function getUserEvents(userId) {
     return function (dispatch) {
         return API.getOwnedEvents(userId)
             .then(response => {
-                console.log(response.data);
                 dispatch(getUserEventsSuccess(response.data));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);

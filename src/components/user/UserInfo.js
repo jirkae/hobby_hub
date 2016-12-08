@@ -10,7 +10,7 @@ class UserInfo extends Component {
         email: '',
         firstName: '',
         lastName:'',
-        about:''
+        info:''
     };
 
       this.onClick = this.onClick.bind(this);
@@ -47,7 +47,7 @@ class UserInfo extends Component {
     }
 
     handleAboutChange(event) {
-        this.setState({about: event.target.value});
+        this.setState({info: event.target.value});
     }
 
     handleEmailChange(event) {
@@ -55,7 +55,7 @@ class UserInfo extends Component {
     }
 
   render() {
-    let { firstName, lastName, email, about } = this.state;
+    let { firstName, lastName, email, info } = this.state;
 
     return (
       <Grid className="container-top-margin">
@@ -92,7 +92,7 @@ class UserInfo extends Component {
                   <form>
                     <FormGroup controlId="formAbout">
                       <ControlLabel>O mě</ControlLabel>
-                      <FormControl type="text" value={about} onChange={this.handleAboutChange}/>
+                      <FormControl type="text" value={info} onChange={this.handleAboutChange}/>
                     </FormGroup>
                   </form>
                 </Col>

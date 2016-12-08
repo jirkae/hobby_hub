@@ -32,11 +32,13 @@ function userReducer(state={user: {}}, action) {
     case C.GET_USER_DATA_SUCCESS: {
       return {...state,
           user: {
-            id: state.user.id,
+            id: state.user.id, // původní stav, nemazat!
             userId: state.user.userId,
+
             email: action.payload.user.email,
             firstName: action.payload.user.firstName,
-            lastName: action.payload.user.lastName
+            lastName: action.payload.user.lastName,
+            info: action.payload.user.info
           }
       }
     }
