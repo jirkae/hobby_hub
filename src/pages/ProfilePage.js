@@ -6,12 +6,14 @@ import UserInfo from './../components/user/UserInfo';
 import EventsBox from './../components/events/EventsBox';
 
 class ProfilePage extends Component{
-  componentWillMount() {
+  componentDidMount() {
+    // this.props.params.userId // TODO dodělat podmínku jestli je v URL nějaké id, pokud ano, načíst daného uživatele a nastavit profil jako neaktualizovatelný
     this.props.getUserInfo(this.props.user.id);
   }
 
   render() {
-    const { user } = this.props;
+    const { user, params } = this.props;
+
     return (
       <div className="container">
         <UserInfo user={user} saveUserInfo={this.props.saveUserInfo}/>

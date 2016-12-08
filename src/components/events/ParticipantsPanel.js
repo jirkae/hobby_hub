@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router';
 
 import Panel from '../layout/Panel.js';
 import { getParticipants, postToggleParticipation, getOwnedEvents } from '../../services/restApi.js';
@@ -79,7 +80,7 @@ class ParticipantPanel extends Component {
     }
 
     let items = participants.map(item => {
-        return <li>{item.firstName} {item.lastName} </li>
+        return <li><Link to={`/user/${item.userId}`} >{item.firstName} {item.lastName}</Link></li>
     });
 
     return (
