@@ -1,7 +1,7 @@
 import axios, { CancelToken } from 'axios';
 
-// const BASE_URL = "http://localhost:3000/api/";
-const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
+const BASE_URL = "http://localhost:3000/api/";
+// const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 let api = axios.create({
     baseURL: BASE_URL,

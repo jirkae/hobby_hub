@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Notification } from 'react-notification';
 
 import Header from './Header.js';
 import { changeModalVisibility } from './../../actions/index';
@@ -15,11 +16,19 @@ class Layout extends Component {
     super(props);
 
     this.state = {
-      modalContentGenerator: () => {return null;}
+      modalContentGenerator: () => {return null;},
+        showNotification: false
     };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.closeNotification = this.closeNotification.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!newProps.showModal) {
+      this.setState({showNotification: true})
+    }
   }
 
   openModal(modalContentGenerator) {
@@ -27,15 +36,29 @@ class Layout extends Component {
   }
 
   closeModal() {
-    this.props.dispatch(changeModalVisibility(false))
+    this.props.dispatch(changeModalVisibility(false));
+      this.setState({showNotification: true});
   }
+
+    closeNotification() {
+        this.setState({showNotification: false});
+    }
 
   render() {
     const { children, modalVisible } = this.props;
     const { modalContentGenerator } = this.state;
+    let message = this.props.user.userId ? 'Přihlášení proběhlo úspěšně.' : 'Vaše registrace proběhla úspěšně. Nyní se můžete přihlásit.';
 
     return (
       <div>
+        <Notification
+            isActive={this.state.showNotification}
+            message={message}
+            action={'OK'}
+            dismissAfter={3000}
+            onClick={this.closeNotification}
+            onDismiss={this.closeNotification}
+        />
         <Modal show={modalVisible}>
           <ModalBody>
             {modalContentGenerator()}
@@ -53,7 +76,8 @@ class Layout extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    modalVisible: store.modalReducer.showModal
+    modalVisible: store.modalReducer.showModal,
+    user: store.userReducer.user
   }
 };
 
