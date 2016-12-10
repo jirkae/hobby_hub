@@ -101,3 +101,7 @@ export function getEventOwnedByuser(user, event) {
 export function getOwnedEvents(userId) {
     return api.get(`${BASE_URL}AuthUsers/${userId}/ownEvents`)
 }
+
+export function getEventById(eventId) {
+    return api.get(`${BASE_URL}events/${eventId}`);
+}
