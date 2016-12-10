@@ -16,14 +16,11 @@ export default class EventsBox extends Component {
     }
 
     render() {
-        console.log('EventsBox props', this.props);
-        console.log('EventsBox props.events', this.props.events);
-        console.log('EventsBox state.events', this.state.events);
-
         const { events } = this.state;
         let mappedEvents = events.map((data) => {
             return (<EventsBoxItem event={data} />);
         });
+
         return (
             <Grid className="container-top-margin">
                 <Row>

@@ -51,7 +51,12 @@ export function getUserData() {
 }
 
 export function putUserData(user) {
-    return api.put(`${BASE_URL}AuthUsers/${user.id}`, user)
+  const userData = {
+    firstName: user.firstName,
+      lastName: user.lastName,
+      info: user.info
+  };
+    return api.put(`${BASE_URL}AuthUsers/${user.userId}?access_token=${user.id}`, userData)
 }
 
 export function getCancelTokenSource() {
