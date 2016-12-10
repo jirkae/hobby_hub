@@ -1,21 +1,36 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import { getUserProfileInfo, putUserProfileInfo } from './../services/thunkReducer';
+import { getUserProfileInfo, putUserProfileInfo, getUserEvents } from './../services/thunkReducer';
 import UserInfo from './../components/user/UserInfo';
 import EventsBox from './../components/events/EventsBox';
 
 class ProfilePage extends Component{
-  componentWillMount() {
-    this.props.getUserInfo(this.props.user.id);
+  componentDidMount() {
+      this.conditionalDataLoad(this.props);
+  }
+
+  componentWillReceiveProps(newProps) {
+      if(newProps.params !== this.props.params) {
+          this.conditionalDataLoad(newProps);
+      }
+  }
+
+  conditionalDataLoad(props) {
+      let id = props.params.id === undefined ? props.user.userId : props.params.id;
+
+      this.props.getUserInfo(id);
+      this.props.getUserEvents(id);
   }
 
   render() {
-    const { user } = this.props;
+    const { user, params } = this.props;
+    let title = params.id === undefined ? "Moje akce" : `Akce uživatele ${user.firstName} ${user.lastName}`;
+
     return (
       <div className="container">
-        <UserInfo user={user} saveUserInfo={this.props.saveUserInfo}/>
-        <EventsBox actionsType="Moje" forUserWithId={user.id} getEvents={this.props.getUserInfo}/>
+        <UserInfo user={user} saveUserInfo={this.props.saveUserInfo} updateable={params.id === undefined}/>
+        <EventsBox title={title} events={this.props.events}/>
       </div>
     );
   };
@@ -23,7 +38,8 @@ class ProfilePage extends Component{
 
 const mapStateToProps = (store) => {
   return {
-    user: store.userReducer.user
+    user: store.userReducer.user,
+    events: store.eventReducer
   }
 };
 
@@ -35,7 +51,12 @@ const mapDispatchToProps = (dispatch) => {
 
       saveUserInfo: (user) => {
           dispatch(putUserProfileInfo(user));
-      }
+      },
+
+      getUserEvents: (id) => {
+          dispatch(getUserEvents(id));
+      },
+
   };
 };
 

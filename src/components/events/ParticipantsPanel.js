@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router';
 
 import Panel from '../layout/Panel.js';
 import { getParticipants, postToggleParticipation, getOwnedEvents } from '../../services/restApi.js';
@@ -18,7 +19,7 @@ class ParticipantPanel extends Component {
   componentDidMount() {
     this.updateParticipantsList();
     if (this.props.user.id !== undefined) {
-      getOwnedEvents(this.props.user).then(response => {
+      getOwnedEvents(this.props.user.userId).then(response => {
         this.setState({
           ownedEvents: response.data
         });
@@ -79,8 +80,8 @@ class ParticipantPanel extends Component {
       });
     }
 
-    let items = participants.map(item => {
-        return <li>{item.firstName} {item.lastName} </li>
+    let items = participants.map((item, index) => {
+        return <li key={index}><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
     });
 
     return (
