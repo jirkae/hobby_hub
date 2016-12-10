@@ -1,57 +1,55 @@
-import React, { Component } from 'react';
-import { Grid, Row, Col, Glyphicon } from "react-bootstrap";
+import React from 'react';
+import {Grid, Row, Col, Glyphicon} from "react-bootstrap";
 import EventsBoxItem from "./EventsBoxItem.js";
+import {Link} from 'react-router';
 
-export default class EventsBox extends Component {
-    constructor(props) {
-        super(props);
+const EventsBox = (props) => {
 
-        this.state = {
-            events: []
-        }
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState(props);
-    }
-
-    render() {
-        const { events } = this.state;
-        let mappedEvents = events.map((data) => {
-            return (<EventsBoxItem event={data} />);
+    const renderItems = (events) => {
+        const items = events.map((event) => {
+            return (<EventsBoxItem event={event} key={event.id}/>)
         });
+        if (items.length !== 0) {
+            return items;
+        }
+        return <div className="alert alert-warning no-results-alert">
+          <h3><Glyphicon glyph="search"/> Žádné výsledky.</h3>
+          Zkus změnit nastavení svého vyhledávání.
+        </div>;
+    };
 
-        return (
-            <Grid className="container-top-margin">
-                <Row>
-                    <Col sm={12} className="page-content col-thin-right">
-                        <Col lg={12} className="content-box">
-                            <Row className="row-featured row-featured-category">
-                                <Col lg={12} className="box-title no-border">
-                                    <div className="inner">
-                                        <h2>
-                                            <span>{this.props.title || "Akce"}</span>
-                                            <a href="#" className="sell-your-item">
-                                                Zobrazit více akcí <Glyphicon glyph="th-list"></Glyphicon>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                </Col>
-                                <div className="adds-wrapper">
-                                    {mappedEvents}
-                                </div>
-                                <div className="tab-box save-search-bar text-center">
-                                    <a className="text-uppercase" href="#">
-                                        <i className="icon-briefcase"></i>
-                                        Zobrazit všechny akce
-                                    </a>
-                                </div>
-                            </Row>
-                        </Col>
-                    </Col>
+    return (
+        <Grid className="container-top-margin">
+          <Row>
+            <Col sm={12} className="page-content col-thin-right">
+              <Col lg={12} className="content-box">
+                <Row className="row-featured row-featured-category">
+                  <Col lg={12} className="box-title no-border">
+                    <div className="inner">
+                      <h2>
+                        <span>Poslední{" "}</span>akce
+                        <Link to="/events" className="sell-your-item">
+                          Zobrazit více akcí{" "}
+                          <Glyphicon glyph="th-list"></Glyphicon>
+                        </Link>
+                      </h2>
+                    </div>
+                  </Col>
+                  <div className="adds-wrapper">
+                    {renderItems(props.events)}
+                  </div>
+                  <div className="tab-box save-search-bar text-center">
+                    <Link to="/events" className="text-uppercase">
+                      <i className="icon-briefcase"></i>
+                      Zobrazit všechny akce
+                    </Link>
+                  </div>
                 </Row>
-            </Grid>
-        );
-
-    }
+              </Col>
+            </Col>
+          </Row>
+        </Grid>
+    );
 }
+
+export default EventsBox;
