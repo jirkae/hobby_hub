@@ -79,8 +79,8 @@ class ParticipantPanel extends Component {
       });
     }
 
-    let items = participants.map(item => {
-        return <li><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
+    let items = participants.map((item, index) => {
+        return <li key={index}><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
     });
 
     return (

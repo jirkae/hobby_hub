@@ -7,21 +7,18 @@ import EventsBox from './../components/events/EventsBox';
 
 class ProfilePage extends Component{
   componentDidMount() {
-    const { user, params } = this.props;
-
-    // let id = params.id === undefined ? user.userId : params.id
-    // this.getData(id);
-
-    if (params.id === undefined) {
-        console.log('Získávám data přihlášeného uživatele', user.userId);
-        this.getData(user.userId);
-    } else {
-        console.log('Získávám data uživatele z URL', params.id);
-        this.getData(params.id);
-    }
+      this.conditionalDataLoad(this.props);
   }
 
-  getData(id) {
+  componentWillReceiveProps(newProps) {
+      if(newProps.params !== this.props.params) {
+          this.conditionalDataLoad(newProps);
+      }
+  }
+
+  conditionalDataLoad(props) {
+      let id = props.params.id === undefined ? props.user.userId : props.params.id;
+
       this.props.getUserInfo(id);
       this.props.getUserEvents(id);
   }

@@ -27,7 +27,7 @@ const EventsBox = (props) => {
                   <Col lg={12} className="box-title no-border">
                     <div className="inner">
                       <h2>
-                        <span>Poslední{" "}</span>akce
+                        <span>{props.title || "Poslední akce"}</span>
                         <Link to="/events" className="sell-your-item">
                           Zobrazit více akcí{" "}
                           <Glyphicon glyph="th-list"></Glyphicon>
