@@ -57,6 +57,15 @@ class UserInfo extends Component {
   render() {
     let { firstName, lastName, email, info } = this.state;
 
+    let mutateStateButtons = this.props.updateable ? () => {
+        return (
+        <Col sm={2} className="col-offset-xs-4 pull-right button-wrapper vcenter">
+            <Button>Změnit heslo</Button>
+            <Button bsStyle="primary" onClick={this.onClick}>Uložit změny</Button>
+        </Col>
+        )
+    } : '';
+
     return (
       <Grid className="container-top-margin">
         <Row>
@@ -82,10 +91,7 @@ class UserInfo extends Component {
                     </FormGroup>
                   </form>
                 </Col>
-                <Col sm={2} className="col-offset-xs-4 pull-right button-wrapper vcenter">
-                  <Button>Změnit heslo</Button>
-                  <Button bsStyle="primary" onClick={this.onClick}>Uložit změny</Button>
-                </Col>
+                  { mutateStateButtons }
               </Row>
               <Row>
                 <Col sm={6}>

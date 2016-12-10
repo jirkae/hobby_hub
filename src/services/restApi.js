@@ -12,6 +12,8 @@ let api = axios.create({
   }
 });
 
+export const baseUrl = () => {return `${BASE_URL}`};
+
 export function setAuthToken(authToken) {
     api.defaults.headers.common['Authorization'] = authToken;
 }
@@ -46,8 +48,12 @@ export function postLogout(token) {
   return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
 }
 
-export function getUserData() {
-  return api.get(`${BASE_URL}AuthUsers/getCurrentUser`)
+// export function getUserData() {
+//   return api.get(`${BASE_URL}AuthUsers/getCurrentUser`)
+// }
+
+export function getUserData(id) {
+    return api.get(`${BASE_URL}AuthUsers/${id}`)
 }
 
 export function putUserData(user) {

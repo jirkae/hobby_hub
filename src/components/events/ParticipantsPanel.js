@@ -80,7 +80,8 @@ class ParticipantPanel extends Component {
     }
 
     let items = participants.map(item => {
-        return <li><Link to={`/user/${item.userId}`} >{item.firstName} {item.lastName}</Link></li>
+      // console.log('Uživatelé: ', item);
+        return <li><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
     });
 
     return (

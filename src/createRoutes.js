@@ -21,7 +21,7 @@ export function createRoutes() {
       <Route path="/create-event" component={EventsCreatePage}></Route>
       <Route path="/profile" component={ProfilePage}></Route>
       <Route path="/myActions" component={UserEventsPage}></Route>
-      <Route path="/user/:userId" component={ProfilePage}></Route>
+      <Route path="/user/:id" component={ProfilePage}></Route>
       <Route path="*" component={Page404}/>
     </Route>
   );
