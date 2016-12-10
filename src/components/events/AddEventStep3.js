@@ -12,6 +12,8 @@ export default class AddEventStep3 extends Component {
       event: {
         startDate: '',
         endDate: '',
+        tags: [{}],
+        participantsConfirm: true
       },
       errors: []
     };
@@ -56,7 +58,7 @@ export default class AddEventStep3 extends Component {
 
   render() {
     return(
-      <form onSubmit={this.formSubmit} className="form-horizontal">
+      <form onSubmit={this.formSubmit} className="form-horizontal" style={{height: "400px"}}>
         <Col md={12}>
           <fieldset>
             <FormGroup controlId="eventStreet" validationState={this.getValidationState('startDate')}>

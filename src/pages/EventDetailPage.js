@@ -37,7 +37,7 @@ export default class EventDetailPage extends Component {
               <div className="ads-details-info jobs-details-info col-md-8">
                 <p>{data.description}</p>
                 <h4 className="text-uppercase ">Detailní popis:</h4>
-                <p>{data.detailDescription}</p>
+                <p>{data.detailedDescription}</p>
                 <h4 className="text-uppercase ">Mapa konání:</h4>
                 <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q='+data.street+','+data.city+','+data.zipCode} />
               </div>
@@ -69,14 +69,12 @@ export default class EventDetailPage extends Component {
       );
     } else {
       return (
-        <ParticipantPanel event = {data}/>
+        <ParticipantPanel event={data}/>
       );
     }
   }
 
   render() {
-    const { data } = this.state;
-
     return (
       <ContentWrapper>
         <MainContent className="col-sm-9">

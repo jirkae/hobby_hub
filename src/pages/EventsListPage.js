@@ -83,23 +83,24 @@ export default class EventsListPage extends Component {
     {
         return (
             <div>
-                <div className="search-row-wrapper landingBackgroundEvents">
-                    <Grid className="text-center">
-                        <SearchBar cities={this.state.cities} tags={this.state.tags} onCitiesChange={(cities) => {
-                            this.handleCitiesChange(cities)
-                        }} onTagsChange={(tags) => {
-                            this.handleTagsChange(tags)
-                        }} onSearchClick={(params) => {
-                            this.handleUrlChange(params)
-                        }}/>
-                    </Grid>
-                </div>
-                {this.gettingEvents()}
+              <div className="search-row-wrapper landingBackgroundEvents">
+                <Grid className="text-center">
+                  <SearchBar cities={this.state.cities} tags={this.state.tags} onCitiesChange={(cities) => {
+                    this.handleCitiesChange(cities)
+                  }} onTagsChange={(tags) => {
+                    this.handleTagsChange(tags)
+                  }} onSearchClick={(params) => {
+                    this.handleUrlChange(params)
+                  }}/>
+                </Grid>
+              </div>
+              {this.gettingEvents()}
             </div>
         );
     }
+
 }
 
 EventsListPage.contextTypes = {
     router: React.PropTypes.object.isRequired
-}
+};

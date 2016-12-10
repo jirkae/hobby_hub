@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "axios": "^0.15.2",
+    "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.2",
     "moment": "^2.16.0",

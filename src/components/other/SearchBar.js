@@ -39,6 +39,5 @@ export default class SearchBar extends Component {
                 </Col>
             </div>
         );
-
     }
 }

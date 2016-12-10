@@ -8,7 +8,8 @@ import {
   registerUserFailure,
   changeModalVisibility,
   getUserDataSuccess,
-  getUserDataFailure
+  getUserDataFailure,
+  getUserEventsSuccess
 } from "./../actions/index";
 
 export function loginUser(user) {
@@ -47,10 +48,12 @@ export function registerUser(user) {
 
 export function logoutUser(token) {
   return function (dispatch) {
+    API.setAuthToken(null);
     return API.postLogout(token)
       .then(response => {
         dispatch(logoutUserSuccess(response.data));
       }).catch(error => {
+          console.log('Chyba při odhlášení:', error);
         dispatch(logoutUserFailure(token, error))
       });
   };
@@ -74,6 +77,28 @@ export function putUserProfileInfo(user) {
                 dispatch(getUserDataSuccess(response.data));
             }).catch(error => {
                 dispatch(getUserDataFailure(user, error))
+            });
+    };
+}
+
+export function getEvents(userId) {
+    return function (dispatch) {
+        return API.getLatestEvents(userId)
+            .then(response => {
+                dispatch(getUserEventsSuccess(response.data));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+            });
+    };
+}
+
+export function getUserEvents(userId) {
+    return function (dispatch) {
+        return API.getOwnedEvents(userId)
+            .then(response => {
+                dispatch(getUserEventsSuccess(response.data));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
             });
     };
 }

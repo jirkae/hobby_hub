@@ -3,29 +3,24 @@ import { Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { changeModalVisibility } from './../../actions/index';
 
+import Tabs from "./../layout/Tabs";
 import LoginForm from "./../login/LoginForm";
 import RegisterForm from "./../login/RegisterForm";
-import ForgotPassForm from "./../login/ForgotPassForm";
 
 class GuestNavRight extends Component{
   constructor(props) {
     super(props);
 
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleRegisterClick = this.handleRegisterClick.bind(this);
-    this.handleForgotPassClick = this.handleForgotPassClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleLoginClick(e) {
-    this.changeModalProp(e, <LoginForm />);
-  }
+  handleClick(e) {
+      const tabs = [
+          { label: 'Přihlášení', render: () => <LoginForm /> },
+          { label: 'Registrace', render: () => <RegisterForm /> }
+      ];
 
-  handleRegisterClick(e) {
-    this.changeModalProp(e, <RegisterForm />);
-  }
-
-  handleForgotPassClick(e) {
-    this.changeModalProp(e, <ForgotPassForm />);
+    this.changeModalProp(e, <Tabs tabs={tabs}/>);
   }
 
   changeModalProp(event, newProp) {
@@ -41,11 +36,7 @@ class GuestNavRight extends Component{
   render() {
     return(
       <Nav pullRight>
-        <NavItem role="button" eventKey={5} onClick={this.handleLoginClick}>Přihlásit se</NavItem>
-        <NavItem role="button" eventKey={6} onClick={this.handleRegisterClick}>Registrovat</NavItem>
-        <NavItem role="button" eventKey={7} onClick={this.handleForgotPassClick}>Zapomenuté heslo</NavItem>
-        <NavItem role="button" eventKey={8} className="postadd" href="/create-event">Přidat akci</NavItem>
-
+        <NavItem role="button" eventKey={5} onClick={event => this.handleClick(event, 0)}>Přihlásit se</NavItem>
       </Nav>
     )
   }

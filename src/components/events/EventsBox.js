@@ -13,8 +13,7 @@ const EventsBox = (props) => {
             return items;
         }
         return <div className="alert alert-warning no-results-alert">
-          <h3><Glyphicon glyph="search"/>
-          Žádné výsledky.</h3>
+          <h3><Glyphicon glyph="search"/> Žádné výsledky.</h3>
           Zkus změnit nastavení svého vyhledávání.
         </div>;
     };

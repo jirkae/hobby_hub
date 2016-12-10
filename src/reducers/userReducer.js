@@ -1,12 +1,11 @@
 import * as C from './../constants/hobbyConstants';
 
 function userReducer(state={user: {}}, action) {
-console.log(action);
+
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {
       return {...state,
         user: {
-          email: action.payload.email,
           id: action.payload.id,
           userId: action.payload.userId
         }
@@ -16,7 +15,6 @@ console.log(action);
     case C.REGISTER_USER_SUCCESS: {
       return {...state,
         user: {
-          email: action.payload.email,
           id: action.payload.id,
           userId: action.payload.userId
         }
@@ -33,9 +31,23 @@ console.log(action);
 
     case C.GET_USER_DATA_SUCCESS: {
       return {...state,
-        ...action.payload
+          user: {
+            id: state.user.id, // původní stav, nemazat!
+            userId: state.user.userId,
+
+            email: action.payload.user.email,
+            firstName: action.payload.user.firstName,
+            lastName: action.payload.user.lastName,
+            info: action.payload.user.info
+          }
       }
     }
+
+      case C.LOGOUT_USER_SUCCESS: {
+        return {...state,
+            user: {}
+        }
+      }
 
     default:
       return state;
