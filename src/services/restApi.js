@@ -4,39 +4,56 @@ import axios, { CancelToken } from 'axios';
 const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 let api = axios.create({
-  baseURL: BASE_URL,
-  timeout: 1000,
-  headers: {
-    'Content-Type': 'application/json',
-    'charset': 'utf-8'
-  }
+    baseURL: BASE_URL,
+    timeout: 1000,
+    headers: {
+        'Content-Type': 'application/json',
+        'charset': 'utf-8'
+    }
 });
 
-export const baseUrl = () => {return `${BASE_URL}`};
+export function fetchCities(query) {
+return api.get(`${BASE_URL}Events/getCities`,
+  {
+      params: {
+          value: query.value,
+      }
+  }).then((results) => {return results.data.cities});
+}
+
+export function fetchTags(query) {
+  return api.get(`${BASE_URL}Events/getDistinctTags`,
+    {
+        params: {
+            value: query.value,
+        }
+    }).then((results) => {return results.data.tags});
+}
 
 export function setAuthToken(authToken) {
     api.defaults.headers.common['Authorization'] = authToken;
 }
 
 export function getLatestEvents() {
-  return api.get(`${BASE_URL}Events?filter[limit]=10&filter[order]=dateCreated DESC`);
+    return api.get(`${BASE_URL}Events?filter[limit]=5&filter[order]=dateCreated DESC`)
+    .then((results) => {return results.data});
 }
 
 export function getEvents(params) {
-  return api.get(`${BASE_URL}Events/findByTagsOrCity`, {
-    params: {
-      city: params.city,
-      tags: params.tags
-    }
-  });
+    return api.get(`${BASE_URL}Events/findByTagsOrCities`, {
+        params: {
+            cities: params.cities,
+            tags: params.tags
+        }
+    }).then((results) => {return results.data.events});
 }
 
 export function postLogin(props) {
-  return api.post(`${BASE_URL}AuthUsers/login`,props)
+    return api.post(`${BASE_URL}AuthUsers/login`, props)
 }
 
 export function postRegister(props) {
-  return api.post(`${BASE_URL}AuthUsers`,props);
+    return api.post(`${BASE_URL}AuthUsers`, props);
 }
 
 export function postEvent(event, user) {
@@ -45,7 +62,7 @@ export function postEvent(event, user) {
 }
 
 export function postLogout(token) {
-  return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
+    return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
 }
 
 // export function getUserData() {
@@ -66,19 +83,19 @@ export function putUserData(user) {
 }
 
 export function getCancelTokenSource() {
-  return CancelToken.source();
+    return CancelToken.source();
 }
 
 export function getParticipants(eventId) {
-  return api.get(`${BASE_URL}Events/${eventId}/participants`);
+    return api.get(`${BASE_URL}Events/${eventId}/participants`);
 }
 
 export function postToggleParticipation(props, authToken) {
-  return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
+    return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
 }
 
 export function getEventOwnedByuser(user, event) {
-  return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
+    return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
 }
 
 export function getOwnedEvents(userId) {
