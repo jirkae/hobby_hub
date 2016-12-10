@@ -18,12 +18,10 @@
     }
 }
 
-
-
-div.absoluteInputWrapper
+.no-results-alert
 {
-  position: absolute;
-  width: 100%;
+  border-radius: 0px;
+  margin-bottom: 0px;
 }
 
 div.landingBackground{

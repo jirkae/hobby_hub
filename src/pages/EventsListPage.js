@@ -1,66 +1,103 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
-import { getEvents } from '../services/restApi';
-import { getLatestEvents } from '../services/restApi';
-import {baseUrl} from '../services/restApi.js';
+import {getEvents} from '../services/restApi';
+import SearchBar from "../components/other/SearchBar.js";
 
 export default class EventsListPage extends Component {
 
-constructor(props)
-{
-  super(props);
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            events: null,
+            cities: [],
+            tags: []
+        };
+    }
 
-  this.state = {
-    city: this.props.location.query["city"],
-    tags: this.props.location.query["tags"],
-    events: []
-  };
-}
+    componentDidMount()
+    {
+        var {cities} = this.props.location.query;
+        var {tags} = this.props.location.query;
+        if (cities === undefined) {
+            cities = [];
+        }
+        if (tags === undefined) {
+            tags = [];
+        }
+        if (cities.constructor !== Array) {
+            cities = [cities];
+        }
+        if (tags.constructor !== Array) {
+            tags = [tags];
+        }
 
-componentDidMount()
-{
-  var params = {city: this.state.city, tags: this.state.tags};
-  var events = getEvents(params).then(response => {
-    this.setState({events: response.data.events});
-  });
-}
+        this.setState({cities: cities, tags: tags});
+        this.fetchEvents(cities, tags);
+    }
 
-  render() {
-    const {events} = this.state;
-    return (
-        <div>
-          <div className="search-row-wrapper landingBackgroundEvents">
-            <Grid className="text-center">
-              <Col sm={3}>
-                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text"/>
-              </Col>
-              <Col sm={3}>
-                <FormControl componentClass="select">
-                  <option value="select">Všechny kategorie</option>
-                  <option value="other">Sporty</option>
-                  <option value="other">Dobrodružné</option>
-                </FormControl>
-              </Col>
-              <Col sm={3}>
-                <FormControl componentClass="select">
-                  <option value="select">Všechny lokality</option>
-                  <option value="other">Praha 1</option>
-                  <option value="other">Praha 2</option>
-                </FormControl>
-              </Col>
-              <Col sm={3}>
-                <Button bsStyle="primary" className="btn-block">
-                  Vyhledat akce <i className="fa fa-search"></i>
-                </Button>
-              </Col>
-            </Grid>
-          </div>
+    handleCitiesChange(cities) {
+        this.setState({cities: cities});
+    }
 
-          <EventsBox events={events} />
-        </div>
-    );
-  }
+    handleTagsChange(tags) {
+        this.setState({tags: tags});
+    }
+
+    handleUrlChange() {
+        this.context.router.push({
+            pathname: '/events',
+            query: {
+                cities: this.state.cities,
+                tags: this.state.tags
+            }
+        });
+
+        this.fetchEvents(this.state.cities, this.state.tags);
+    }
+
+    fetchEvents(cities, tags)
+    {
+        const params = {
+            cities: cities,
+            tags: tags
+        };
+
+        getEvents(params).then((events) => {
+            this.setState({events: events});
+        });
+    }
+
+    gettingEvents()
+    {
+        const {events} = this.state;
+        if (events === null) {
+            return "Načítám akce...";
+        } else {
+            return <EventsBox events={events}/>
+        }
+    }
+
+    render()
+    {
+        return (
+            <div>
+                <div className="search-row-wrapper landingBackgroundEvents">
+                    <Grid className="text-center">
+                        <SearchBar cities={this.state.cities} tags={this.state.tags} onCitiesChange={(cities) => {
+                            this.handleCitiesChange(cities)
+                        }} onTagsChange={(tags) => {
+                            this.handleTagsChange(tags)
+                        }} onSearchClick={(params) => {
+                            this.handleUrlChange(params)
+                        }}/>
+                    </Grid>
+                </div>
+                {this.gettingEvents()}
+            </div>
+        );
+    }
 }
 
 EventsListPage.contextTypes = {
