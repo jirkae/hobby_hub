@@ -19,7 +19,7 @@ class ParticipantPanel extends Component {
   componentDidMount() {
     this.updateParticipantsList();
     if (this.props.user.id !== undefined) {
-      getOwnedEvents(this.props.user).then(response => {
+      getOwnedEvents(this.props.user.userId).then(response => {
         this.setState({
           ownedEvents: response.data
         });
@@ -80,7 +80,6 @@ class ParticipantPanel extends Component {
     }
 
     let items = participants.map(item => {
-      // console.log('Uživatelé: ', item);
         return <li><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
     });
 
