@@ -41,10 +41,7 @@ export function getLatestEvents() {
 
 export function getEvents(params) {
     return api.get(`${BASE_URL}Events/findByTagsOrCities`, {
-        params: {
-            cities: params.cities,
-            tags: params.tags
-        }
+        params: params
     }).then((results) => {return results.data.events});
 }
 

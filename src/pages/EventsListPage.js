@@ -10,60 +10,54 @@ export default class EventsListPage extends Component {
     {
         super(props);
         this.state = {
-            events: null,
-            cities: [],
-            tags: []
+            events: null
         };
     }
 
     componentDidMount()
     {
-        var {cities} = this.props.location.query;
-        var {tags} = this.props.location.query;
-        if (cities === undefined) {
-            cities = [];
-        }
-        if (tags === undefined) {
-            tags = [];
-        }
-        if (cities.constructor !== Array) {
-            cities = [cities];
-        }
-        if (tags.constructor !== Array) {
-            tags = [tags];
-        }
-
-        this.setState({cities: cities, tags: tags});
-        this.fetchEvents(cities, tags);
+      const params = this.getParams(this.props.location.query);
+      this.fetchEvents(params);
     }
 
-    handleCitiesChange(cities) {
-        this.setState({cities: cities});
+    componentWillReceiveProps(nextProps)
+    {
+        const params = this.getParams(nextProps.location.query);
+        this.fetchEvents(params);
     }
 
-    handleTagsChange(tags) {
-        this.setState({tags: tags});
+    getParams(inputParams)
+    {
+      var {cities, tags} = inputParams;
+      if(cities === undefined)
+      {
+        cities = [];
+      }
+      if(tags === undefined)
+      {
+        tags = [];
+      }
+      if(cities.constructor !== Array)
+      {
+        cities = [cities];
+      }
+      if(tags.constructor !== Array)
+      {
+        tags = [tags];
+      }
+      const params = {cities: cities, tags: tags};
+      return params;
     }
 
-    handleUrlChange() {
+    handleSearch(params) {
         this.context.router.push({
             pathname: '/events',
-            query: {
-                cities: this.state.cities,
-                tags: this.state.tags
-            }
+            query: params
         });
-
-        this.fetchEvents(this.state.cities, this.state.tags);
     }
 
-    fetchEvents(cities, tags)
+    fetchEvents(params)
     {
-        const params = {
-            cities: cities,
-            tags: tags
-        };
-
         getEvents(params).then((events) => {
             this.setState({events: events});
         });
@@ -81,17 +75,16 @@ export default class EventsListPage extends Component {
 
     render()
     {
-        return (
+        const params = this.getParams(this.props.location.query);
+          return (
             <div>
               <div className="search-row-wrapper landingBackgroundEvents">
                 <Grid className="text-center">
-                  <SearchBar cities={this.state.cities} tags={this.state.tags} onCitiesChange={(cities) => {
-                    this.handleCitiesChange(cities)
-                  }} onTagsChange={(tags) => {
-                    this.handleTagsChange(tags)
-                  }} onSearchClick={(params) => {
-                    this.handleUrlChange(params)
-                  }}/>
+                  <SearchBar
+                    params={params}
+                    onSearchClick={(params) => {
+                      this.handleSearch(params)
+                    }}/>
                 </Grid>
               </div>
               {this.gettingEvents()}
