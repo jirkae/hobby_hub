@@ -19,10 +19,10 @@ class EventDetailPage extends Component {
   }
 
   componentDidMount() {
-      getEventById(this.props.params.eventId)
+    getEventById(this.props.params.eventId)
       .then(json => {
-        this.setState({data: json.data})
-    }).catch(e => console.log("Error"));
+        this.setState({ data: json.data })
+      }).catch(e => console.log("Error"));
   }
 
   generateContent() {
@@ -41,12 +41,12 @@ class EventDetailPage extends Component {
             </Col>
             <Col md={3}>
               {this.props.user.id !== undefined && data.ownerId === this.props.user.userId &&
-                <Link className="btn btn-block btn-border btn-post btn-danger" to={"/create-event/"+data.id}>Upravit akci</Link>
+                <Link className="btn btn-block btn-border btn-post btn-danger" to={"/create-event/" + data.id}>Upravit akci</Link>
               }
             </Col>
           </Row>
-          <span className="info-row"> 
-            <span className="date"><i className=" icon-clock"> </i> Datum a čas: {moment(data.startDate).format('DD. MM. YYYY h:mm')} - {moment(data.endDate).format('DD. MM. YYYY h:mm')} </span> <br />
+          <span className="info-row">
+            <span className="date"><i className=" icon-clock"> </i> Datum a čas: {moment(data.startDate).format('DD. MM. YYYY h:mm')}- {moment(data.endDate).format('DD. MM. YYYY h:mm')} </span> <br />
             <span className="item-location"><i className="fa fa-map-marker"></i> {data.street}, {data.city}, {data.zipCode} </span> </span>
           <div className="Ads-Details ">
             <div className="row">
@@ -55,7 +55,7 @@ class EventDetailPage extends Component {
                 <h4 className="text-uppercase ">Detailní popis:</h4>
                 <p>{data.detailedDescription}</p>
                 <h4 className="text-uppercase ">Mapa konání:</h4>
-                <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q='+data.street+','+data.city+','+data.zipCode} />
+                <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q=' + data.street + ',' + data.city + ',' + data.zipCode} />
               </div>
               <div className="col-md-4">
                 <aside className="panel panel-body panel-details job-summery">
@@ -85,7 +85,7 @@ class EventDetailPage extends Component {
       );
     } else {
       return (
-        <ParticipantPanel event={data}/>
+        <ParticipantPanel event={data} />
       );
     }
   }

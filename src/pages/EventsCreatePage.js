@@ -17,7 +17,7 @@ export default class EventsCreatePage extends Component {
      getEventById(this.props.params.eventId)
       .then(json => {
         this.setState({event: json.data})
-    }).catch(e => console.log("Error"));
+    }).catch(e => console.log(e));
   }
 
   render() {
