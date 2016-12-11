@@ -15,23 +15,11 @@ class GuestNavRight extends Component{
   }
 
   handleClick(e) {
-      const tabs = [
-          { label: 'Přihlášení', render: () => <LoginForm /> },
-          { label: 'Registrace', render: () => <RegisterForm /> }
-      ];
-
-    this.changeModalProp(e, <Tabs tabs={tabs}/>);
+    e.preventDefault();
+this.props.dispatch(changeModalVisibility(true));
   }
 
-  changeModalProp(event, newProp) {
-    event.preventDefault();
-    this.props.openModalFc(() => {
-      return (
-        newProp
-      );
-    });
-    this.props.dispatch(changeModalVisibility(true));
-  }
+
 
   render() {
     return(

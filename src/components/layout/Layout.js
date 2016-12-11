@@ -5,14 +5,28 @@ import { connect } from 'react-redux';
 import Header from './Header.js';
 import { changeModalVisibility } from './../../actions/index';
 
+import Tabs from "./../layout/Tabs";
+import LoginForm from "./../login/LoginForm";
+import RegisterForm from "./../login/RegisterForm";
+
 import '../../scss/app.scss';
 import '../../css/style.css';
 import '../../css/fontello.css';
 import '../../css/animate.min.css';
 
+const tabs = [
+    { label: 'Přihlášení', render: () => <LoginForm /> },
+    { label: 'Registrace', render: () => <RegisterForm /> }
+];
+
 class Layout extends Component {
+
+
+
   constructor(props) {
     super(props);
+
+
 
     this.state = {
       modalContentGenerator: () => {return null;}
@@ -38,7 +52,7 @@ class Layout extends Component {
       <div>
         <Modal show={modalVisible}>
           <ModalBody>
-            {modalContentGenerator()}
+            <Tabs tabs={tabs}/>
           </ModalBody>
           <ModalFooter>
             <Button bsStyle="link" onClick={this.closeModal}>Zavřít</Button>

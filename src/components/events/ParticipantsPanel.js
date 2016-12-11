@@ -59,22 +59,8 @@ class ParticipantPanel extends Component {
   }
 
   handleClick(e) {
-      const tabs = [
-          { label: 'Přihlášení', render: () => <LoginForm /> },
-          { label: 'Registrace', render: () => <RegisterForm /> }
-      ];
-
-    this.changeModalProp(e, <Tabs tabs={tabs}/>);
-  }
-
-  changeModalProp(event, newProp) {
-    event.preventDefault();
-    this.props.openModalFc(() => {
-      return (
-        newProp
-      );
-    });
-    this.props.dispatch(changeModalVisibility(true));
+        e.preventDefault();
+        this.props.dispatch(changeModalVisibility(true));
   }
 
   renderActions() {
