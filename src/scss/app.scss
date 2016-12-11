@@ -65,6 +65,12 @@
   top: 13px !important;
 }
 
+.search-row-wrapper {
+  height: auto !important;
+  position: relative;
+  z-index: 10;
+}
+
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
