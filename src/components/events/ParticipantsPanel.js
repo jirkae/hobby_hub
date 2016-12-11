@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
+import { changeModalVisibility } from './../../actions/index';
 
+import Tabs from "./../layout/Tabs";
+import LoginForm from "./../login/LoginForm";
+import RegisterForm from "./../login/RegisterForm";
 import Panel from '../layout/Panel.js';
 import { getParticipants, postToggleParticipation, getOwnedEvents } from '../../services/restApi.js';
 
@@ -14,6 +18,7 @@ class ParticipantPanel extends Component {
     };
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
     //this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -53,8 +58,31 @@ class ParticipantPanel extends Component {
     console.log(event);
   }
 
+  handleClick(e) {
+      const tabs = [
+          { label: 'Přihlášení', render: () => <LoginForm /> },
+          { label: 'Registrace', render: () => <RegisterForm /> }
+      ];
+
+    this.changeModalProp(e, <Tabs tabs={tabs}/>);
+  }
+
+  changeModalProp(event, newProp) {
+    event.preventDefault();
+    this.props.openModalFc(() => {
+      return (
+        newProp
+      );
+    });
+    this.props.dispatch(changeModalVisibility(true));
+  }
+
   renderActions() {
     const { user } = this.props;
+
+    if (user.id == undefined) {
+      return (<a href="" onClick={event => this.handleClick(event, 0)}>Přihlásit se</a>);
+    } else
 
     if (user.id !== undefined) {
       let attempting = false;
