@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Notification } from 'react-notification';
 
 import Header from './Header.js';
 import { changeModalVisibility } from './../../actions/index';
@@ -47,18 +46,9 @@ class Layout extends Component {
   render() {
     const { children, modalVisible } = this.props;
     const { modalContentGenerator } = this.state;
-    let message = this.props.user.userId ? 'Přihlášení proběhlo úspěšně.' : 'Vaše registrace proběhla úspěšně. Nyní se můžete přihlásit.';
 
     return (
       <div>
-        <Notification
-            isActive={this.state.showNotification}
-            message={message}
-            action={'OK'}
-            dismissAfter={3000}
-            onClick={this.closeNotification}
-            onDismiss={this.closeNotification}
-        />
         <Modal show={modalVisible}>
           <ModalBody>
             {modalContentGenerator()}
