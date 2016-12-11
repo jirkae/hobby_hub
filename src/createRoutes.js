@@ -18,7 +18,10 @@ export function createRoutes() {
         <IndexRoute component={EventsListPage}/>
         <Route path=":eventId" component={EventDetailPage}/>
       </Route>
-      <Route path="/create-event" component={EventsCreatePage}></Route>
+      <Route path="/create-event">
+        <IndexRoute component={EventsCreatePage}/>
+        <Route path=":eventId" component={EventsCreatePage}/>
+      </Route>
       <Route path="/profile" component={ProfilePage}></Route>
       <Route path="/myActions" component={UserEventsPage}></Route>
       <Route path="/user/:id" component={ProfilePage}></Route>

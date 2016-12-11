@@ -1,77 +1,40 @@
 import React, { Component } from 'react';
 import AddEvent from "../components/events/AddEvent.js";
+import { getEventById } from '../services/restApi.js';
 import ContentWrapper from '../components/layout/ContentWrapper.js';
 import MainContent from '../components/layout/MainContent.js';
 import Panel from '../components/layout/Panel.js';
 import AsideContent from '../components/layout/AsideContent.js';
 
 export default class EventsCreatePage extends Component {
+
   constructor(props) {
     super(props);
-
-    this.state = this.getInitData();
-
-    this.formSubmit = this.formSubmit.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleDetailDescriptionChange = this.handleDetailDescriptionChange.bind(this);
+    this.state = {event: null};
   }
 
-  getInitData() {
-    return {
-      name: '',
-      description: '',
-      detailDescription: ''
-    };
-  }
-
-  clearForm() {
-    this.setState(this.getInitData());
-  }
-
-  handleNameChange(e) {
-    this.setState({name: e.target.value})
-  }
-
-  handleDescriptionChange(e) {
-    this.setState({description: e.target.value})
-  }
-
-  handleDetailDescriptionChange(e) {
-    this.setState({detailDescription: e.target.value})
-  }
-
-  formSubmit(e) {
-    e.preventDefault();
-    var http = new XMLHttpRequest();
-    var url = "http://localhost:3000/api/events";
-    var params = {
-      name: this.state.name,
-      description: this.state.description,
-      detailDescription: this.state.detailDescription,
-    };
-    http.open("POST", url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader("Content-type", "application/json");
-
-    var that = this;
-    http.onreadystatechange = function () {//Call a function when the state changes.
-      if (http.readyState === 4 && http.status === 200) {
-
-        that.clearForm();
-      }
-    };
-    http.send(JSON.stringify(params));
+  componentDidMount() {
+     getEventById(this.props.params.eventId)
+      .then(json => {
+        this.setState({event: json.data})
+    }).catch(e => console.log("Error"));
   }
 
   render() {
+    const { event } = this.state;
+
+    if (this.props.params.eventId !== undefined && event === null) {
+      return (
+        <div>Načítám data</div>
+      );
+    }
+
     return (
       <ContentWrapper>
         <MainContent className="col-sm-9">
           <div className="createEvent">
             <h2 className="title-2 uppercase"><strong> <i className="icon-briefcase"></i> Přidat akci </strong></h2>
-            <AddEvent />
+            <AddEvent event={event} />
           </div>
         </MainContent>
         <AsideContent className="col-sm-3">
@@ -83,12 +46,12 @@ export default class EventsCreatePage extends Component {
             </div>
             <Panel heading="Tipy">
               <ul className="list-check">
-              <li> Add Keywords</li>
-              <li> Use Familiar Job Titles</li>
-              <li> Give Them Details</li>
-              <li> Expand Your Location</li>
-              <li> Easy Read Postings</li>
-              <li> Keep it simple and expected</li>
+                <li> Add Keywords</li>
+                <li> Use Familiar Job Titles</li>
+                <li> Give Them Details</li>
+                <li> Expand Your Location</li>
+                <li> Easy Read Postings</li>
+                <li> Keep it simple and expected</li>
               </ul>
             </Panel>
           </div>

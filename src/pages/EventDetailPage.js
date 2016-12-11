@@ -4,8 +4,12 @@ import ContentWrapper from '../components/layout/ContentWrapper.js';
 import MainContent from '../components/layout/MainContent.js';
 import AsideContent from '../components/layout/AsideContent.js';
 import ParticipantPanel from '../components/events/ParticipantsPanel.js';
+import moment from 'moment';
+import { connect } from "react-redux";
+import { Link } from 'react-router';
+import { Alert, Col, Row } from "react-bootstrap";
 
-export default class EventDetailPage extends Component {
+class EventDetailPage extends Component {
   constructor(props) {
     super(props);
 
@@ -31,8 +35,19 @@ export default class EventDetailPage extends Component {
     } else {
       return (
         <div id="eventDetail">
-          <h2>{data.name}</h2>
-          <span className="info-row"> <span className="date"><i className=" icon-clock"> </i> Datum a čas: Monday, 8 February 2016 </span> - <span className="item-location"><i className="fa fa-map-marker"></i> {data.street}, {data.city}, {data.zipCode} </span> </span>
+          <Row>
+            <Col md={9}>
+              <h2>{data.name}</h2>
+            </Col>
+            <Col md={3}>
+              {this.props.user.id !== undefined && data.ownerId === this.props.user.userId &&
+                <Link className="btn btn-block btn-border btn-post btn-danger" to={"/create-event/"+data.id}>Upravit akci</Link>
+              }
+            </Col>
+          </Row>
+          <span className="info-row"> 
+            <span className="date"><i className=" icon-clock"> </i> Datum a čas: {moment(data.startDate).format('DD. MM. YYYY h:mm')} - {moment(data.endDate).format('DD. MM. YYYY h:mm')} </span> <br />
+            <span className="item-location"><i className="fa fa-map-marker"></i> {data.street}, {data.city}, {data.zipCode} </span> </span>
           <div className="Ads-Details ">
             <div className="row">
               <div className="ads-details-info jobs-details-info col-md-8">
@@ -88,3 +103,15 @@ export default class EventDetailPage extends Component {
     );
   }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    user: store.userReducer.user
+  }
+};
+
+EventDetailPage = connect(
+  mapStateToProps
+)(EventDetailPage);
+
+export default EventDetailPage;
