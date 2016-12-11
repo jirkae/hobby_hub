@@ -8,11 +8,8 @@ export default class LandingPage extends Component {
     constructor(props)
     {
         super(props);
-
         this.state = {
-            events: null,
-            cities: ["Praha"],
-            tags: ["Sport"]
+            events: null
         };
     }
 
@@ -23,21 +20,10 @@ export default class LandingPage extends Component {
         });
     }
 
-    handleCitiesChange(cities) {
-        this.setState({cities: cities});
-    }
-
-    handleTagsChange(tags) {
-        this.setState({tags: tags});
-    }
-
-    handleUrlChange() {
+    handleSearch(params) {
         this.context.router.push({
             pathname: '/events',
-            query: {
-                cities: this.state.cities,
-                tags: this.state.tags
-            }
+            query: params
         });
     }
 
@@ -65,14 +51,7 @@ export default class LandingPage extends Component {
                         Najděte nejaktuálnější akce ve vašem okolí.
                       </p>
 
-                      <SearchBar cities={this.state.cities} tags={this.state.tags} onCitiesChange={(cities) => {
-                        this.handleCitiesChange(cities)
-                      }} onTagsChange={(tags) => {
-                        this.handleTagsChange(tags)
-                      }} onSearchClick={() => {
-                        this.handleUrlChange()
-                      }}/>
-
+                      <SearchBar onSearchClick={(params) => {this.handleSearch(params)}}/>
                       <div className="resume-up">
                         <a>
                           <i className="icon-doc-4"></i>
@@ -81,7 +60,6 @@ export default class LandingPage extends Component {
                           <b>Založte vlastní akci!</b>
                         </a>
                         Vytvořte si profil a sežeňte společnost na vámi zvolenou akci.
-
                       </div>
                     </div>
                   </div>

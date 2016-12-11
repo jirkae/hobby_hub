@@ -1,7 +1,7 @@
 import axios, { CancelToken } from 'axios';
 
-// const BASE_URL = "http://localhost:3000/api/";
-const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
+ const BASE_URL = "http://localhost:3000/api/";
+//const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 let api = axios.create({
     baseURL: BASE_URL,
@@ -41,10 +41,7 @@ export function getLatestEvents() {
 
 export function getEvents(params) {
     return api.get(`${BASE_URL}Events/findByTagsOrCities`, {
-        params: {
-            cities: params.cities,
-            tags: params.tags
-        }
+        params: params
     }).then((results) => {return results.data.events});
 }
 
@@ -57,8 +54,11 @@ export function postRegister(props) {
 }
 
 export function postEvent(event, user) {
-  console.log(event);
   return api.post(`${BASE_URL}AuthUsers/${user.userId}/ownEvents`, event);
+}
+
+export function updateEvent(event, user, eventId) {
+  return api.put(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${eventId}`, event);
 }
 
 export function postLogout(token) {

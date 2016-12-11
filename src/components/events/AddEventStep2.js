@@ -19,6 +19,18 @@ export default class AddEventStep2 extends Component {
     this.getValidationState = this.getValidationState.bind(this);
   }
 
+  componentDidMount() {
+    var event = this.state.event;
+    if (this.props.event !== null) {
+      for (let key in this.state.event) {
+        if (typeof this.props.event[key] !== 'undefined') {
+          event[key] = this.props.event[key];
+        }
+      }
+      this.setState({ event: event });
+    }
+  }
+
   handleFieldChange(e, name) {
     let { event } = this.state;
     event[name] = e.target.value;
