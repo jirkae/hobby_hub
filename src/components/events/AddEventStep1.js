@@ -57,6 +57,10 @@ export default class AddEventStep1 extends Component {
       errors.push('participantsMax');
     }
 
+    if (parseInt(event.participantsMax) < (event.participantsMin)) {
+      errors.push('participantsMax');
+    }
+
     if (errors.length === 0) {
       this.props.onSubmit(this.state.event);
     } else {
@@ -102,35 +106,29 @@ export default class AddEventStep1 extends Component {
                       <Col md={6}>
                         <Col md={12}>
                           <FormGroup controlId="eventParticipantsMin" validationState={this.getValidationState('participantsMin')}>
-                            <FormControl componentClass="select"
-                                placeholder="select"
+                            <FormControl componentClass="input"
+                                type="Number" min="1" step="1"
                                 onChange={(e) => {this.handleFieldChange(e, 'participantsMin')}}
                                 value={this.state.event.participantsMin}>
-                              <option value="0">Minimálně</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
                             </FormControl>
                           </FormGroup>
                         </Col>
                       </Col>
+
                       <Col md={6}>
                         <Col md={12}>
                           <FormGroup controlId="eventParticipantsMax" validationState={this.getValidationState('participantsMax')}>
-                            <FormControl componentClass="select"
-                                placeholder="select"
+                            <FormControl componentClass="input"
+                                type="Number" min="1" step="1"
                                 onChange={(e) => {this.handleFieldChange(e, 'participantsMax')}}
                                 value={this.state.event.participantsMax}>
-                              <option value="0">Maximálně</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
                             </FormControl>
                           </FormGroup>
                         </Col>
                       </Col>
                     </Row>
                   </div>
+
                 </FormGroup>
                 <FormGroup controlId="submit">
                   <Col md={2} mdOffset={10}>
