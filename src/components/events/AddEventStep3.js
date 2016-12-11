@@ -12,7 +12,6 @@ export default class AddEventStep3 extends Component {
       event: {
         startDate: '',
         endDate: '',
-        tags: [{}],
         participantsConfirm: true
       },
       errors: []

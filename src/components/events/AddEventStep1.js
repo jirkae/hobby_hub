@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bootstrap";
+import TagsSuggestInput from "../other/TagsSuggestInput.js";
+import {fetchTags} from '../../services/restApi';
 
 export default class AddEventStep1 extends Component {
   constructor(params) {
@@ -12,6 +14,7 @@ export default class AddEventStep1 extends Component {
         detailedDescription: '',
         participantsMin: 0,
         participantsMax: 0,
+        tags: []
       },
       errors: []
     };
@@ -57,6 +60,11 @@ export default class AddEventStep1 extends Component {
       errors.push('participantsMax');
     }
 
+    if(event.tags.length == 0)
+    {
+      errors.push('tags');
+    }
+
     if (errors.length === 0) {
       this.props.onSubmit(this.state.event);
     } else {
@@ -64,26 +72,43 @@ export default class AddEventStep1 extends Component {
     }
   }
 
+  handleTagsChange(tags) {
+    let { event } = this.state;
+    event.tags = tags;
+    this.setState({event: event});
+  }
+
   render() {
     return (
+      
         <form onSubmit={this.formSubmit} className="form-horizontal">
           <Col md={12}>
 
-              <fieldset>
+            <fieldset>
 
-                <FormGroup controlId="eventName" validationState={this.getValidationState('name')}>
-                  <ControlLabel className="col-md-3 control-label">Název události</ControlLabel>
-                  <div className="col-md-8">
-                    <FormControl type="text" value={this.state.event.name} onChange={(e) => {this.handleFieldChange(e, 'name')}}/>
-                  </div>
-                </FormGroup>
+              <FormGroup controlId="eventName" validationState={this.getValidationState('name')}>
+                <ControlLabel className="col-md-3 control-label">Název události</ControlLabel>
+                <div className="col-md-8">
+                  <FormControl type="text" value={this.state.event.name} onChange={(e) => {this.handleFieldChange(e, 'name')}}/>
+                </div>
+              </FormGroup>
 
-                <FormGroup controlId="eventSortDesc" validationState={this.getValidationState('description')}>
-                  <ControlLabel className="col-md-3 control-label">Krátký popis</ControlLabel>
-                  <div className="col-md-8">
-                    <FormControl type="text" value={this.state.event.description} onChange={(e) => {this.handleFieldChange(e, 'description')}}/>
-                  </div>
-                </FormGroup>
+              <FormGroup controlId="eventTags" validationState={this.getValidationState('tags')}>
+                <ControlLabel className="col-md-3 control-label">Štítky akce</ControlLabel>
+                <div className="col-md-8">
+                  <TagsSuggestInput tags={this.state.event.tags} onTagsChange={(tags) => {
+                    this.handleTagsChange(tags)
+                  }}
+                    placeholder="štítky" onFetchSuggestionsRequest={fetchTags}/>
+                </div>
+              </FormGroup>
+
+              <FormGroup controlId="eventSortDesc" validationState={this.getValidationState('description')}>
+                <ControlLabel className="col-md-3 control-label">Krátký popis</ControlLabel>
+                <div className="col-md-8">
+                  <FormControl type="text" value={this.state.event.description} onChange={(e) => {this.handleFieldChange(e, 'description')}}/>
+                </div>
+              </FormGroup>
 
                 <FormGroup controlId="eventLongDesc" validationState={this.getValidationState('detailedDescription')}>
                   <ControlLabel className="col-md-3 control-label">Dlouhý popis</ControlLabel>
