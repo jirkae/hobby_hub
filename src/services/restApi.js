@@ -1,7 +1,7 @@
-import axios, {CancelToken} from 'axios';
+import axios, { CancelToken } from 'axios';
 
-const BASE_URL = "http://localhost:3000/api/";
-//const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
+// const BASE_URL = "http://localhost:3000/api/";
+const BASE_URL = "http://dev.backend.team03.vse.handson.pro/api/";
 
 let api = axios.create({
     baseURL: BASE_URL,
@@ -62,9 +62,8 @@ export function postLogout(token) {
     return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
 }
 
-
-export function getUserData(userId) {
-    return api.get(`${BASE_URL}AuthUsers/getCurrentUser`)
+export function getUserData(id) {
+    return api.get(`${BASE_URL}AuthUsers/${id}`)
 }
 
 export function putUserData(user) {
@@ -94,4 +93,8 @@ export function getEventOwnedByuser(user, event) {
 
 export function getOwnedEvents(userId) {
     return api.get(`${BASE_URL}AuthUsers/${userId}/ownEvents`)
+}
+
+export function getEventById(eventId) {
+    return api.get(`${BASE_URL}events/${eventId}`);
 }

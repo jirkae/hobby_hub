@@ -35,10 +35,10 @@ function userReducer(state={user: {}}, action) {
             id: state.user.id, // původní stav, nemazat!
             userId: state.user.userId,
 
-            email: action.payload.user.email,
-            firstName: action.payload.user.firstName,
-            lastName: action.payload.user.lastName,
-            info: action.payload.user.info
+            email: action.payload.email,
+            firstName: action.payload.firstName,
+            lastName: action.payload.lastName,
+            info: action.payload.info
           }
       }
     }

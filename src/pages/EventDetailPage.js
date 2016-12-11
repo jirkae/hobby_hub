@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { baseUrl } from '../services/restApi.js';
+import { getEventById } from '../services/restApi.js';
 import ContentWrapper from '../components/layout/ContentWrapper.js';
 import MainContent from '../components/layout/MainContent.js';
 import AsideContent from '../components/layout/AsideContent.js';
@@ -15,8 +15,9 @@ export default class EventDetailPage extends Component {
   }
 
   componentDidMount() {
-    fetch(baseUrl()+"events/" + this.props.params.eventId).then(r => r.json()).then(json => {
-      this.setState({data: json})
+      getEventById(this.props.params.eventId)
+      .then(json => {
+        this.setState({data: json.data})
     }).catch(e => console.log("Error"));
   }
 

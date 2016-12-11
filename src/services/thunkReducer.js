@@ -17,7 +17,6 @@ export function loginUser(user) {
     return API.postLogin(user)
       .then(response => {
          API.setAuthToken(response.data.id);
-         // API.setAuthToken(response.data.userId);
 
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
@@ -34,7 +33,6 @@ export function registerUser(user) {
     return API.postRegister(user)
       .then(response => {
           API.setAuthToken(response.data.id);
-          // API.setAuthToken(response.data.userId);
 
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
@@ -76,6 +74,7 @@ export function putUserProfileInfo(user) {
             .then(response => {
                 dispatch(getUserDataSuccess(response.data));
             }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST INFORMACE O UŽIVATELI', error);
                 dispatch(getUserDataFailure(user, error))
             });
     };

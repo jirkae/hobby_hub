@@ -38,20 +38,20 @@ export default class SearchBar extends Component {
     {
         return (
             <div className="row search-row animated fadeInUp">
-              <Col lg={4} sm={4} className="search-col relative locationicon">
+              <Col lg={4} sm={4} className="search-col relative locationicon cities">
                 <i className="icon-location-2 icon-append"></i>
 
                 <TagsSuggestInput tags={this.state.cities} onTagsChange={(cities) => {
                   this.handleCitiesChange(cities)
-                }} placeholder="město, městská část" onFetchSuggestionsRequest={fetchCities}/>
+                }} placeholder="město" onFetchSuggestionsRequest={fetchCities}/>
 
               </Col>
-              <Col lg={4} sm={4} className="search-col relative">
+              <Col lg={4} sm={4} className="search-col relative tags">
                 <i className="icon-docs icon-append"></i>
 
                 <TagsSuggestInput tags={this.state.tags} onTagsChange={(tags) => {
                   this.handleTagsChange(tags)
-                }} placeholder="sport, událost" onFetchSuggestionsRequest={fetchTags}/>
+                }} placeholder="aktivita" onFetchSuggestionsRequest={fetchTags}/>
 
               </Col>
               <Col lg={4} sm={4} className="search-col">
