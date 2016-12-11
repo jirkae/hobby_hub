@@ -15,19 +15,11 @@ class Layout extends Component {
     super(props);
 
     this.state = {
-      modalContentGenerator: () => {return null;},
-        showNotification: false
+      modalContentGenerator: () => {return null;}
     };
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.closeNotification = this.closeNotification.bind(this);
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (!newProps.showModal) {
-      this.setState({showNotification: true})
-    }
   }
 
   openModal(modalContentGenerator) {
@@ -36,12 +28,7 @@ class Layout extends Component {
 
   closeModal() {
     this.props.dispatch(changeModalVisibility(false));
-      this.setState({showNotification: true});
   }
-
-    closeNotification() {
-        this.setState({showNotification: false});
-    }
 
   render() {
     const { children, modalVisible } = this.props;
@@ -66,8 +53,7 @@ class Layout extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    modalVisible: store.modalReducer.showModal,
-    user: store.userReducer.user
+    modalVisible: store.modalReducer.showModal
   }
 };
 
