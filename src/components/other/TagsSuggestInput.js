@@ -70,7 +70,12 @@ export default class TagsSuggestInput extends Component
           addKeys={[9, 13, 32]}
           value={this.props.tags}
           onChange={(e) => {
-            this.props.onTagsChange(e)
+            const tags = e.slice();
+            for(var i = 0; i < tags.length; i++)
+            {
+              tags[i] = tags[i].charAt(0).toUpperCase() + tags[i].slice(1);
+            }
+            this.props.onTagsChange(tags)
         }}/>
     }
 }
