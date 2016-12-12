@@ -83,11 +83,15 @@ export function getCancelTokenSource() {
 }
 
 export function getParticipants(eventId) {
-    return api.get(`${BASE_URL}Events/${eventId}/participants`);
+    return api.get(`${BASE_URL}Participations?filter[include]=participant&filter[where][eventId]=${eventId}`);
 }
 
 export function postToggleParticipation(props, authToken) {
     return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
+}
+
+export function postToggleConfirmation(props, authToken) {
+    return api.put(`${BASE_URL}Participations/toggleConfirmation?access_token=${authToken}`, props)
 }
 
 export function getEventOwnedByuser(user, event) {

@@ -14,10 +14,12 @@ export default class EventsCreatePage extends Component {
   }
 
   componentDidMount() {
-     getEventById(this.props.params.eventId)
-      .then(json => {
-        this.setState({event: json.data})
-    }).catch(e => console.log(e));
+    if (this.props.params.eventId) {
+      getEventById(this.props.params.eventId)
+        .then(json => {
+          this.setState({event: json.data})
+      }).catch(e => console.log(e));
+    }
   }
 
   render() {

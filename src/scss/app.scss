@@ -51,6 +51,19 @@
 .addEventContent {
   clear: both;
   padding-top: 40px;
+
+  .react-tagsinput {
+    padding: 0 !important;
+    border-radius: 3px;
+
+    .react-tagsinput-input {
+      margin: 0 !important;
+    }
+
+    & > span {
+      padding-left: 7px;
+    }
+  }
 }
 
 
@@ -130,6 +143,24 @@
   }
 }
 
+.job-item img {
+  padding: 20px !important;
+}
+
+.job-item .date {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding-top: 20px;
+
+  .day {
+    font-size: 250%;
+    display: block;
+  }
+}
 
 #eventDetail {
   .mainInfo {

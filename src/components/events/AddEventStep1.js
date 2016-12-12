@@ -64,11 +64,11 @@ export default class AddEventStep1 extends Component {
       errors.push('detailedDescription');
     }
 
-    if (parseInt(event.participantsMin, 10) === 0) {
+    if (!(parseInt(event.participantsMin, 10) > 0)) {
       errors.push('participantsMin');
     }
 
-    if (parseInt(event.participantsMax, 10) === 0) {
+    if (!(parseInt(event.participantsMax, 10) > 0) || !(parseInt(event.participantsMax, 10) >= parseInt(event.participantsMin, 10))) {
       errors.push('participantsMax');
     }
 

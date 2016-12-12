@@ -49,7 +49,7 @@ class AddEvent extends Component {
 
   handleStep3Submit(event) {
     const newEvent = Object.assign(this.state.event, event);
-    if (this.props.event.id === undefined) {
+    if (this.props.event === null) {
       var promise = postEvent(newEvent, this.props.user);
     } else {
       var promise = updateEvent(newEvent, this.props.user, this.props.event.id);
@@ -72,7 +72,7 @@ class AddEvent extends Component {
       case 3:
         return <AddEventStep3 onSubmit={this.handleStep3Submit} event={this.props.event} />;
       case 4:
-        if (this.props.event.id === undefined) {
+        if (this.props.event === null) {
           var successTitle = "Událost vytvořena";
           var successText = "Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí";
         } else {

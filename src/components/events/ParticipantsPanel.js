@@ -3,28 +3,20 @@ import { connect } from "react-redux";
 import { Link } from 'react-router';
 
 import Panel from '../layout/Panel.js';
-import { getParticipants, postToggleParticipation, getOwnedEvents } from '../../services/restApi.js';
+import { getParticipants, postToggleParticipation, getOwnedEvents, postToggleConfirmation } from '../../services/restApi.js';
 
 class ParticipantPanel extends Component {
   constructor(params) {
     super(params);
     this.state = {
       participants: [],
-      ewnedEvents: []
     };
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
-    //this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.handleConfirmClick = this.handleConfirmClick.bind(this);
   }
 
   componentDidMount() {
     this.updateParticipantsList();
-    if (this.props.user.id !== undefined) {
-      getOwnedEvents(this.props.user.userId).then(response => {
-        this.setState({
-          ownedEvents: response.data
-        });
-      });
-    }
   }
 
   updateParticipantsList() {
@@ -35,22 +27,20 @@ class ParticipantPanel extends Component {
     })
   }
 
-  handleParticipationClick(e) {
+  handleParticipationClick(e, id) {
     e.preventDefault();
-    console.log({
-      userId: this.props.user.id,
-      eventId: this.props.event.id
-    });
     postToggleParticipation({
-      userId: this.props.user.userId,
+      userId: id,
       eventId: this.props.event.id
     }, this.props.user.id).then(this.updateParticipantsList.bind(this));
   }
 
-  handleRemoveClick(id, event) {
-    //e.preventDefault();
-    console.log(id);
-    console.log(event);
+  handleConfirmClick(e, userId) {
+    e.preventDefault();
+    postToggleConfirmation({
+      userId: userId,
+      eventId: this.props.event.id
+    }, this.props.user.id).then(this.updateParticipantsList.bind(this));
   }
 
   renderActions() {
@@ -58,40 +48,70 @@ class ParticipantPanel extends Component {
 
     if (user.id !== undefined) {
       let attempting = false;
-      this.state.participants.map(function(item) {
+      this.state.participants.map(function (item) {
         if (item.id === user.userId) {
           attempting = true;
+          if (item.participantsConfirm) {
+            return (<span>Pro odhlášení z události prosím kontaktujte správce</span>);
+          }
         }
       });
-      return (<a href="" onClick={this.handleParticipationClick}>{attempting ? 'Odhlásit se' : 'Přihlásit se'}</a>);
+      return (
+        <div>
+          {attempting &&
+            <p>Stav: čekání na potvrzení</p>
+          }
+          <a href="" onClick={(e) => {this.handleParticipationClick(e, this.props.user.userId)}}>{attempting ? 'Odhlásit se' : 'Přihlásit se'}</a>
+        </div>
+      );
     }
   }
 
-  render () {
+  render() {
     const { participants, ownedEvents } = this.state;
 
-    let owningThisEvent = false;
+    let owningThisEvent = this.props.user.userId !== undefined && this.props.user.userId === this.props.event.ownerId;
 
-    if (ownedEvents !== undefined && ownedEvents.length > 0) {
-      ownedEvents.map(item => {
-        if (item.ownerId === this.props.user.userId) {
-          owningThisEvent = true;
-        }
-      });
-    }
+    var confirmedCount = 0;
+    let confirmedItems = participants.map((item, index) => {
+      if (item.state === 'pending') {
+        return;
+      }
+      confirmedCount++;
+      return (<li key={index}>
+        <Link to={`/user/${item.participant.id}`} >{item.participant.firstName} {item.participant.lastName}</Link>
+        <a className="pull-right hide" href="#" onClick={(e) => { this.handleParticipationClick(e, item.participant.id) } }>Odebrat</a>
+      </li>);
+    });
 
-    let items = participants.map((item, index) => {
-        return <li key={index}><Link to={`/user/${item.id}`} >{item.firstName} {item.lastName}</Link></li>
+    let notConfirmedItems = participants.map((item, index) => {
+      if (item.state === 'confirmed') {
+        return;
+      }
+      console.log(item);
+      return (<li key={index}>
+        <Link to={`/user/${item.participant.id}`} >{item.participant.firstName} {item.participant.lastName}</Link>
+        <a className="pull-right" href="#" onClick={(e) => { this.handleConfirmClick(e, item.participant.id) } }>Potvrdit</a>
+      </li>);
     });
 
     return (
-      <Panel heading="Přihlášení uživatelé">
-        <small>Přihlášeno {participants.length} z 10</small>
-        <ul>
-          {items}
-        </ul>
-        {this.renderActions()}
-      </Panel>
+      <div>
+        <Panel heading="Přihlášení uživatelé">
+          <small>Přihlášeno {confirmedCount} z {this.props.event.participantsMax}</small>
+          <ul>
+            {confirmedItems}
+          </ul>
+          {this.renderActions()}
+        </Panel>
+        {owningThisEvent &&
+          <Panel heading="Čekající uživatelé">
+            <ul>
+              {notConfirmedItems}
+            </ul>
+          </Panel>
+        }
+      </div>
     );
   }
 }

@@ -41,7 +41,7 @@ class EventDetailPage extends Component {
             </Col>
             <Col md={3}>
               {this.props.user.id !== undefined && data.ownerId === this.props.user.userId &&
-                <Link className="btn btn-block btn-border btn-post btn-danger" to={"/create-event/" + data.id}>Upravit akci</Link>
+                <Link className="btn btn-block btn-info" to={"/create-event/" + data.id}>Upravit akci</Link>
               }
             </Col>
           </Row>
@@ -63,7 +63,7 @@ class EventDetailPage extends Component {
                     <li><p className=" no-margin "><strong>Cena:</strong> 100 Kč </p></li>
                   </ul>
                 </aside>
-                <div className="ads-action">
+                <div className="ads-action hide">
                   <ul className="list-border">
                     <li><a href="#" data-toggle="modal"> <i className="fa icon-print"></i> Print job</a></li>
                   </ul>

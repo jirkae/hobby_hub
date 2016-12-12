@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Image, Col} from "react-bootstrap";
 import grill from "../../images/grill.jpg";
+import tagIcon from "../../images/tag-icon.png"
 import {Link} from "react-router";
+import moment from 'moment';
 
 export default class EventsBoxItem extends Component {
     render()
@@ -13,7 +15,11 @@ export default class EventsBoxItem extends Component {
                   <Link to={{
                     pathname: '/events/' + this.props.event.id
                   }}>
-                      <Image className="thumbnail no-margin" alt="POPISEK" src={grill} responsive/>
+                      <span className="date">
+                        <span className="day">{moment(this.props.event.startDate).locale('cs').format('D')}.</span>
+                        {moment(this.props.event.startDate).locale('cs').format('MMMM')}
+                      </span>
+                      <Image className="thumbnail no-margin hide" alt="POPISEK" src={tagIcon} responsive/>
                   </Link>
                 </div>
               </Col>
@@ -33,28 +39,6 @@ export default class EventsBoxItem extends Component {
                   </span>
                   <div className="jobs-desc">
                     {this.props.event.description}
-                  </div>
-                  <div className="job-actions">
-                    <ul className="list-unstyled list-inline">
-                      <li>
-                        <a className="save-job" href="#">
-                          <span className="fa fa-star-o"></span>
-                          Připojit se
-                        </a>
-                      </li>
-                      <li className="saved-job hide">
-                        <a href="#" className="saved-job">
-                          <span className="fa fa-star"></span>
-                          Odpojit se
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" className="email-job">
-                          <i className="fa fa-envelope"></i>
-                          Napsat vlastníkovi akce
-                        </a>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </Col>
