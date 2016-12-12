@@ -38,7 +38,7 @@ export function registerUser(user) {
         dispatch(changeModalVisibility(false));
 
       }).catch(error => {
-            console.log("CYBAAAA!!!! AAAAAA!!!");
+            console.log("CHYBAAAA!!!! AAAAAA!!!", error);
         dispatch(registerUserFailure(user, error))
       });
   };

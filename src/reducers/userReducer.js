@@ -15,8 +15,7 @@ function userReducer(state={user: {}}, action) {
     case C.REGISTER_USER_SUCCESS: {
       return {...state,
         user: {
-          id: action.payload.id,
-          userId: action.payload.userId
+          registerSuccess: true
         }
       }
     }
@@ -24,6 +23,7 @@ function userReducer(state={user: {}}, action) {
     case C.REGISTER_USER_FAILURE: {
       return {...state,
         user: {
+          registerSuccess: false,
           registerError: action.payload
         }
       }

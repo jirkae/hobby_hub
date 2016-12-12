@@ -27,7 +27,7 @@ class Layout extends Component {
   }
 
   closeModal() {
-    this.props.dispatch(changeModalVisibility(false))
+    this.props.dispatch(changeModalVisibility(false));
   }
 
   render() {
