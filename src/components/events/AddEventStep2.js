@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstrap"
+import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstrap";
+import TagsSuggestInput from "../other/TagsSuggestInput.js";
+import { fetchCities } from '../../services/restApi';
 
 export default class AddEventStep2 extends Component {
   constructor(params) {
@@ -11,6 +13,7 @@ export default class AddEventStep2 extends Component {
         city: '',
         zipCode: ''
       },
+      cities: [],
       errors: []
     };
 
@@ -27,7 +30,9 @@ export default class AddEventStep2 extends Component {
           event[key] = this.props.event[key];
         }
       }
-      this.setState({ event: event });
+      this.setState({ event: event }, () => {
+        this.setState({cities: [this.state.event.city]});
+      });
     }
   }
 
@@ -51,19 +56,28 @@ export default class AddEventStep2 extends Component {
       errors.push('street');
     }
 
-    if (event.city.length === 0) {
-      errors.push('city');
-    }
-
     if (event.zipCode.length === 0) {
       errors.push('zipCode');
     }
 
+    if(this.state.cities.length === 0)
+    {
+      errors.push('cities');
+    }
+
     if (errors.length === 0) {
-      this.props.onSubmit(this.state.event);
+      var eventWithCity = {};
+      Object.assign(eventWithCity, event);
+      eventWithCity.city = this.state.cities[0];
+
+      this.props.onSubmit(eventWithCity);
     } else {
       this.setState({errors: errors});
     }
+  }
+
+  handleCitiesChange(cities) {
+    this.setState({ cities: cities });
   }
 
   render() {
@@ -78,10 +92,13 @@ export default class AddEventStep2 extends Component {
               </div>
             </FormGroup>
 
-            <FormGroup controlId="eventCity" validationState={this.getValidationState('city')}>
+            <FormGroup controlId="citiesTags" validationState={this.getValidationState('cities')}>
               <ControlLabel className="col-md-3 control-label">Město</ControlLabel>
               <div className="col-md-8">
-                <FormControl type="text" value={this.state.event.city} onChange={(e) => {this.handleFieldChange(e, 'city')}}/>
+                <TagsSuggestInput tags={this.state.cities} onTagsChange={(cities) => {
+                  this.handleCitiesChange(cities)
+                } }
+                  placeholder="město" onFetchSuggestionsRequest={fetchCities} />
               </div>
             </FormGroup>
 

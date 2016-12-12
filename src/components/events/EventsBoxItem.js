@@ -8,6 +8,17 @@ import moment from 'moment';
 export default class EventsBoxItem extends Component {
     render()
     {
+
+      const renderTags = (tags) => {
+          const items = tags.map((tag) => {
+            if(tag.constructor === String)
+            {
+              return (<span className="react-tagsinput-tag">{tag}</span>);
+            }
+          });
+          return items;
+      };
+
         return (
             <div className="item-list job-item">
               <Col sm={1} xs={2} className="no-padding photobox">
@@ -15,11 +26,11 @@ export default class EventsBoxItem extends Component {
                   <Link to={{
                     pathname: '/events/' + this.props.event.id
                   }}>
-                      <span className="date">
-                        <span className="day">{moment(this.props.event.startDate).locale('cs').format('D')}.</span>
-                        {moment(this.props.event.startDate).locale('cs').format('MMMM')}
-                      </span>
-                      <Image className="thumbnail no-margin hide" alt="POPISEK" src={tagIcon} responsive/>
+                    <span className="date">
+                      <span className="day">{moment(this.props.event.startDate).locale('cs').format('D')}.</span>
+                      {moment(this.props.event.startDate).locale('cs').format('MMMM')}
+                    </span>
+                    <Image className="thumbnail no-margin hide" alt="POPISEK" src={tagIcon} responsive/>
                   </Link>
                 </div>
               </Col>
@@ -34,11 +45,13 @@ export default class EventsBoxItem extends Component {
                   </h4>
                   <span className="info-row">
                     <span className="item-location">
-                      <i className="fa fa-map-marker"></i>
-                      Město: {this.props.event.city}</span>
+                      <i className="fa fa-map-marker"></i> Město: {this.props.event.city}</span>
                   </span>
                   <div className="jobs-desc">
                     {this.props.event.description}
+                  </div>
+                  <div className="job-actions">
+                    {renderTags(this.props.event.tags)}
                   </div>
                 </div>
               </Col>

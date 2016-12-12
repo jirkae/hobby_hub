@@ -26,6 +26,17 @@ class EventDetailPage extends Component {
   }
 
   generateContent() {
+
+    const renderTags = (tags) => {
+        const items = tags.map((tag) => {
+          if(tag.constructor === String)
+          {
+            return (<span className="react-tagsinput-tag">{tag}</span>);
+          }
+        });
+        return items;
+    };
+
     const { data } = this.state;
 
     if (data === null) {
@@ -54,6 +65,8 @@ class EventDetailPage extends Component {
                 <p>{data.description}</p>
                 <h4 className="text-uppercase ">Detailní popis:</h4>
                 <p>{data.detailedDescription}</p>
+                <h4 className="text-uppercase ">Štítky:</h4>
+                <p>{renderTags(data.tags)}</p>
                 <h4 className="text-uppercase ">Mapa konání:</h4>
                 <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q=' + data.street + ',' + data.city + ',' + data.zipCode} />
               </div>

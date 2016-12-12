@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import EventsBox from "../components/events/EventsBox.js";
 import SearchBar from "../components/other/SearchBar.js";
 import {getLatestEvents} from '../services/restApi';
+import { Link } from 'react-router';
 
 export default class LandingPage extends Component {
 
@@ -57,9 +58,7 @@ export default class LandingPage extends Component {
                           <i className="icon-doc-4"></i>
                         </a>
                         <a>
-                          <b>Založte vlastní akci!</b>
-                        </a>
-                        Vytvořte si profil a sežeňte společnost na vámi zvolenou akci.
+                          <Link to="/create-event"><b>Založte vlastní akci! </b></Link></a>Vytvořte si profil a sežeňte společnost na vámi zvolenou akci.
                       </div>
                     </div>
                   </div>
