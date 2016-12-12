@@ -54,8 +54,11 @@ export function postRegister(props) {
 }
 
 export function postEvent(event, user) {
-  console.log(event);
   return api.post(`${BASE_URL}AuthUsers/${user.userId}/ownEvents`, event);
+}
+
+export function updateEvent(event, user, eventId) {
+  return api.put(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${eventId}`, event);
 }
 
 export function postLogout(token) {

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import AddEventStep1 from './AddEventStep1.js';
 import AddEventStep2 from './AddEventStep2.js';
 import AddEventStep3 from './AddEventStep3.js';
-import { postEvent } from './../../services/restApi';
+import { postEvent, updateEvent } from './../../services/restApi';
 
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 
@@ -24,7 +24,6 @@ class AddEvent extends Component {
     this.handleStep3Submit = this.handleStep3Submit.bind(this);
   }
 
-
   handleStep(e, step) {
     e.preventDefault();
     this.setState({
@@ -38,7 +37,6 @@ class AddEvent extends Component {
       step: 2,
       event: newEvent
     });
-    console.log(this.state.event);
   }
 
   handleStep2Submit(event) {
@@ -47,37 +45,45 @@ class AddEvent extends Component {
       step: 3,
       event: newEvent
     });
-    console.log(this.state.event);
   }
 
   handleStep3Submit(event) {
     const newEvent = Object.assign(this.state.event, event);
-    console.log(newEvent);
-    postEvent(newEvent, this.props.user)
-      .then(({data}) => {
-          console.log(data);
-          this.setState({
-            step: 4,
-            event: data
-          })
-        })
+    if (this.props.event.id === undefined) {
+      var promise = postEvent(newEvent, this.props.user);
+    } else {
+      var promise = updateEvent(newEvent, this.props.user, this.props.event.id);
+    }
+    promise.then(({data}) => {
+      this.setState({
+        step: 4,
+        event: data
+      })
+    })
       .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
   }
 
   getCurrentStepContent() {
     switch (this.state.step) {
       case 1:
-        return <AddEventStep1 onSubmit={this.handleStep1Submit}/>;
+        return <AddEventStep1 onSubmit={this.handleStep1Submit} event={this.props.event} />;
       case 2:
-        return <AddEventStep2 onSubmit={this.handleStep2Submit}/>;
+        return <AddEventStep2 onSubmit={this.handleStep2Submit} event={this.props.event} />;
       case 3:
-        return <AddEventStep3 onSubmit={this.handleStep3Submit}/>;
+        return <AddEventStep3 onSubmit={this.handleStep3Submit} event={this.props.event} />;
       case 4:
+        if (this.props.event.id === undefined) {
+          var successTitle = "Událost vytvořena";
+          var successText = "Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí";
+        } else {
+          var successTitle = "Událost upravena";
+          var successText = "Úspěšně jsme upravili vaši událost. Naleznete ji ve výpisu událostí";
+        }
         return (
           <Col md={12}>
             <Alert bsStyle="success" onDismiss={this.handleAlertDismiss}>
-              <h4>Událost vytvořena</h4>
-              <p>Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí</p>
+              <h4>{successTitle}</h4>
+              <p>{successText}</p>
             </Alert>
           </Col>
         );
