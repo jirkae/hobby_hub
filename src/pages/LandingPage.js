@@ -57,8 +57,7 @@ export default class LandingPage extends Component {
                         <a>
                           <i className="icon-doc-4"></i>
                         </a>
-                        <a>
-                          <Link to="/create-event"><b>Založte vlastní akci! </b></Link></a>Vytvořte si profil a sežeňte společnost na vámi zvolenou akci.
+                        <Link to="/create-event"><b>Založte vlastní akci! </b></Link>Vytvořte si profil a sežeňte společnost na vámi zvolenou akci.
                       </div>
                     </div>
                   </div>

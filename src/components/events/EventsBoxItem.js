@@ -10,10 +10,11 @@ export default class EventsBoxItem extends Component {
     {
 
       const renderTags = (tags) => {
-          const items = tags.map((tag) => {
+        if(tags === undefined) { return; }
+          const items = tags.map((tag, index) => {
             if(tag.constructor === String)
             {
-              return (<span className="react-tagsinput-tag">{tag}</span>);
+              return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
             }
           });
           return items;
