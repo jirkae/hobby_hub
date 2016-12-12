@@ -52,9 +52,10 @@ export default class AddEventStep3 extends Component {
   formSubmit(e) {
     e.preventDefault();
 
-    let {event} = this.state;
-    event.startDate = event.startDate.format();
-    event.endDate = event.endDate.format();
+    let {event} = Object.assign({}, this.state);
+    console.log(event);
+    
+    
     let errors = [];
 
     if (event.endDate === '') {
@@ -66,7 +67,9 @@ export default class AddEventStep3 extends Component {
     }
 
     if (errors.length === 0) {
-      this.props.onSubmit(this.state.event);
+      event.startDate = event.startDate.format();
+      event.endDate = event.endDate.format();
+      this.props.onSubmit(event);
     } else {
       this.setState({errors: errors});
     }

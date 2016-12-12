@@ -25,12 +25,14 @@
 }
 
 div.landingBackground{
-  background-image: url(../images/bg.jpg);
+  /*background-image: url(../images/bg.jpg);*/
+  background-image: url(../images/header_bg_kriket.jpg);
   background-position: center center;
 }
 
 div.landingBackgroundEvents{
-  background-image: url(../images/bgevents.jpg);
+  /*background-image: url(../images/bgevents.jpg);*/
+  background-image: url(../images/header_bg_kriket.jpg);
   background-size: cover;
    background-position: center center;
 }
