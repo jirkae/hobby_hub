@@ -15,30 +15,6 @@ class UserEventsPage extends Component {
     return (
         <div>
           <div className="search-row-wrapper landingBackgroundEvents">
-            <Grid className="text-center">
-              <Col sm={3}>
-                <FormControl className="keyword" placeholder="sport, koníček, událost" type="text" value={query.a===undefined ? '' : query.a}/>
-              </Col>
-              <Col sm={3}>
-                <FormControl componentClass="select">
-                  <option value="select">Všechny kategorie</option>
-                  <option value="other">Sporty</option>
-                  <option value="other">Dobrodružné</option>
-                </FormControl>
-              </Col>
-              <Col sm={3}>
-                <FormControl componentClass="select">
-                  <option value="select">Všechny lokality</option>
-                  <option value="other">Praha 1</option>
-                  <option value="other">Praha 2</option>
-                </FormControl>
-              </Col>
-              <Col sm={3}>
-                <Button bsStyle="primary" className="btn-block">
-                  Vyhledat akce <i className="fa fa-search"></i>
-                </Button>
-              </Col>
-            </Grid>
           </div>
           <EventsBox title="Moje akce" events={this.props.events}/>
         </div>
