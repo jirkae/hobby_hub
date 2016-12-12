@@ -42,18 +42,17 @@ export default class EventsCreatePage extends Component {
         <AsideContent className="col-sm-3">
           <div className="text-center">
             <div className="promo-text-box"><i className=" icon-lamp fa fa-4x icon-color-1"></i>
-              <h3><strong>Effective Job Postings </strong></h3>
-              <p> The difference between finding mediocre candidates and extraordinary candidates for your
-              clients is a good job posting. </p>
+              <h3><strong>Jak správně vytvořit akci? </strong></h3>
+              <p> Měli byste především myslet na to, že čím lepší informace předáte
+              případnému zájemci, tím spíše nenastane žádný problém v průběhu akce. Zvažte následující: </p>
             </div>
             <Panel heading="Tipy">
               <ul className="list-check">
-                <li> Add Keywords</li>
-                <li> Use Familiar Job Titles</li>
-                <li> Give Them Details</li>
-                <li> Expand Your Location</li>
-                <li> Easy Read Postings</li>
-                <li> Keep it simple and expected</li>
+                <li> Pojmenujte správně akci</li>
+                <li> Používejte výstižné štítky</li>
+                <li> Nebojte se být detailní</li>
+                <li> Zadejte údaje o lokalitě</li>
+                <li> Buďte přesní!</li>
               </ul>
             </Panel>
           </div>
