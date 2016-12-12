@@ -77,7 +77,7 @@ export default class AddEventStep1 extends Component {
       errors.push('tags');
     }
 
-    if (!(parseInt(event.price, 10) > 0)) {
+    if (!(parseInt(event.price, 10) >= 0)) {
       errors.push('price');
     }
 
