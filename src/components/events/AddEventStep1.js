@@ -14,7 +14,8 @@ export default class AddEventStep1 extends Component {
         detailedDescription: '',
         participantsMin: 0,
         participantsMax: 0,
-        tags: []
+        tags: [],
+        price: 0
       },
       errors: []
     };
@@ -76,6 +77,10 @@ export default class AddEventStep1 extends Component {
       errors.push('tags');
     }
 
+    if (!(parseInt(event.price, 10) > 0)) {
+      errors.push('price');
+    }
+
     if (errors.length === 0) {
       this.props.onSubmit(this.state.event);
     } else {
@@ -127,6 +132,13 @@ export default class AddEventStep1 extends Component {
                   placeholder="Dopište detailní popis události"
                   value={this.state.event.detailedDescription}
                   onChange={(e) => { this.handleFieldChange(e, 'detailedDescription') } } />{/**/}
+              </div>
+            </FormGroup>
+
+            <FormGroup controlId="price" validationState={this.getValidationState('price')}>
+              <ControlLabel className="col-md-3 control-label">Cena</ControlLabel>
+              <div className="col-md-8">
+                <FormControl type="text" value={this.state.event.price} onChange={(e) => { this.handleFieldChange(e, 'price') } } />
               </div>
             </FormGroup>
 

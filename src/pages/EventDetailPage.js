@@ -60,7 +60,7 @@ class EventDetailPage extends Component {
               <div className="col-md-4">
                 <aside className="panel panel-body panel-details job-summery">
                   <ul>
-                    <li><p className=" no-margin "><strong>Cena:</strong> 100 Kč </p></li>
+                    <li><p className=" no-margin "><strong>Cena:</strong> {data.price} Kč </p></li>
                   </ul>
                 </aside>
                 <div className="ads-action hide">
