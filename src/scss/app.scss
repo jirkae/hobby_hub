@@ -55,6 +55,8 @@
   .react-tagsinput {
     padding: 0 !important;
     border-radius: 3px;
+    overflow: visible;
+    position: relative;
 
     .react-tagsinput-input {
       margin: 0 !important;
@@ -87,6 +89,7 @@
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
+  position: relative; 
 }
 
 .react-tagsinput > span {
