@@ -16,7 +16,7 @@ export default class SearchBar extends Component {
 
     componentWillReceiveProps(nextProps)
     {
-        var {params} = nextProps;
+        let {params} = nextProps;
         if (params === undefined) {
             params = {
                 cities: [],
