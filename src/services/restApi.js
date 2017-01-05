@@ -69,9 +69,10 @@ export function getUserData(id) {
 
 export function putUserData(user) {
   const userData = {
-    firstName: user.firstName,
+      firstName: user.firstName,
       lastName: user.lastName,
-      info: user.info
+      info: user.info,
+      interests: user.interests
   };
     return api.put(`${BASE_URL}AuthUsers/${user.userId}?access_token=${user.id}`, userData)
 }

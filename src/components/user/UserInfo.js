@@ -90,13 +90,17 @@ class UserInfo extends Component {
                     </FormGroup>
                     <FormGroup controlId="formEmail">
                       <ControlLabel>Email</ControlLabel>
-                      <FormControl type="email" value={email} onChange={this.handleEmailChange}/>
+                      <FormControl type="email" value={email} />
                     </FormGroup>
                 </Col>
                   <Col sm={3}>
                     <FormGroup controlId="formAbout" rows="3">
                       <ControlLabel>O mě</ControlLabel>
-                      <textarea className='form-control cell' rows='11'  type="text" value={info} onChange={this.handleAboutChange} />
+                      <textarea className='form-control cell not-resizeable'
+                                rows='11'
+                                type="text"
+                                value={info}
+                                onChange={this.handleAboutChange} />
                     </FormGroup>
                   </Col>
                 </form>
@@ -111,7 +115,6 @@ class UserInfo extends Component {
                                           onTagsChange={(tags) => {this.handleInterestsChange(tags)}}
                                           placeholder="Oblíbené aktivity"
                                           onFetchSuggestionsRequest={fetchTags}/>
-                      {/*<FormControl type="text" value={interests} onChange={this.handleInterestsChange}/>*/}
                     </FormGroup>
                   </form>
                 </Col>

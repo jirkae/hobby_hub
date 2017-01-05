@@ -199,3 +199,23 @@
 .basic-padding {
   padding: 5px 5px 5px 5px;
 }
+
+// Overriding default styles for inner components of component TagsSuggestInput
+.react-tagsinput {
+  padding: 0;
+
+  span {
+    padding-left: 5px;
+
+    .react-autosuggest__container {
+      input {
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+}
+
+.not-resizeable {
+  resize: none;
+}
