@@ -17,6 +17,7 @@ class LandingPage extends Component {
 
     componentDidMount()
     {
+        // TODO Ideálně smazat tuhle prasárnu a volat pouze
         getLatestEvents().then((results) => {
             this.setState({events: results});
         });
@@ -32,10 +33,14 @@ class LandingPage extends Component {
     gettingEvents()
     {
         const {events} = this.state;
+        const { interests } = this.props;
+
+        const title = (interests === undefined || interests.length === 0) ? undefined : 'Mohlo by se vám líbit';
+
         if (events === null) {
             return "Načítám akce...";
         } else {
-            return <EventsBox events={events}/>
+            return <EventsBox title={title} events={events}/>
         }
     }
     render()
