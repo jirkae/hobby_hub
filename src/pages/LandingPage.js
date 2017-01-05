@@ -3,8 +3,9 @@ import EventsBox from "../components/events/EventsBox.js";
 import SearchBar from "../components/other/SearchBar.js";
 import {getLatestEvents} from '../services/restApi';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
-export default class LandingPage extends Component {
+class LandingPage extends Component {
 
     constructor(props)
     {
@@ -39,6 +40,9 @@ export default class LandingPage extends Component {
     }
     render()
     {
+        const { interests } = this.props;
+        const userInterests = interests === undefined ? [] : interests;
+
         return (
             <div>
               <div className="intro jobs-intro hasOverly landingBackground">
@@ -52,8 +56,8 @@ export default class LandingPage extends Component {
                         Najděte nejaktuálnější akce ve vašem okolí.
                       </p>
 
-                      <SearchBar onSearchClick={(params) => {this.handleSearch(params)}}/>
-                      <div className="resume-up">
+                      <SearchBar params={{tags: userInterests, cities: []}} onSearchClick={(params) => {this.handleSearch(params)}}/> {/*params={{params: {tags: this.props.interests}}}*/}
+                        <div className="resume-up">
                         <a>
                           <i className="icon-doc-4"></i>
                         </a>
@@ -72,3 +76,15 @@ export default class LandingPage extends Component {
 LandingPage.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
+
+const mapStateToProps = (store) => {
+    return {
+        interests: store.userReducer.user.interests
+    }
+};
+
+LandingPage = connect(
+    mapStateToProps
+)(LandingPage);
+
+export default LandingPage
