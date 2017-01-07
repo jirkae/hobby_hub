@@ -68,7 +68,7 @@ export function getUserData(id) {
 }
 
 export function putUserData(user) {
-  const userData = {
+  const userData = { // Ukládáme pouze některé atributy zaslaného objektu
       firstName: user.firstName,
       lastName: user.lastName,
       info: user.info,

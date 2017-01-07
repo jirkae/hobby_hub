@@ -9,7 +9,9 @@ import {
   changeModalVisibility,
   getUserDataSuccess,
   getUserDataFailure,
-  getUserEventsSuccess
+  getUserEventsSuccess,
+  getLatestEventsSuccess,
+  getFilteredEventsSuccess
 } from "./../actions/index";
 
 export function loginUser(user) {
@@ -98,6 +100,28 @@ export function getUserEvents(userId) {
                 dispatch(getUserEventsSuccess(response.data));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+            });
+    };
+}
+
+export function getLatestEvents() {
+    return function (dispatch) {
+        return API.getLatestEvents()
+            .then(response => {
+                dispatch(getLatestEventsSuccess(response.data));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST POSLEDNÍ AKCE', error);
+            });
+    };
+}
+
+export function getFilteredEvents(filter) {
+    return function (dispatch) {
+        return API.getEvents(filter)
+            .then(response => {
+                dispatch(getFilteredEventsSuccess(response));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE NAČÍST FILTROVANÉ AKCE', error);
             });
     };
 }

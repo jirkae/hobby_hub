@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import EventsBox from "../components/events/EventsBox.js";
 import SearchBar from "../components/other/SearchBar.js";
-import {getLatestEvents} from '../services/restApi';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { getLatestEvents, getFilteredEvents} from '../services/thunkReducer';
 
 class LandingPage extends Component {
 
@@ -17,10 +17,10 @@ class LandingPage extends Component {
 
     componentDidMount()
     {
-        // TODO Ideálně smazat tuhle prasárnu a volat pouze
-        getLatestEvents().then((results) => {
-            this.setState({events: results});
-        });
+        const { userId, interests, getFilteredEvents, getLatestEvents } = this.props;
+        userId ?
+            getFilteredEvents({tags: interests}) :
+            getLatestEvents();
     }
 
     handleSearch(params) {
@@ -32,7 +32,7 @@ class LandingPage extends Component {
 
     gettingEvents()
     {
-        const {events} = this.state;
+        const { events } = this.props;
         const { interests } = this.props;
 
         const title = (interests === undefined || interests.length === 0) ? undefined : 'Mohlo by se vám líbit';
@@ -83,13 +83,31 @@ LandingPage.contextTypes = {
 };
 
 const mapStateToProps = (store) => {
+    console.log('Eventy ve storu', store.eventReducer);
     return {
-        interests: store.userReducer.user.interests
+        interests: store.userReducer.user.interests,
+        userId: store.userReducer.user.userId,
+        events: store.eventReducer
     }
 };
 
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getLatestEvents: dispatch => {
+//             dispatch(getLatestEvents);
+//         },
+//         getFilteredEvents: dispatch => {
+//             dispatch(getFilteredEvents);
+//         }
+//     }
+// };
+
 LandingPage = connect(
-    mapStateToProps
+    mapStateToProps,
+    { /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
+        getLatestEvents,
+        getFilteredEvents
+    }
 )(LandingPage);
 
 export default LandingPage
