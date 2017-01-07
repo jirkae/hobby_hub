@@ -8,6 +8,7 @@ import moment from 'moment';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
 import { Alert, Col, Row } from "react-bootstrap";
+import CommentsBox from '../components/events/comments/CommentsBox.js';
 
 class EventDetailPage extends Component {
   constructor(props) {
@@ -27,14 +28,13 @@ class EventDetailPage extends Component {
 
   generateContent() {
     const renderTags = (tags) => {
-      if(tags === undefined) { return; }
-        const items = tags.map((tag, index) => {
-          if(tag.constructor === String)
-          {
-            return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
-          }
-        });
-        return items;
+      if (tags === undefined) { return; }
+      const items = tags.map((tag, index) => {
+        if (tag.constructor === String) {
+          return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
+        }
+      });
+      return items;
     };
 
     const { data } = this.state;
@@ -69,6 +69,8 @@ class EventDetailPage extends Component {
                 <p>{renderTags(data.tags)}</p>
                 <h4 className="text-uppercase ">Mapa konání:</h4>
                 <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q=' + data.street + ',' + data.city + ',' + data.zipCode} />
+                <h4 className="text-uppercase ">Komentáře:</h4>
+                <CommentsBox event={data} />
               </div>
               <div className="col-md-4">
                 <aside className="panel panel-body panel-details job-summery">

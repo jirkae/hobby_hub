@@ -9,20 +9,21 @@ import {
   changeModalVisibility,
   getUserDataSuccess,
   getUserDataFailure,
-  getUserEventsSuccess
+  getUserEventsSuccess,
+  getCommentsSuccess
 } from "./../actions/index";
 
 export function loginUser(user) {
   return function (dispatch) {
     return API.postLogin(user)
       .then(response => {
-         API.setAuthToken(response.data.id);
+        API.setAuthToken(response.data.id);
 
         dispatch(loginUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
 
       }).catch(error => {
-          console.log("CYBAAAA!!!! AAAAAA!!!");
+        console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(loginUserFailure(user, error))
       });
   };
@@ -32,13 +33,13 @@ export function registerUser(user) {
   return function (dispatch) {
     return API.postRegister(user)
       .then(response => {
-          API.setAuthToken(response.data.id);
+        API.setAuthToken(response.data.id);
 
         dispatch(registerUserSuccess(response.data));
         dispatch(changeModalVisibility(false));
 
       }).catch(error => {
-            console.log("CHYBAAAA!!!! AAAAAA!!!", error);
+        console.log("CHYBAAAA!!!! AAAAAA!!!", error);
         dispatch(registerUserFailure(user, error))
       });
   };
@@ -51,7 +52,7 @@ export function logoutUser(token) {
       .then(response => {
         dispatch(logoutUserSuccess(response.data));
       }).catch(error => {
-          console.log('Chyba při odhlášení:', error);
+        console.log('Chyba při odhlášení:', error);
         dispatch(logoutUserFailure(token, error))
       });
   };
@@ -69,35 +70,46 @@ export function getUserProfileInfo(id) {
 }
 
 export function putUserProfileInfo(user) {
-    return function (dispatch) {
-        return API.putUserData(user)
-            .then(response => {
-                dispatch(getUserDataSuccess(response.data));
-            }).catch(error => {
-                console.log('CHYBA, NEPOVEDLO SE NAČÍST INFORMACE O UŽIVATELI', error);
-                dispatch(getUserDataFailure(user, error))
-            });
-    };
+  return function (dispatch) {
+    return API.putUserData(user)
+      .then(response => {
+        dispatch(getUserDataSuccess(response.data));
+      }).catch(error => {
+        console.log('CHYBA, NEPOVEDLO SE NAČÍST INFORMACE O UŽIVATELI', error);
+        dispatch(getUserDataFailure(user, error))
+      });
+  };
 }
 
 export function getEvents(userId) {
-    return function (dispatch) {
-        return API.getLatestEvents(userId)
-            .then(response => {
-                dispatch(getUserEventsSuccess(response.data));
-            }).catch(error => {
-                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
-            });
-    };
+  return function (dispatch) {
+    return API.getLatestEvents(userId)
+      .then(response => {
+        dispatch(getUserEventsSuccess(response.data));
+      }).catch(error => {
+        console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+      });
+  };
 }
 
 export function getUserEvents(userId) {
-    return function (dispatch) {
-        return API.getOwnedEvents(userId)
-            .then(response => {
-                dispatch(getUserEventsSuccess(response.data));
-            }).catch(error => {
-                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
-            });
-    };
+  return function (dispatch) {
+    return API.getOwnedEvents(userId)
+      .then(response => {
+        dispatch(getUserEventsSuccess(response.data));
+      }).catch(error => {
+        console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+      });
+  };
+}
+
+export function getComments(event) {
+  return function (dispatch) {
+    return API.getComments(event)
+      .then(response => {
+        dispatch(getCommentsSuccess(response.data))
+      }).catch(error => {
+        console.log('CHYBA, NEPOVEDLO SE NAČÍST KOMENTÁŘE AKCE', error);
+      });
+  }
 }

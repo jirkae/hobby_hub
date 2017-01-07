@@ -103,3 +103,7 @@ export function getOwnedEvents(userId) {
 export function getEventById(eventId) {
     return api.get(`${BASE_URL}events/${eventId}`);
 }
+
+export function getComments(event) {
+    return new Promise((resolve, reject) => {resolve({data: [{text: 'koment 1', author: {meno: 'x'}},{text: 'koment 2', author: {meno: 'x'}}]})});
+}
