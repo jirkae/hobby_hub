@@ -93,12 +93,18 @@
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
+  //position: relative;
 }
 
 .react-tagsinput > span {
   display: block;
   text-align: left;
   padding-left: 35px;
+  margin-left: 20px;
+}
+
+.icon-append {
+  left: 3px;
 }
 
 .react-autosuggest__container {

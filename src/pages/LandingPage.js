@@ -83,24 +83,12 @@ LandingPage.contextTypes = {
 };
 
 const mapStateToProps = (store) => {
-    console.log('Eventy ve storu', store.eventReducer);
     return {
         interests: store.userReducer.user.interests,
         userId: store.userReducer.user.userId,
         events: store.eventReducer
     }
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         getLatestEvents: dispatch => {
-//             dispatch(getLatestEvents);
-//         },
-//         getFilteredEvents: dispatch => {
-//             dispatch(getFilteredEvents);
-//         }
-//     }
-// };
 
 LandingPage = connect(
     mapStateToProps,
