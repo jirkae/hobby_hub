@@ -18,9 +18,11 @@ class LandingPage extends Component {
     componentDidMount()
     {
         const { userId, interests, getFilteredEvents, getLatestEvents } = this.props;
-        userId ?
-            getFilteredEvents({tags: interests}) :
+        if (userId) { // Lze ternárním výrazem, ale ESlint potom hází warning
+            getFilteredEvents({tags: interests});
+        } else {
             getLatestEvents();
+        }
     }
 
     handleSearch(params) {

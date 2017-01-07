@@ -45,6 +45,5 @@ export function getLatestEventsSuccess(payload) {
 }
 
 export function getFilteredEventsSuccess (payload) {
-  console.log('payload vkládaný do akce: ', payload);
     return { type: C.GET_FILTERED_EVENTS, payload };
 }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router';
 
 import Panel from '../layout/Panel.js';
-import { getParticipants, postToggleParticipation, getOwnedEvents, postToggleConfirmation } from '../../services/restApi.js';
+import { getParticipants, postToggleParticipation, postToggleConfirmation } from '../../services/restApi.js';
 
 class ParticipantPanel extends Component {
   constructor(params) {
@@ -55,6 +55,7 @@ class ParticipantPanel extends Component {
             confirmed = true;
           }
         }
+        return false;
       });
       if (confirmed) {
         return (<span>Pro odhlášení z události prosím kontaktujte správce</span>);
@@ -72,15 +73,14 @@ class ParticipantPanel extends Component {
   }
 
   render() {
-    const { participants, ownedEvents } = this.state;
+    const { participants } = this.state;
+    const { user, event } = this.props;
 
-    let owningThisEvent = this.props.user.userId !== undefined && this.props.user.userId === this.props.event.ownerId;
+    let owningThisEvent = user.userId !== undefined && user.userId === event.ownerId;
 
-    var confirmedCount = 0;
+    let confirmedCount = 0;
     let confirmedItems = participants.map((item, index) => {
-      if (item.state === 'pending') {
-        return;
-      }
+      if (item.state !== 'pending') {
       confirmedCount++;
       return (<li key={index}>
         <Link to={`/user/${item.participant.id}`} >{item.participant.firstName} {item.participant.lastName}</Link>
@@ -88,22 +88,24 @@ class ParticipantPanel extends Component {
           <a className="pull-right" href="#" onClick={(e) => { this.handleConfirmClick(e, item.participant.id) } }>Odebrat</a>
         }
       </li>);
+      }
+      return [];
     });
 
     let notConfirmedItems = participants.map((item, index) => {
-      if (item.state === 'confirmed') {
-        return;
-      }
+      if (item.state !== 'confirmed') {
       return (<li key={index}>
         <Link to={`/user/${item.participant.id}`} >{item.participant.firstName} {item.participant.lastName}</Link>
         <a className="pull-right" href="#" onClick={(e) => { this.handleConfirmClick(e, item.participant.id) } }>Potvrdit</a>
       </li>);
+      }
+      return [];
     });
 
     return (
       <div>
         <Panel heading="Přihlášení uživatelé">
-          <small>Přihlášeno {confirmedCount} z {this.props.event.participantsMax}</small>
+          <small>Přihlášeno {confirmedCount} z {event.participantsMax}</small>
           <ul>
             {confirmedItems}
           </ul>

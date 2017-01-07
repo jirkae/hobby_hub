@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Grid, Col, FormControl, Button} from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
 import { connect } from 'react-redux';
 import { getUserEvents } from './../services/thunkReducer';
@@ -11,7 +10,6 @@ class UserEventsPage extends Component {
   }
 
   render() {
-    const { query } = this.props.location;
     return (
         <div>
           <div className="search-row-wrapper landingBackgroundEvents">
