@@ -22,6 +22,10 @@
   }
 }
 
+.modal-body .nav {
+  margin-bottom: 30px;
+}
+
 .addEventNav {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -89,7 +93,6 @@
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
-  position: relative; 
 }
 
 .react-tagsinput > span {
