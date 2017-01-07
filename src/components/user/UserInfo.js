@@ -71,9 +71,7 @@ class UserInfo extends Component {
 
     return (
       <Grid className="container-top-margin">
-        <Row>
-          <Col sm={12} className="page-content col-thin-right">
-            <Col lg={12} className="content-box">
+          <Col sm={12} className="page-content col-thin-right content-box">
               <Row>
                 <Col sm={3} className="no-padding photobox">
                   <Image className="thumbnail no-margin" alt="Profilová fotka" src={userShadow} responsive/>
@@ -119,9 +117,7 @@ class UserInfo extends Component {
                   </form>
                 </Col>
               </Row>
-            </Col>
           </Col>
-        </Row>
       </Grid>
     );
   }
