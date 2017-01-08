@@ -20,12 +20,12 @@ class GuestNavRight extends Component {
 
   render() {
     return (
-      <Nav pullRight>
-        <LinkContainer to="/myActions"><NavItem>Moje akce</NavItem></LinkContainer>
-        <LinkContainer to="/profile"><NavItem>Profil</NavItem></LinkContainer>
+      <ul className="nav navbar-nav navbar-right">
+        <li><Link to={{pathname: "/myActions"}}>Moje akce</Link></li>
+        <li><Link to={{pathname: "/profile"}}>Profil</Link></li>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
-        <NavItem><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></NavItem>
-      </Nav>
+        <li><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
+      </ul>
     )
   }
 }

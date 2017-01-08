@@ -25,6 +25,7 @@ export default class TagsSuggestInput extends Component
         const autosuggest = (props) => {
 
             const {
+                addTag,
                 ...other
             } = props;
 
