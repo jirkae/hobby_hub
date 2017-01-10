@@ -63,6 +63,9 @@ class UserInfo extends Component {
 
   render() {
     let { firstName, lastName, email, info, interests } = this.state;
+    if (interests === undefined) {
+      interests = [];
+    }
 
     let mutateStateButtons = this.props.updateable ?
           <Col sm={2} className="col-offset-xs-1 pull-right button-wrapper vcenter">

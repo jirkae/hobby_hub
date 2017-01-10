@@ -24,7 +24,7 @@ class GuestNavRight extends Component {
         <li><Link to={{pathname: "/myActions"}}>Moje akce</Link></li>
         <li><Link to={{pathname: "/profile"}}>Profil</Link></li>
         <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
-        <li><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
+        <li className="postadd"><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
       </ul>
     )
   }
