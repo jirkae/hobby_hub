@@ -34,10 +34,6 @@ export function getUserDataFailure(payload) {
   return { type: C.GET_USER_DATA_FAILURE, payload };
 }
 
-export function getUserEventsSuccess(payload) {
-    return { type: C.GET_USER_EVENTS_SUCCESS, payload };
-}
-
 
 export function logoutUser(token) {
   return function (dispatch) {
@@ -106,15 +102,3 @@ export function putUserProfileInfo(user) {
             });
     };
 }
-
-export function getUserEvents(userId) {
-    return function (dispatch) {
-        return API.getOwnedEvents(userId)
-            .then(response => {
-                dispatch(getUserEventsSuccess(response.data));
-            }).catch(error => {
-                console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
-            });
-    };
-}
-

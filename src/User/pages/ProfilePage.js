@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import { getUserProfileInfo, putUserProfileInfo, getUserEvents } from './../actions/userActionCreators';
+import { getUserProfileInfo, putUserProfileInfo } from './../actions/userActionCreators';
+import { getUserEvents } from './../../Event/actions/eventActionCreators';
 import UserInfo from './../components/UserInfo';
 import EventsBox from './../../Event/components/EventsBox';
 
@@ -39,7 +40,7 @@ class ProfilePage extends Component{
 const mapStateToProps = (store) => {
   return {
     user: store.userReducer.user,
-    events: store.eventReducer
+    events: store.eventsListReducer.items
   }
 };
 

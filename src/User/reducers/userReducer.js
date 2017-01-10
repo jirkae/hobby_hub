@@ -1,6 +1,11 @@
 import * as C from './../actions/userActionTypes';
 
-function userReducer(state={user: {}}, action) {
+let defaultState = {
+  user: {},
+  events: []
+}
+
+function userReducer(state = defaultState, action) {
 
   switch (action.type) {
     case C.LOGIN_USER_SUCCESS: {

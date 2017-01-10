@@ -3,52 +3,44 @@ import { connect } from "react-redux";
 import { Link } from 'react-router';
 
 import Panel from './../../../Base/components/layout/Panel';
-import { getParticipants, postToggleParticipation, postToggleConfirmation } from './../../../Base/services/restApi.js';
+import { getParticipants, toggleParticipant, toggleParticipantConfirmation } from './../../actions/eventActionCreators';
 
 class ParticipantPanel extends Component {
   constructor(params) {
     super(params);
-    this.state = {
-      participants: [],
-    };
     this.handleParticipationClick = this.handleParticipationClick.bind(this);
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
   }
 
   componentDidMount() {
-    this.updateParticipantsList();
-  }
-
-  updateParticipantsList() {
-    getParticipants(this.props.event.id).then(response => {
-      this.setState({
-        participants: response.data
-      });
-    })
+    const { getParticipants, event } = this.props;
+    getParticipants(event.id);
   }
 
   handleParticipationClick(e, id) {
     e.preventDefault();
-    postToggleParticipation({
+    const { toggleParticipant, event, user } = this.props;
+    toggleParticipant({
       userId: id,
-      eventId: this.props.event.id
-    }, this.props.user.id).then(this.updateParticipantsList.bind(this));
+      eventId: event.id
+    }, user.id);
   }
 
   handleConfirmClick(e, userId) {
     e.preventDefault();
-    postToggleConfirmation({
+    const { toggleParticipantConfirmation, event, user } = this.props;
+    toggleParticipantConfirmation({
       userId: userId,
-      eventId: this.props.event.id
-    }, this.props.user.id).then(this.updateParticipantsList.bind(this));
+      eventId: event.id
+    }, user.id);
   }
 
   renderActions() {
-    const { user } = this.props;
+    const { user, participants } = this.props;
     if (user.id !== undefined) {
       let attempting = false;
       let confirmed = false;
-      this.state.participants.map(function (item) {
+      participants.map(function (item) {
         if (item.participant.id === user.userId) {
           attempting = true;
           if (item.state === "confirmed") {
@@ -73,7 +65,7 @@ class ParticipantPanel extends Component {
   }
 
   render() {
-    const { participants } = this.state;
+    const { participants } = this.props;
     const { user, event } = this.props;
 
     let owningThisEvent = user.userId !== undefined && user.userId === event.ownerId;
@@ -125,12 +117,18 @@ class ParticipantPanel extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.userReducer.user
+    user: store.userReducer.user,
+    participants: store.eventReducer.participants
   }
 };
 
 ParticipantPanel = connect(
-  mapStateToProps
+  mapStateToProps,
+  {
+    getParticipants,
+    toggleParticipant,
+    toggleParticipantConfirmation
+  }
 )(ParticipantPanel);
 
 export default ParticipantPanel;

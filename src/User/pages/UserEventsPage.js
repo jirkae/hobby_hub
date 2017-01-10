@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import EventsBox from "./../../Event/components/EventsBox.js";
 import { connect } from 'react-redux';
-import { getUserEvents } from './../actions/userActionCreators';
+import { getUserEvents } from './../../Event/actions/eventActionCreators';
 
 class UserEventsPage extends Component {
   componentDidMount () {
@@ -24,7 +24,7 @@ class UserEventsPage extends Component {
 const mapStateToProps = (store) => {
   return {
       user: store.userReducer.user,
-      events: store.eventReducer
+      events: store.eventsListReducer.items
   }
 };
 

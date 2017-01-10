@@ -88,7 +88,7 @@ const mapStateToProps = (store) => {
     return {
         interests: store.userReducer.user.interests,
         userId: store.userReducer.user.userId,
-        events: store.eventReducer
+        events: store.eventsListReducer.items
     }
 };
 

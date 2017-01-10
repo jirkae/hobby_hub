@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { getEventById } from '../../Base/services/restApi.js';
 import ContentWrapper from '../../Base/components/layout/ContentWrapper.js';
 import MainContent from '../../Base/components/layout/MainContent.js';
 import AsideContent from '../../Base/components/layout/AsideContent.js';
@@ -8,37 +7,29 @@ import moment from 'moment';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
 import { Col, Row } from "react-bootstrap";
+import { getEventData } from './../actions/eventActionCreators';
 
 class EventDetailPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: null,
-    };
-  }
 
   componentDidMount() {
-    getEventById(this.props.params.eventId)
-      .then(json => {
-        this.setState({ data: json.data })
-      }).catch(e => console.log("Error"));
+    const { eventId } = this.props.params;
+    const { getEventData } = this.props;
+    getEventData(eventId);
   }
 
   generateContent() {
     const renderTags = (tags) => {
-      if(tags === undefined) { return; }
-        const items = tags.map((tag, index) => {
-          if(tag.constructor === String)
-          {
-            return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
-          }
-          return undefined;
-        });
-        return items;
+      if (tags === undefined) { return; }
+      const items = tags.map((tag, index) => {
+        if (tag.constructor === String) {
+          return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
+        }
+        return undefined;
+      });
+      return items;
     };
 
-    const { data } = this.state;
+    const { data } = this.props;
 
     if (data === null) {
       return (
@@ -91,7 +82,7 @@ class EventDetailPage extends Component {
   }
 
   generateAsideContent() {
-    const { data } = this.state;
+    const { data } = this.props;
 
     if (data === null) {
       return (
@@ -120,12 +111,16 @@ class EventDetailPage extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    user: store.userReducer.user
+    user: store.userReducer.user,
+    data: store.eventReducer.data
   }
 };
 
 EventDetailPage = connect(
-  mapStateToProps
+  mapStateToProps,
+  {
+    getEventData
+  }
 )(EventDetailPage);
 
 export default EventDetailPage;

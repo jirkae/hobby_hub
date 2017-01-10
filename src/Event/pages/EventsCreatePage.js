@@ -5,8 +5,10 @@ import ContentWrapper from './../../Base/components/layout/ContentWrapper.js';
 import MainContent from './../../Base/components/layout/MainContent.js';
 import Panel from './../../Base/components/layout/Panel.js';
 import AsideContent from './../../Base/components/layout/AsideContent.js';
+import { getEventData } from './../actions/eventActionCreators';
+import { connect } from "react-redux";
 
-export default class EventsCreatePage extends Component {
+class EventsCreatePage extends Component {
 
   constructor(props) {
     super(props);
@@ -14,11 +16,9 @@ export default class EventsCreatePage extends Component {
   }
 
   componentDidMount() {
-    if (this.props.params.eventId) {
-      getEventById(this.props.params.eventId)
-        .then(json => {
-          this.setState({event: json.data})
-      }).catch(e => console.log(e));
+    const { eventId } = this.props.params;
+    if (eventId) {
+      getEventData(eventId);
     }
   }
 
@@ -61,3 +61,19 @@ export default class EventsCreatePage extends Component {
     );
   }
 }
+
+const mapStateToProps = (store) => {
+  return {
+    user: store.userReducer.user,
+    data: store.eventReducer.data
+  }
+};
+
+EventsCreatePage = connect(
+  mapStateToProps,
+  {
+    getEventData
+  }
+)(EventsCreatePage);
+
+export default EventsCreatePage;

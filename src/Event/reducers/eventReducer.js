@@ -1,15 +1,25 @@
 import * as C from './../actions/eventActionTypes';
 import * as CU from './../../User/actions/userActionTypes';
 
-function eventReducer(state = [], action) {
+let defaultState = {
+    data: null,
+    participants: []
+}
 
+function eventReducer(state = defaultState, action) {
     switch (action.type) {
-        case CU.GET_USER_EVENTS_SUCCESS:
-        case C.GET_LATEST_EVENTS:
-        case C.GET_FILTERED_EVENTS: {
-            return [
-                ...action.payload
-            ]
+        case C.GET_EVENT_DATA: {
+            return {
+                ...state,
+                data: action.payload.data
+            }
+        }
+
+        case C.GET_PARTICIPANTS: {
+            return {
+                ...state,
+                participants: action.payload.data
+            }
         }
 
         default:
