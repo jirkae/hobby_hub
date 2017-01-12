@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Image, Col} from "react-bootstrap";
-import grill from "../../images/grill.jpg";
 import tagIcon from "../../images/tag-icon.png"
 import {Link} from "react-router";
 import moment from 'moment';
@@ -16,6 +15,7 @@ export default class EventsBoxItem extends Component {
             {
               return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
             }
+            return [];
           });
           return items;
       };

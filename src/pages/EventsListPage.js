@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {Grid, Col, FormControl, Button} from "react-bootstrap";
+import { Grid } from "react-bootstrap";
 import EventsBox from "../components/events/EventsBox.js";
-import {getEvents} from '../services/restApi';
+import { getEvents } from '../services/restApi';
 import SearchBar from "../components/other/SearchBar.js";
 
 export default class EventsListPage extends Component {
@@ -28,7 +28,7 @@ export default class EventsListPage extends Component {
 
     getParams(inputParams)
     {
-      var {cities, tags} = inputParams;
+      let {cities, tags} = inputParams;
       if(cities === undefined)
       {
         cities = [];
@@ -45,8 +45,7 @@ export default class EventsListPage extends Component {
       {
         tags = [tags];
       }
-      const params = {cities: cities, tags: tags};
-      return params;
+      return  {cities: cities, tags: tags};
     }
 
     handleSearch(params) {

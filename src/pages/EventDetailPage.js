@@ -7,7 +7,7 @@ import ParticipantPanel from '../components/events/ParticipantsPanel.js';
 import moment from 'moment';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
-import { Alert, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 
 class EventDetailPage extends Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class EventDetailPage extends Component {
           {
             return (<span className="react-tagsinput-tag" key={index}>{tag}</span>);
           }
+          return undefined;
         });
         return items;
     };

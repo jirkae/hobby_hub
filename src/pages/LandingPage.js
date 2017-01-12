@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import EventsBox from "../components/events/EventsBox.js";
 import SearchBar from "../components/other/SearchBar.js";
-import {getLatestEvents} from '../services/restApi';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { getLatestEvents, getFilteredEvents} from '../services/thunkReducer';
 
-export default class LandingPage extends Component {
+class LandingPage extends Component {
 
     constructor(props)
     {
@@ -16,9 +17,12 @@ export default class LandingPage extends Component {
 
     componentDidMount()
     {
-        getLatestEvents().then((results) => {
-            this.setState({events: results});
-        });
+        const { userId, interests, getFilteredEvents, getLatestEvents } = this.props;
+        if (userId) { // Lze ternárním výrazem, ale ESlint potom hází warning
+            getFilteredEvents({tags: interests});
+        } else {
+            getLatestEvents();
+        }
     }
 
     handleSearch(params) {
@@ -30,15 +34,22 @@ export default class LandingPage extends Component {
 
     gettingEvents()
     {
-        const {events} = this.state;
+        const { events } = this.props;
+        const { interests } = this.props;
+
+        const title = (interests === undefined || interests.length === 0) ? undefined : 'Mohlo by se vám líbit';
+
         if (events === null) {
             return "Načítám akce...";
         } else {
-            return <EventsBox events={events}/>
+            return <EventsBox title={title} events={events}/>
         }
     }
     render()
     {
+        const { interests } = this.props;
+        const userInterests = interests === undefined ? [] : interests;
+
         return (
             <div>
               <div className="intro jobs-intro hasOverly landingBackground">
@@ -52,8 +63,8 @@ export default class LandingPage extends Component {
                         Najděte nejaktuálnější akce ve vašem okolí.
                       </p>
 
-                      <SearchBar onSearchClick={(params) => {this.handleSearch(params)}}/>
-                      <div className="resume-up">
+                      <SearchBar params={{tags: userInterests, cities: []}} onSearchClick={(params) => {this.handleSearch(params)}}/> {/*params={{params: {tags: this.props.interests}}}*/}
+                        <div className="resume-up">
                         <a>
                           <i className="icon-doc-4"></i>
                         </a>
@@ -72,3 +83,21 @@ export default class LandingPage extends Component {
 LandingPage.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
+
+const mapStateToProps = (store) => {
+    return {
+        interests: store.userReducer.user.interests,
+        userId: store.userReducer.user.userId,
+        events: store.eventReducer
+    }
+};
+
+LandingPage = connect(
+    mapStateToProps,
+    { /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
+        getLatestEvents,
+        getFilteredEvents
+    }
+)(LandingPage);
+
+export default LandingPage

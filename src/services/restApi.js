@@ -68,10 +68,11 @@ export function getUserData(id) {
 }
 
 export function putUserData(user) {
-  const userData = {
-    firstName: user.firstName,
+  const userData = { // Ukládáme pouze některé atributy zaslaného objektu
+      firstName: user.firstName,
       lastName: user.lastName,
-      info: user.info
+      info: user.info,
+      interests: user.interests
   };
     return api.patch(`${BASE_URL}AppUsers/${user.userId}?access_token=${user.id}`, userData)
 }

@@ -19,13 +19,12 @@ export default class TagsSuggestInput extends Component
             this.setState({suggestions: results});
       })
       .catch((err) => this.setState({suggestions: []}));
-    }
+    };
 
     render() {
         const autosuggest = (props) => {
 
             const {
-                addTag,
                 ...other
             } = props;
 
@@ -35,7 +34,7 @@ export default class TagsSuggestInput extends Component
                 } else {
                     props.onChange(e)
                 }
-            }
+            };
 
             const inputValue = (props.value && props.value.trim().toLowerCase()) || "";
             const inputLength = inputValue.length;
@@ -49,10 +48,9 @@ export default class TagsSuggestInput extends Component
               suggestions={suggestions}
               onSuggestionsFetchRequested={(e) => {this.fetchSuggestions(e)}}
               onSuggestionsClearRequested={() => {this.setState({suggestions: []})}}
-              shouldRenderSuggestions={(value) => value && value.trim().length > 0}
               getSuggestionValue={(suggestion) => suggestion.name}
               renderSuggestion={(suggestion) => <span>{suggestion.name}</span>}
-              shouldRenderSuggestions={(value) => {return value.length < 2 ? false : true}}
+              shouldRenderSuggestions={(value) => {return value.length >= 2}}
               inputProps={{
                 ...other,
                 onChange: handleOnChange,
@@ -71,7 +69,7 @@ export default class TagsSuggestInput extends Component
           value={this.props.tags}
           onChange={(e) => {
             const tags = e.slice();
-            for(var i = 0; i < tags.length; i++)
+            for(let i = 0; i < tags.length; i++)
             {
               tags[i] = tags[i].charAt(0).toUpperCase() + tags[i].slice(1);
             }

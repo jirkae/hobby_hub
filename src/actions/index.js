@@ -39,3 +39,11 @@ export function getUserDataFailure(payload) {
 export function getUserEventsSuccess(payload) {
     return { type: C.GET_USER_EVENTS_SUCCESS, payload };
 }
+
+export function getLatestEventsSuccess(payload) {
+    return { type: C.GET_LATEST_EVENTS, payload };
+}
+
+export function getFilteredEventsSuccess (payload) {
+    return { type: C.GET_FILTERED_EVENTS, payload };
+}

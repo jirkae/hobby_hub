@@ -38,7 +38,8 @@ function userReducer(state={user: {}}, action) {
             email: action.payload.email,
             firstName: action.payload.firstName,
             lastName: action.payload.lastName,
-            info: action.payload.info
+            info: action.payload.info,
+            interests: action.payload.interests
           }
       }
     }
