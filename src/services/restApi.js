@@ -44,27 +44,27 @@ export function getEvents(params) {
 }
 
 export function postLogin(props) {
-    return api.post(`${BASE_URL}AuthUsers/login`, props)
+    return api.post(`${BASE_URL}AppUsers/login`, props)
 }
 
 export function postRegister(props) {
-    return api.post(`${BASE_URL}AuthUsers`, props);
+    return api.post(`${BASE_URL}AppUsers`, props);
 }
 
 export function postEvent(event, user) {
-  return api.post(`${BASE_URL}AuthUsers/${user.userId}/ownEvents`, event);
+  return api.post(`${BASE_URL}AppUsers/${user.userId}/ownEvents`, event);
 }
 
 export function updateEvent(event, user, eventId) {
-  return api.put(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${eventId}`, event);
+  return api.put(`${BASE_URL}AppUsers/${user.userId}/ownEvents/${eventId}`, event);
 }
 
 export function postLogout(token) {
-    return api.post(`${BASE_URL}AuthUsers/logout?access_token=${token}`)
+    return api.post(`${BASE_URL}AppUsers/logout?access_token=${token}`)
 }
 
 export function getUserData(id) {
-    return api.get(`${BASE_URL}AuthUsers/${id}`)
+    return api.get(`${BASE_URL}AppUsers/${id}`)
 }
 
 export function putUserData(user) {
@@ -73,7 +73,7 @@ export function putUserData(user) {
       lastName: user.lastName,
       info: user.info
   };
-    return api.put(`${BASE_URL}AuthUsers/${user.userId}?access_token=${user.id}`, userData)
+    return api.patch(`${BASE_URL}AppUsers/${user.userId}?access_token=${user.id}`, userData)
 }
 
 export function getCancelTokenSource() {
@@ -85,19 +85,19 @@ export function getParticipants(eventId) {
 }
 
 export function postToggleParticipation(props, authToken) {
-    return api.put(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
+    return api.patch(`${BASE_URL}Participations/toggleParticipation?access_token=${authToken}`, props)
 }
 
 export function postToggleConfirmation(props, authToken) {
-    return api.put(`${BASE_URL}Participations/toggleConfirmation?access_token=${authToken}`, props)
+    return api.patch(`${BASE_URL}Participations/toggleConfirmation?access_token=${authToken}`, props)
 }
 
 export function getEventOwnedByuser(user, event) {
-    return api.get(`${BASE_URL}AuthUsers/${user.userId}/ownEvents/${event.id}`)
+    return api.get(`${BASE_URL}AppUsers/${user.userId}/ownEvents/${event.id}`)
 }
 
 export function getOwnedEvents(userId) {
-    return api.get(`${BASE_URL}AuthUsers/${userId}/ownEvents`)
+    return api.get(`${BASE_URL}AppUsers/${userId}/ownEvents`)
 }
 
 export function getEventById(eventId) {
