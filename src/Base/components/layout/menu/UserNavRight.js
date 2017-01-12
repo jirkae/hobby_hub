@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem } from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 

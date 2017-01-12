@@ -3,7 +3,7 @@ import * as C from './../actions/userActionTypes';
 let defaultState = {
   user: {},
   events: []
-}
+};
 
 function userReducer(state = defaultState, action) {
 

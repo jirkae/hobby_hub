@@ -7,6 +7,6 @@ const Page404 = () => {
       404
     </div>
   );
-}
+};
 
 export default Page404;

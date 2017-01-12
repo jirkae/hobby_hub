@@ -1,10 +1,9 @@
 import * as C from './../actions/eventActionTypes';
-import * as CU from './../../User/actions/userActionTypes';
 
 let defaultState = {
     data: null,
     participants: []
-}
+};
 
 function eventReducer(state = defaultState, action) {
     switch (action.type) {

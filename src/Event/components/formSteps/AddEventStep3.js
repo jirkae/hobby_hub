@@ -24,7 +24,7 @@ export default class AddEventStep3 extends Component {
   }
 
   componentDidMount() {
-    var event = this.state.event;
+    let event = this.state.event;
 
     if (this.props.event !== null) {
       for (let key in this.state.event) {
