@@ -189,7 +189,13 @@ export function getUserData(id) {
                     firstName,
                     lastName,
                     phoneNumber,
-                    info
+                    info,
+                    otherUsersComments {
+                        id,
+                        text,
+                        dateCreated,
+                        rating
+                    }
                 }
             }`;
     const vars = { id: id };
@@ -344,13 +350,69 @@ export function getEventById(eventId) {
                 endDate
                 dateCreated
                 dateUpdated
-                price
+                price,
+                comments {
+                    id,
+                    text,
+                    dateCreated
+                }
             }
         }`;
     const vars = { eventId: eventId };
 
     return client.query(query, vars).then((result) => {
+        console.log(result);
         return result;
+    });
+}
+
+export function newEventComment(eventId, text) {
+    const mutation =
+        `($token:String!, $eventId:String!, $text:String!)
+            {
+                eventMutation(token:$token) {
+                    data: newComment(eventId:$eventId, text:$text) {
+                        id,
+                        text,
+                        dateCreated
+                    }
+                }
+        }`;
+
+    const vars = {
+        text: text,
+        eventId: eventId,
+        token: api.defaults.headers.common['Authorization']
+    };
+
+    return client.mutate(mutation, vars).then((result) => {
+        return result.eventMutation;
+    });
+}
+
+export function newUserComment(targetUserId, text, rating) {
+    const mutation =
+        `($token:String!, $targetUserId:String!, $text:String!, $rating:Int!)
+            {
+                userMutation(token:$token) {
+                    data: newUserComment(targetUserId:$targetUserId, text:$text, rating:$rating) {
+                        id,
+                        text,
+                        dateCreated,
+                        rating
+                    }
+                }
+        }`;
+
+    const vars = {
+        text: text,
+        targetUserId: targetUserId,
+        rating: rating,
+        token: api.defaults.headers.common['Authorization']
+    };
+
+    return client.mutate(mutation, vars).then((result) => {
+        return result.userMutation;
     });
 }
 
