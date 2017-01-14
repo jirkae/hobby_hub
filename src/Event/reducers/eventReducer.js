@@ -1,5 +1,4 @@
 import * as C from './../actions/eventActionTypes';
-import * as CU from './../../User/actions/userActionTypes';
 
 let defaultState = {
     data: null,

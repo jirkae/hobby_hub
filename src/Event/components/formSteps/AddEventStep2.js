@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstrap";
 import TagsSuggestInput from "./../../../Base/components/TagsSuggestInput";
-import { fetchCities, fetchTags } from './../../../Base/services/restApi';
+import { fetchCities } from './../../../Base/services/restApi';
 
 export default class AddEventStep2 extends Component {
   constructor(params) {

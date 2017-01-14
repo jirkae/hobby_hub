@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AddEvent from "./../components/AddEvent.js";
-import { getEventById } from './../../Base/services/restApi.js';
 import ContentWrapper from './../../Base/components/layout/ContentWrapper.js';
 import MainContent from './../../Base/components/layout/MainContent.js';
 import Panel from './../../Base/components/layout/Panel.js';
