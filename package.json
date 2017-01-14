@@ -55,6 +55,8 @@
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.2",
+    "lokka": "^1.7.0",
+    "lokka-transport-http": "^1.6.1",
     "moment": "^2.16.0",
     "node-sass": "^3.10.1",
     "react": "^15.3.2",
