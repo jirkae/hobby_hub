@@ -3,7 +3,7 @@ import * as C from './../actions/eventActionTypes';
 let defaultState = {
     data: null,
     participants: []
-}
+};
 
 function eventReducer(state = defaultState, action) {
     switch (action.type) {

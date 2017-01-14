@@ -1,4 +1,5 @@
 import * as C from './../actions/modalActionTypes'
+import * as U from './../../User/actions/userActionTypes'
 
 function modalReducer(state={}, action) {
 
@@ -10,8 +11,8 @@ function modalReducer(state={}, action) {
       }
     }
 
-      case C.LOGIN_USER_FAILURE:
-      case C.REGISTER_USER_FAILURE:{
+      case U.LOGIN_USER_FAILURE:
+      case U.REGISTER_USER_FAILURE:{
         return { ...state,
             error: action.payload
         }

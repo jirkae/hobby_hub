@@ -58,7 +58,7 @@ export default class TagsSuggestInput extends Component
                 placeholder: this.props.placeholder
               }}
               onSuggestionSelected={(e, {suggestion}) => {
-                props.addTag(suggestion.name);
+                addTag(suggestion.name);
               }}/>)
 
         };

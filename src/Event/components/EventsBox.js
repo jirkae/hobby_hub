@@ -50,6 +50,6 @@ const EventsBox = (props) => {
           </Row>
         </Grid>
     );
-}
+};
 
 export default EventsBox;

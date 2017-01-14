@@ -3,7 +3,7 @@ import * as C from './../actions/eventActionTypes';
 let defaultState = {
     items: [],
     conditions: []
-}
+};
 
 function eventsListReducer(state = defaultState, action) {
 

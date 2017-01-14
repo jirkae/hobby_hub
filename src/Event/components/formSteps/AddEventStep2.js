@@ -23,7 +23,7 @@ export default class AddEventStep2 extends Component {
   }
 
   componentDidMount() {
-    var event = this.state.event;
+    let event = this.state.event;
     if (this.props.event !== null) {
       for (let key in this.state.event) {
         if (typeof this.props.event[key] !== 'undefined') {
@@ -66,7 +66,7 @@ export default class AddEventStep2 extends Component {
     }
 
     if (errors.length === 0) {
-      var eventWithCity = {};
+      let eventWithCity = {};
       Object.assign(eventWithCity, event);
       eventWithCity.city = this.state.cities[0];
 
