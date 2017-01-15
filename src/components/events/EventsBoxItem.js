@@ -22,8 +22,8 @@ export default class EventsBoxItem extends Component {
 
         return (
             <div className="item-list job-item">
-              <Col sm={1} xs={2} className="no-padding photobox">
-                <div className="add-image">
+              <div className="flex">
+              <Col sm={1} xs={2} className="event-date">
                   <Link to={{
                     pathname: '/events/' + this.props.event.id
                   }}>
@@ -33,7 +33,6 @@ export default class EventsBoxItem extends Component {
                     </span>
                     <Image className="thumbnail no-margin hide" alt="POPISEK" src={tagIcon} responsive/>
                   </Link>
-                </div>
               </Col>
               <Col sm={10} xs={10} className="add-desc-box">
                 <div className="add-details jobs-item">
@@ -56,6 +55,7 @@ export default class EventsBoxItem extends Component {
                   </div>
                 </div>
               </Col>
+              </div>
             </div>
         );
     }
