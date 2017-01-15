@@ -351,6 +351,7 @@ export function getEventById(eventId) {
                 dateCreated
                 dateUpdated
                 price,
+                ownerId,
                 comments {
                     id,
                     text,
@@ -361,7 +362,6 @@ export function getEventById(eventId) {
     const vars = { eventId: eventId };
 
     return client.query(query, vars).then((result) => {
-        console.log(result);
         return result;
     });
 }

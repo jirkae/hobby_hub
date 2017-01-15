@@ -2,7 +2,8 @@ import * as C from './../actions/eventActionTypes';
 
 let defaultState = {
     data: null,
-    participants: []
+    participantsRequested: [],
+    participantsConfirmed: []
 };
 
 function eventReducer(state = defaultState, action) {
@@ -17,7 +18,8 @@ function eventReducer(state = defaultState, action) {
         case C.GET_PARTICIPANTS: {
             return {
                 ...state,
-                participants: action.payload.data
+                participantsRequested: action.payload.data.participantsRequested,
+                participantsConfirmed: action.payload.data.participantsConfirmed,
             }
         }
 

@@ -37,7 +37,7 @@ export default class Header extends Component {
                       <NavItem eventKey={1} role="button">Vyhledat akci</NavItem>
                     </LinkContainer>
                   </Nav>
-                  <MenuPane openModalFc={this.props.openModalFc} />
+                  <MenuPane />
                 </Navbar.Collapse>
               </Navbar>
             </div>

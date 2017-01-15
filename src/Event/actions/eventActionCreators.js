@@ -69,7 +69,7 @@ export function toggleParticipant(participant, authToken) {
     return function (dispatch) {
         return API.postToggleParticipation(participant, authToken)
             .then(response => {
-                dispatch(getParticipants(response.eventId));
+                dispatch(getParticipants(participant.eventId));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE TOGGLE PARTICIPANT', error);
             });
@@ -80,7 +80,7 @@ export function toggleParticipantConfirmation(participant, authToken) {
     return function (dispatch) {
         return API.postToggleConfirmation(participant, authToken)
             .then(response => {
-                dispatch(getParticipants(response.eventId));
+                dispatch(getParticipants(participant.eventId));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE TOGGLE PARTICIPANT CONFIRMATION', error);
             });

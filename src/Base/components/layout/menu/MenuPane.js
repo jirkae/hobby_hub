@@ -9,7 +9,7 @@ class MenuPane extends Component {
     const {user} = this.props;
     return (
       <div>
-        {user.id === undefined ? <GuestNavRight openModalFc={this.props.openModalFc}/> : <UserNavRight openModalFc={this.props.openModalFc} userId={user.id}/>}
+        {user.id === undefined ? <GuestNavRight/> : <UserNavRight userId={user.id}/>}
       </div>
     );
   }

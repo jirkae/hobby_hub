@@ -1,5 +1,9 @@
 import * as C from './modalActionTypes';
 
-export function changeModalVisibility(payload) {
-  return { type: C.CHANGE_MODAL_VISIBLE, payload };
+export function openModal(payload) {
+  return { type: C.OPEN_MODAL, payload };
+}
+
+export function closeModal(payload) {
+  return { type: C.CLOSE_MODAL, payload };
 }

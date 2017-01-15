@@ -3,7 +3,7 @@ import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Header from './Header.js';
-import { changeModalVisibility } from './../../actions/modalActionCreators';
+import { closeModal } from './../../actions/modalActionCreators';
 
 import '../../scss/app.scss';
 import '../../css/style.css';
@@ -27,12 +27,11 @@ class Layout extends Component {
   }
 
   closeModal() {
-    this.props.dispatch(changeModalVisibility(false));
+    this.props.dispatch(closeModal(false));
   }
 
   render() {
-    const { children, modalVisible } = this.props;
-    const { modalContentGenerator } = this.state;
+    const { children, modalVisible, modalContentGenerator } = this.props;
 
     return (
       <div>
@@ -44,7 +43,7 @@ class Layout extends Component {
             <Button bsStyle="link" onClick={this.closeModal}>Zavřít</Button>
           </ModalFooter>
         </Modal>
-        <Header openModalFc={this.openModal}/>
+        <Header/>
         {children}
       </div>
     );
@@ -53,7 +52,8 @@ class Layout extends Component {
 
 const mapStateToProps = (store) => {
   return {
-    modalVisible: store.modalReducer.showModal
+    modalVisible: store.modalReducer.showModal,
+    modalContentGenerator: store.modalReducer.contentGenerator
   }
 };
 

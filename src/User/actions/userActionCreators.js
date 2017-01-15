@@ -1,6 +1,6 @@
 import * as API from './../../Base/services/restApi';
 import * as C from './userActionTypes';
-import { changeModalVisibility } from './../../Base/actions/modalActionCreators';
+import { closeModal } from './../../Base/actions/modalActionCreators';
 
 export function loginUserSuccess(payload) {
   return { type: C.LOGIN_USER_SUCCESS, payload };
@@ -55,7 +55,7 @@ export function loginUser(user) {
          API.setAuthToken(response.data.id);
 
         dispatch(loginUserSuccess(response.data));
-        dispatch(changeModalVisibility(false));
+        dispatch(closeModal());
 
       }).catch(error => {
           console.log("CYBAAAA!!!! AAAAAA!!!");
@@ -71,7 +71,7 @@ export function registerUser(user) {
           API.setAuthToken(response.data.id);
 
         dispatch(registerUserSuccess(response.data));
-        dispatch(changeModalVisibility(false));
+        dispatch(closeModal());
 
       }).catch(error => {
             console.log("CHYBAAAA!!!! AAAAAA!!!", error);

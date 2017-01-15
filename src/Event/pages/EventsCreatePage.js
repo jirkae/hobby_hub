@@ -9,21 +9,19 @@ import { connect } from "react-redux";
 
 class EventsCreatePage extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {event: null};
-  }
-
   componentDidMount() {
     const { eventId } = this.props.params;
+    const {getEventData} = this.props;
     if (eventId) {
       getEventData(eventId);
     }
   }
 
   render() {
-    const { event } = this.state;
-
+    let { event } = this.props;
+    if (this.props.params.eventId === undefined) {
+      event = null;
+    } 
     if (this.props.params.eventId !== undefined && event === null) {
       return (
         <div>Načítám data</div>
@@ -64,7 +62,7 @@ class EventsCreatePage extends Component {
 const mapStateToProps = (store) => {
   return {
     user: store.userReducer.user,
-    data: store.eventReducer.data
+    event: store.eventReducer.data
   }
 };
 
