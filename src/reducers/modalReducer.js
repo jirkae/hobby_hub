@@ -6,7 +6,7 @@ function modalReducer(state={}, action) {
     case C.CHANGE_MODAL_VISIBLE: {
       return {...state,
         showModal: action.payload,
-          error: !action.payload
+        error: false
       }
     }
 

@@ -31,6 +31,12 @@ class RegisterForm extends Component {
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
   }
 
+  componentWillReceiveProps(newProp) {
+      if (this.props !== newProp) {
+          this.setState({error: newProp.error});
+      }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -171,7 +177,7 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.props.error}/>
+          <ConditionalErrorLabel error={this.state.error}/>
         </Form>
       </div>
     )
