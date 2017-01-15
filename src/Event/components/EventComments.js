@@ -9,9 +9,9 @@ export default class EventComments extends Component {
                     <textarea className="form-control"></textarea>
                     <button className="btn btn-xs btn-success">Přidat komentář</button>
                 </div>
-                <div class="media"> 
-                    <div class="media-body"> 
-                        <h4 class="media-heading">Media heading</h4> 
+                <div className="media"> 
+                    <div className="media-body"> 
+                        <h4 className="media-heading">Media heading</h4> 
                         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. 
                     </div> 
                 </div>

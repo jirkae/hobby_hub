@@ -27,7 +27,11 @@ class UserInfo extends Component {
       const { props } = this;
 
         if(newProps !== props) {
-            this.setState({ ...newProps.user });
+            if (newProps.user.interests === undefined) {
+                this.setState({ ...newProps.user, interests: [] });
+            } else{
+                this.setState({ ...newProps.user });
+            }
         }
     }
 

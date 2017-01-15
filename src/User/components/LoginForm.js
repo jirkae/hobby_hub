@@ -18,6 +18,12 @@ class LoginForm extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
+  componentWillReceiveProps(newProp) {
+    if (this.props !== newProp) {
+      this.setState({error: newProp.error});
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -67,7 +73,7 @@ class LoginForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.props.error}/>
+          <ConditionalErrorLabel error={this.state.error}/>
         </Form>
       </div>
     )
