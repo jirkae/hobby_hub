@@ -289,14 +289,14 @@ export function postToggleParticipation(props, authToken) {
 
 export function postToggleConfirmation(props, authToken) {
     const mutation =
-        `($token:String!, $eventId:String!){
+        `($token:String!, $eventId:String!, $userId:String!){
             eventMutation(token:$token)
             {
-                data: toggleConfirmation(eventId:$eventId)
+                data: toggleConfirmation(eventId:$eventId, userId:$userId)
             }
         }`;
 
-    const vars = { token: authToken, eventId: props.eventId };
+    const vars = { token: authToken, eventId: props.eventId, userId: props.userId };
 
     return client.mutate(mutation, vars).then((result) => {
         return result.eventMutation;
