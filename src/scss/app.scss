@@ -228,3 +228,9 @@
 .not-resizeable {
   resize: none;
 }
+
+// Overriding bootstrap class
+.img-responsive {
+  width: 100%;
+  max-width: 300px;
+}

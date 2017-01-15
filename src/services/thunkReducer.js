@@ -108,7 +108,7 @@ export function getLatestEvents() {
     return function (dispatch) {
         return API.getLatestEvents()
             .then(response => {
-                dispatch(getLatestEventsSuccess(response.data));
+                dispatch(getLatestEventsSuccess(response));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST POSLEDNÍ AKCE', error);
             });

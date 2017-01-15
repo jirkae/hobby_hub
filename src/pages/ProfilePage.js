@@ -26,7 +26,6 @@ class ProfilePage extends Component{
   render() {
     const { user, params } = this.props;
     let title = params.id === undefined ? "Moje akce" : `Akce uživatele ${user.firstName} ${user.lastName}`;
-
     return (
       <div className="container">
         <UserInfo user={user} saveUserInfo={this.props.saveUserInfo} updateable={params.id === undefined}/>
