@@ -355,7 +355,11 @@ export function getEventById(eventId) {
                 comments {
                     id,
                     text,
-                    dateCreated
+                    dateCreated,
+                    user{
+                       firstName,
+                       lastName
+                    }
                 }
             }
         }`;

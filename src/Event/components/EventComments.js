@@ -33,9 +33,9 @@ class EventComments extends Component {
                     <button className="btn btn-xs btn-success" onClick={this.handleAddComment}>Přidat komentář</button>
                 </div>
                 {comments.map((item) => (
-                    <div className="media">
+                    <div key={item.id} className="media">
                         <div className="media-body">
-                            <h4 className="media-heading">Media heading</h4>
+                            <h4 className="media-heading">{item.user.firstName} {item.user.lastName}</h4>
                             {item.text}
                         </div>
                     </div>
