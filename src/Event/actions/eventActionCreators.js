@@ -5,20 +5,24 @@ export function getLatestEventsSuccess(payload) {
     return { type: C.GET_LATEST_EVENTS, payload };
 }
 
-export function getFilteredEventsSuccess (payload) {
+export function getFilteredEventsSuccess(payload) {
     return { type: C.GET_FILTERED_EVENTS, payload };
 }
 
-export function getEventDataSuccess (payload) {
+export function getEventDataSuccess(payload) {
     return { type: C.GET_EVENT_DATA, payload };
 }
 
-export function getParticipantsSuccess (payload) {
+export function getParticipantsSuccess(payload) {
     return { type: C.GET_PARTICIPANTS, payload };
 }
 
 export function getUserEventsSuccess(payload) {
     return { type: C.GET_USER_EVENTS_SUCCESS, payload };
+}
+
+export function addCommentSuccess(payload) {
+    return { type: C.ADD_COMMENT_SUCCESS, payload };
 }
 
 export function getLatestEvents() {
@@ -94,6 +98,18 @@ export function getUserEvents(userId) {
                 dispatch(getUserEventsSuccess(response.data));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST AKCE UŽIVATELE', error);
+            });
+    };
+}
+
+export function addComment(eventId, comment) {
+    return function (dispatch) {
+        return API.newEventComment(eventId, comment)
+            .then(response => {
+                dispatch(addCommentSuccess(response));
+                dispatch(getEventData(eventId));
+            }).catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE ODESLAT KOMENTÁŘ', error);
             });
     };
 }
