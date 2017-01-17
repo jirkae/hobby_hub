@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class MainContent extends Component {
+class MainContent extends Component {
   render() {
     return (
       <div className={this.props.className + ' page-content col-thin-right'}>
@@ -11,3 +11,9 @@ export default class MainContent extends Component {
     );
   }
 }
+
+MainContent = {
+    className: React.PropTypes.string,
+};
+
+export default MainContent;

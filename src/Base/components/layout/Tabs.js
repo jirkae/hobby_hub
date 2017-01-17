@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-export default class Tabs extends Component {
+class Tabs extends Component {
     constructor(props) {
         super(props);
 
@@ -41,3 +41,12 @@ export default class Tabs extends Component {
         );
     }
 }
+
+Tabs.propTypes = {
+    tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
+        label: React.PropTypes.string.isRequired,
+        render: React.PropTypes.func.isRequired,
+    })).isRequired,
+};
+
+export default Tabs;

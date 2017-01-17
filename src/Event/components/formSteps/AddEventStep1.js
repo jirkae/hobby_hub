@@ -3,7 +3,7 @@ import { Button, FormGroup, ControlLabel, FormControl, Row, Col } from "react-bo
 import TagsSuggestInput from "./../../../Base/components/TagsSuggestInput";
 import { fetchTags } from './../../../Base/services/restApi';
 
-export default class AddEventStep1 extends Component {
+class AddEventStep1 extends Component {
   constructor(params) {
     super(params);
 
@@ -175,3 +175,10 @@ export default class AddEventStep1 extends Component {
     );
   }
 }
+
+AddEventStep1.propTypes = {
+  event: React.PropTypes.object.isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
+};
+
+export default AddEventStep1;

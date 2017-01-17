@@ -79,4 +79,8 @@ EventDetailInfo = connect(
     mapStateToProps
 )(EventDetailInfo);
 
+EventDetailInfo.propTypes = {
+    data: React.PropTypes.object.isRequired,
+};
+
 export default EventDetailInfo;

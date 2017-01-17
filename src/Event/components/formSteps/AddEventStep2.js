@@ -3,7 +3,7 @@ import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstr
 import TagsSuggestInput from "./../../../Base/components/TagsSuggestInput";
 import { fetchCities } from './../../../Base/services/restApi';
 
-export default class AddEventStep2 extends Component {
+class AddEventStep2 extends Component {
   constructor(params) {
     super(params);
 
@@ -120,3 +120,10 @@ export default class AddEventStep2 extends Component {
     );
   }
 }
+
+AddEventStep2.propTypes = {
+    event: React.PropTypes.object.isRequired,
+    onSubmit: React.PropTypes.func.isRequired,
+};
+
+export default AddEventStep2;

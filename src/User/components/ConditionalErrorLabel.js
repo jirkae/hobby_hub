@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, Col } from 'react-bootstrap'
 
-export default class ConditionalErrorLabel extends Component {
+class ConditionalErrorLabel extends Component {
     render() {
         return (
             <FormGroup>
@@ -12,3 +12,9 @@ export default class ConditionalErrorLabel extends Component {
         )
     };
 }
+
+ConditionalErrorLabel.propTypes = {
+    error: React.PropTypes.any,
+};
+
+export default ConditionalErrorLabel;

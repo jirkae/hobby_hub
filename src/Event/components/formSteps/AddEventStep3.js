@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import 'react-datetime/css/react-datetime.css';
 
-export default class AddEventStep3 extends Component {
+class AddEventStep3 extends Component {
   constructor(params) {
     super(params);
 
@@ -104,3 +104,10 @@ export default class AddEventStep3 extends Component {
     );
   }
 }
+
+AddEventStep3.propTypes = {
+    event: React.PropTypes.object.isRequired,
+    onSubmit: React.PropTypes.func.isRequired,
+};
+
+export default AddEventStep3;

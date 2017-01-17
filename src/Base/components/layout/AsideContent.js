@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class AsideContent extends Component {
+class AsideContent extends Component {
   render() {
     return (
       <div className={this.props.className + "  page-sidebar-right"}>
@@ -11,3 +11,9 @@ export default class AsideContent extends Component {
     );
   }
 }
+
+AsideContent.propTypes = {
+    className: React.PropTypes.string,
+};
+
+export default AsideContent;

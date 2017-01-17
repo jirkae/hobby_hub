@@ -3,7 +3,7 @@ import {Button, Col} from "react-bootstrap";
 import TagsSuggestInput from "./../../Base/components/TagsSuggestInput.js";
 import {fetchCities, fetchTags} from './../../Base/services/restApi';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 
     constructor(props)
     {
@@ -66,3 +66,9 @@ export default class SearchBar extends Component {
         );
     }
 }
+
+SearchBar.propTypes = {
+    onSearchClick: React.PropTypes.func.isRequired,
+};
+
+export default SearchBar;

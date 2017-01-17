@@ -4,7 +4,7 @@ import tagIcon from "./../../Base/images/tag-icon.png"
 import {Link} from "react-router";
 import moment from 'moment';
 
-export default class EventsBoxItem extends Component {
+class EventsBoxItem extends Component {
     render()
     {
 
@@ -60,3 +60,9 @@ export default class EventsBoxItem extends Component {
         );
     }
 }
+
+EventsBoxItem.propTypes = {
+    event: React.PropTypes.object.isRequired,
+};
+
+export default EventsBoxItem;

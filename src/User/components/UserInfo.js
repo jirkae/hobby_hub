@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, Image } from 'react-bootstrap';
 import userShadow from './../../Base/images/user-shadow.jpg';
 import TagsSuggestInput from './../../Base/components/TagsSuggestInput';
-import { fetchTags } from './../../Base/services/restApi'; // TODO smazat tuhle prasárnu
+import { fetchTags } from './../../Base/services/restApi';
 
 class UserInfo extends Component {
   constructor(props) {

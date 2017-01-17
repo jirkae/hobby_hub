@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router";
 
-export class SearchItem extends Component {
+class SearchItem extends Component {
 
     render() {
         return (
@@ -12,3 +12,11 @@ export class SearchItem extends Component {
         );
     }
 }
+
+SearchItem.propTypes = {
+    id: React.PropTypes.number.isRequired,
+    name: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string,
+};
+
+export default SearchItem;

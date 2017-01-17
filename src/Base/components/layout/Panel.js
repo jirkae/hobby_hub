@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Panel extends Component {
+class Panel extends Component {
   render() {
     return (
       <div className="panel sidebar-panel panel-contact-seller">
@@ -14,3 +14,9 @@ export default class Panel extends Component {
     );
   }
 }
+
+Panel.propTypes = {
+    heading: React.PropTypes.string,
+};
+
+export default Panel;

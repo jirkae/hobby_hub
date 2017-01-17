@@ -3,7 +3,7 @@ import TagsInput from 'react-tagsinput'
 import 'react-tagsinput/react-tagsinput.css' // If using WebPack and style-loader.
 import Autosuggest from 'react-autosuggest';
 
-export default class TagsSuggestInput extends Component
+class TagsSuggestInput extends Component
 {
     constructor(props)
     {
@@ -78,3 +78,12 @@ export default class TagsSuggestInput extends Component
         }}/>
     }
 }
+
+TagsSuggestInput.propTypes = {
+    tags: React.PropTypes.array.isRequired,
+    onTagsChange: React.PropTypes.func,
+    placeholder: React.PropTypes.string,
+    onFetchSuggestionsRequest: React.PropTypes.func.isRequired,
+};
+
+export default TagsSuggestInput;
