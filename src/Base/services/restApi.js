@@ -227,7 +227,8 @@ export function putUserData(user) {
                         firstName,
                         lastName,
                         phoneNumber,
-                        info
+                        info,
+                        interests
                     }
                 }
             }`;
