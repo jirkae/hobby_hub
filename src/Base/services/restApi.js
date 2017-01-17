@@ -190,6 +190,7 @@ export function getUserData(id) {
                     lastName,
                     phoneNumber,
                     info,
+                    interests,
                     otherUsersComments {
                         id,
                         text,
