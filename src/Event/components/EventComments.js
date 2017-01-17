@@ -8,7 +8,7 @@ class EventComments extends Component {
         super(props);
         this.state = {
             newComment: ''
-        }
+        };
 
         this.handleAddComment = this.handleAddComment.bind(this);
     }
@@ -16,7 +16,7 @@ class EventComments extends Component {
     handleAddComment() {
         const { addComment, event } = this.props;
 
-        if (this.state.newComment != '') {
+        if (this.state.newComment !== '') {
             addComment(event.id, this.state.newComment);
             this.setState({ newComment: '' });
         }

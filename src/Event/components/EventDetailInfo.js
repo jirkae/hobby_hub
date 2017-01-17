@@ -47,7 +47,7 @@ class EventDetailInfo extends Component {
                             <h4 className="text-uppercase ">Mapa konání:</h4>
                             <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q=' + data.street + ',' + data.city + ',' + data.zipCode} />
                             { user.id !== undefined &&
-                                <EventComments comments = {data.comments} event = {data}/>
+                                <EventComments comments={data.comments} event={data}/>
                             }
                         </div>
                         <div className="col-md-4">
