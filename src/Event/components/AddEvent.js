@@ -54,16 +54,15 @@ class AddEvent extends Component {
     } else {
       promise = updateEvent(newEvent, this.props.user, this.props.event.id);
     }
-    promise.then((response) => {
-      console.log(response);
+    promise.then(({data}) => {
       this.setState({
         step: 4,
-        event: response
+        event: data
       })
     })
       .catch(error => {
-                console.log('CHYBA, NEPOVEDLO SE ODESLAT KOMENTÁŘ', error);
-            }); // nechat modální okno otevřené a zobrazit červenou hlášku
+          console.log('CHYBA, NEPOVEDLO SE PŘIDAT AKCI', error);
+      }); 
   }
 
   getCurrentStepContent() {

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from "react-google-maps";
 
-export default class EventsMap extends Component {
+class EventsMap extends Component {
 
     constructor(props) {
         super(props);
@@ -20,7 +20,7 @@ export default class EventsMap extends Component {
         const {params} = this.props;
         if (typeof params.cities === 'object' && params.cities.length === 1 && typeof google !== 'undefined') {
             const geocoder = new google.maps.Geocoder();
-            
+
             geocoder.geocode({ 'address': params.cities[0] }, (results, status) => {
                 if (status === google.maps.GeocoderStatus.OK) {
                     this.setState({
@@ -28,7 +28,7 @@ export default class EventsMap extends Component {
                         zoom: 11
                     });
                 } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
+                    console.log('Geocode was not successful for the following reason: ' + status);
                 }
             });
         } else {
@@ -47,11 +47,25 @@ export default class EventsMap extends Component {
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentDidUpdate() {
         this.onGoogleMapLoad();
     }
 
     render() {
+        const {events} = this.props;
+
+        var markers = events.map((event) => {
+            return (
+                <Marker key={event.id}
+                    position={{ lat: event.lat, lng: event.lng }}
+                    onClick={() => { this.context.router.push({
+                                        pathname: '/events/' + event.id
+                                    }); 
+                                } } 
+                    title={event.name} />
+            );
+        });
+
         return (
             <div>
                 <GoogleMapLoader
@@ -64,9 +78,7 @@ export default class EventsMap extends Component {
                             zoom={this.state.zoom}
                             center={this.state.center}
                             >
-                            <Marker
-                                position={{ lat: 50.069483399999996, lng: 14.401650799999997 }}
-                                onClick={() => { alert('xx') } } />
+                            {markers}
                         </GoogleMap>
                     }
                     />
@@ -74,3 +86,9 @@ export default class EventsMap extends Component {
         );
     }
 }
+
+EventsMap.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
+export default EventsMap;
