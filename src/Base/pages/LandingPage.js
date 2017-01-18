@@ -37,7 +37,7 @@ class LandingPage extends Component {
         const { events } = this.props;
         const { interests } = this.props;
 
-        const title = (interests === undefined || interests.length === 0) ? undefined : 'Mohlo by se vám líbit';
+        const title = (!interests || interests.length === 0) ? undefined : 'Mohlo by se vám líbit';
 
         if (events === null) {
             return "Načítám akce...";
