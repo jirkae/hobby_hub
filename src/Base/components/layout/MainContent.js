@@ -12,7 +12,7 @@ class MainContent extends Component {
   }
 }
 
-MainContent = {
+MainContent.propTypes = {
     className: React.PropTypes.string,
 };
 
