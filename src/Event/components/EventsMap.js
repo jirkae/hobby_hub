@@ -55,6 +55,9 @@ class EventsMap extends Component {
         const {events} = this.props;
 
         var markers = events.map((event) => {
+            if (!(event.lat > 0 && event.lng > 0)) {
+                return null;
+            }
             return (
                 <Marker key={event.id}
                     position={{ lat: event.lat, lng: event.lng }}
