@@ -1,9 +1,14 @@
+/* global google */
+
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, Col } from "react-bootstrap";
 import TagsSuggestInput from "./../../../Base/components/TagsSuggestInput";
 import { fetchCities } from './../../../Base/services/restApi';
 
+
 class AddEventStep2 extends Component {
+  geocoder = null;
+
   constructor(params) {
     super(params);
 
@@ -20,6 +25,9 @@ class AddEventStep2 extends Component {
     this.formSubmit = this.formSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.getValidationState = this.getValidationState.bind(this);
+    if (typeof google !== 'undefined') {
+      this.geocoder = new google.maps.Geocoder();
+    }
   }
 
   componentDidMount() {
@@ -31,7 +39,7 @@ class AddEventStep2 extends Component {
         }
       }
       this.setState({ event: event }, () => {
-        this.setState({cities: [this.state.event.city]});
+        this.setState({ cities: [this.state.event.city] });
       });
     }
   }
@@ -39,7 +47,7 @@ class AddEventStep2 extends Component {
   handleFieldChange(e, name) {
     let { event } = this.state;
     event[name] = e.target.value;
-    this.setState({event: event});
+    this.setState({ event: event });
   }
 
   getValidationState(name) {
@@ -60,19 +68,34 @@ class AddEventStep2 extends Component {
       errors.push('zipCode');
     }
 
-    if(this.state.cities.length === 0)
-    {
+    if (this.state.cities.length !== 1) {
       errors.push('cities');
     }
 
-    if (errors.length === 0) {
-      let eventWithCity = {};
-      Object.assign(eventWithCity, event);
-      eventWithCity.city = this.state.cities[0];
+    if (errors.length !== 0) {
+      this.setState({ errors: this.errors });
+    }
 
-      this.props.onSubmit(eventWithCity);
-    } else {
-      this.setState({errors: errors});
+    if (errors.length === 0 && typeof this.geocoder !== 'undefined') {
+      this.geocoder.geocode({ 'address': event.street + ', ' + this.state.cities[0] }, (results, status) => {
+
+        if (status === google.maps.GeocoderStatus.OK) {
+          let eventWithCity = {};
+          Object.assign(eventWithCity, this.state.event);
+          eventWithCity.city = this.state.cities[0];
+          eventWithCity.lat = results[0].geometry.location.lat();
+          eventWithCity.lng = results[0].geometry.location.lng();
+
+          this.props.onSubmit(eventWithCity);
+        } else {
+          console.log('Geocode was not successful for the following reason: ' + status);
+          var errors = [];
+          errors.push('street');
+          errors.push('zipCode');
+          errors.push('cities');
+          this.setState({ errors: errors });
+        }
+      });
     }
   }
 
@@ -81,14 +104,14 @@ class AddEventStep2 extends Component {
   }
 
   render() {
-    return(
+    return (
       <form onSubmit={this.formSubmit} className="form-horizontal">
         <Col md={12}>
           <fieldset>
             <FormGroup controlId="eventStreet" validationState={this.getValidationState('street')}>
               <ControlLabel className="col-md-3 control-label">Ulice a cp.</ControlLabel>
               <div className="col-md-8">
-                <FormControl type="text" value={this.state.event.street} onChange={(e) => {this.handleFieldChange(e, 'street')}}/>
+                <FormControl type="text" value={this.state.event.street} onChange={(e) => { this.handleFieldChange(e, 'street') } } />
               </div>
             </FormGroup>
 
@@ -105,7 +128,7 @@ class AddEventStep2 extends Component {
             <FormGroup controlId="zipCode" validationState={this.getValidationState('zipCode')}>
               <ControlLabel className="col-md-3 control-label">PSČ</ControlLabel>
               <div className="col-md-8">
-                <FormControl type="text" value={this.state.event.zipCode} onChange={(e) => {this.handleFieldChange(e, 'zipCode')}}/>
+                <FormControl type="text" value={this.state.event.zipCode} onChange={(e) => { this.handleFieldChange(e, 'zipCode') } } />
               </div>
             </FormGroup>
 

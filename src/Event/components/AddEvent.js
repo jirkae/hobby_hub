@@ -25,7 +25,6 @@ class AddEvent extends Component {
   }
 
   handleStep(e, step) {
-    e.preventDefault();
     this.setState({
       step: step
     });
@@ -61,7 +60,9 @@ class AddEvent extends Component {
         event: data
       })
     })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+      .catch(error => {
+          console.log('CHYBA, NEPOVEDLO SE PŘIDAT AKCI', error);
+      }); 
   }
 
   getCurrentStepContent() {

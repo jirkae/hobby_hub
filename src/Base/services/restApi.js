@@ -73,6 +73,8 @@ export function getEvents(params) {
                 tags
                 city
                 startDate
+                lat
+                lng
                 }
         }`;
     const vars = { tags: params.tags, cities: params.cities };
