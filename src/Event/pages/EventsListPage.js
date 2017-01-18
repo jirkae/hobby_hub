@@ -10,19 +10,25 @@ export default class EventsListPage extends Component {
     {
         super(props);
         this.state = {
-            events: null
+            events: null,
+            params: {
+                cities: [],
+                tags: []
+            }
         };
     }
 
     componentDidMount()
     {
       const params = this.getParams(this.props.location.query);
+      this.setState({params: params});
       this.fetchEvents(params);
     }
 
     componentWillReceiveProps(nextProps)
     {
         const params = this.getParams(nextProps.location.query);
+        this.setState({params: params});
         this.fetchEvents(params);
     }
 
@@ -62,19 +68,19 @@ export default class EventsListPage extends Component {
         });
     }
 
-    gettingEvents()
+    gettingEvents(params)
     {
         const {events} = this.state;
         if (events === null) {
             return "Načítám akce...";
         } else {
-            return <EventsBox events={events}/>
+            return <EventsBox events={events} params={params} showMap={true}/>
         }
     }
 
     render()
     {
-        const params = this.getParams(this.props.location.query);
+        const {params} = this.state;
           return (
             <div>
               <div className="search-row-wrapper landingBackgroundEvents">
@@ -86,7 +92,7 @@ export default class EventsListPage extends Component {
                     }}/>
                 </Grid>
               </div>
-              {this.gettingEvents()}
+              {this.gettingEvents(params)}
             </div>
         );
     }

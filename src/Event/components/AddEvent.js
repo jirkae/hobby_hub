@@ -25,7 +25,6 @@ class AddEvent extends Component {
   }
 
   handleStep(e, step) {
-    e.preventDefault();
     this.setState({
       step: step
     });
@@ -55,13 +54,16 @@ class AddEvent extends Component {
     } else {
       promise = updateEvent(newEvent, this.props.user, this.props.event.id);
     }
-    promise.then(({data}) => {
+    promise.then((response) => {
+      console.log(response);
       this.setState({
         step: 4,
-        event: data
+        event: response
       })
     })
-      .catch(); // nechat modální okno otevřené a zobrazit červenou hlášku
+      .catch(error => {
+                console.log('CHYBA, NEPOVEDLO SE ODESLAT KOMENTÁŘ', error);
+            }); // nechat modální okno otevřené a zobrazit červenou hlášku
   }
 
   getCurrentStepContent() {
