@@ -104,7 +104,7 @@ class UserInfo extends Component {
                       <textarea className='form-control cell not-resizeable'
                                 rows='11'
                                 type="text"
-                                value={info}
+                                value={info === null ? '' : info}
                                 onChange={this.handleAboutChange} />
                     </FormGroup>
                   </Col>

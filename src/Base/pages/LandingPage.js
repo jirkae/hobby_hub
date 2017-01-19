@@ -48,7 +48,7 @@ class LandingPage extends Component {
     render()
     {
         const { interests } = this.props;
-        const userInterests = interests === undefined ? [] : interests;
+        const userInterests = (interests === undefined || interests === null) ? [] : interests;
 
         return (
             <div>
