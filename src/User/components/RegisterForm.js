@@ -19,7 +19,9 @@ class RegisterForm extends Component {
 
       password: '',  // bez toho to nejede
       firstName: '',
-      lastName: ''
+      lastName: '',
+
+      validationText: '',
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -78,41 +80,51 @@ class RegisterForm extends Component {
   }
 
   validateFormAndCall(formData) {
+    let { email, password, secondPassword, firstName, lastName } = this.state;
     let valid = true;
+    let validationText = '';
+    this.setState({validationText: ''});
 
-    if (!this.state.email) {
+    if (!email) {
       this.setState({emailValidationState: 'error'});
       valid = false;
+      validationText = validationText + 'Vyplňte prosím email';
     } else {
       this.setState({emailValidationState: null});
     }
 
-    if (this.state.password !== this.state.secondPassword || minPassLength > this.state.password.length) {
+    if (!password || password !== secondPassword || minPassLength > password.length) {
       this.setState({passValidationState: 'error'});
       valid = false;
+
+        validationText = !password ? validationText + ' Zadejte heslo' : validationText;
+        validationText = password !== secondPassword ? validationText + ' Zadaná hesla se neshodují' : validationText;
+        validationText = minPassLength > password.length ? validationText + ' Zadané heslo je příliš krátké' : validationText;
     } else {
       this.setState({passValidationState: null});
     }
 
-    if(!this.state.firstName){
+    if(!firstName){
       this.setState({firstNameValidationState: 'error'});
       valid = false;
+        validationText = validationText + ' Zadejte své jméno';
     }else {
         this.setState({firstNameValidationState: 'success'});
     }
 
-      if(!this.state.lastName){
+      if(!lastName){
           this.setState({lastNameValidationState: 'error'});
           valid = false;
+          validationText = validationText + ' Zadejte své příjmení';
       }else {
         this.setState({lastNameValidationState: 'success'});
       }
 
-
-    if (valid) {
-
-      this.props.dispatch(registerUser(formData));
-    }
+      this.setState({validationText: validationText}, () => {
+          if (valid) {
+              this.props.dispatch(registerUser(formData));
+          }
+      });
   }
 
   render() {
@@ -122,7 +134,7 @@ class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalEmail" validationState={this.state.emailValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Email
+              Email*
             </Col>
             <Col sm={8}>
               <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
@@ -132,7 +144,7 @@ class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalPassword" validationState={this.state.firstNameValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Jméno
+              Jméno*
             </Col>
             <Col sm={8}>
               <FormControl type="text" placeholder="Jméno" onChange={this.handleFirstNameChange} />
@@ -142,7 +154,7 @@ class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalPassword" validationState={this.state.lastNameValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Příjmení
+              Příjmení*
             </Col>
             <Col sm={8}>
               <FormControl type="text" placeholder="Příjmení" onChange={this.handleLastNameChange}/>
@@ -151,7 +163,7 @@ class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalPassword" validationState={this.getValidationState()}>
             <Col componentClass={ControlLabel} sm={3}>
-              Heslo
+              Heslo*
             </Col>
             <Col sm={8}>
               <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
@@ -161,7 +173,7 @@ class RegisterForm extends Component {
 
           <FormGroup controlId="formHorizontalPasswordAgain" validationState={this.state.passValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Heslo znovu
+              Heslo znovu*
             </Col>
             <Col sm={8}>
               <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange}/>
@@ -177,7 +189,7 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.state.error}/>
+          <ConditionalErrorLabel error={this.state.validationText.length !== 0} text={this.state.validationText}/>
         </Form>
       </div>
     )

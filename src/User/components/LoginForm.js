@@ -31,6 +31,11 @@ class LoginForm extends Component {
 
     if(formData.email && formData.password){
       this.props.dispatch(loginUser(formData))
+    } else {
+      this.setState({
+          emailValidationState: formData.email ? 'success' : 'error',
+          passwordValidationState: formData.password ? 'success' : 'error',
+      })
     }
   }
 
@@ -47,18 +52,18 @@ class LoginForm extends Component {
       <div>
         <Form horizontal onSubmit={this.handleSubmit}>
 
-          <FormGroup controlId="formHorizontalEmail">
+          <FormGroup controlId="formHorizontalEmail" validationState={this.state.emailValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Email
+              Email*
             </Col>
             <Col sm={7}>
               <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange}/>
             </Col>
           </FormGroup>
 
-          <FormGroup controlId="formHorizontalPassword">
+          <FormGroup controlId="formHorizontalPassword" validationState={this.state.passwordValidationState}>
             <Col componentClass={ControlLabel} sm={3}>
-              Heslo
+              Heslo*
             </Col>
             <Col sm={7}>
               <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
@@ -73,7 +78,7 @@ class LoginForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.state.error}/>
+          <ConditionalErrorLabel error={this.state.error} text="Špatné uživatelské jméno nebo heslo"/>
         </Form>
       </div>
     )

@@ -1,6 +1,8 @@
+import React from 'react';
 import * as API from './../../Base/services/restApi';
 import * as C from './userActionTypes';
-import { closeModal } from './../../Base/actions/modalActionCreators';
+import { openModal, closeModal } from './../../Base/actions/modalActionCreators';
+import ConfirmationDialog from '../../Base/components/ConfirmationDialog';
 
 export function loginUserSuccess(payload) {
   return { type: C.LOGIN_USER_SUCCESS, payload };
@@ -58,7 +60,6 @@ export function loginUser(user) {
         dispatch(closeModal());
 
       }).catch(error => {
-          console.log("CYBAAAA!!!! AAAAAA!!!");
         dispatch(loginUserFailure(user, error))
       });
   };
@@ -74,7 +75,6 @@ export function registerUser(user) {
         dispatch(closeModal());
 
       }).catch(error => {
-            console.log("CHYBAAAA!!!! AAAAAA!!!", error);
         dispatch(registerUserFailure(user, error))
       });
   };
@@ -95,6 +95,11 @@ export function putUserProfileInfo(user) {
     return function (dispatch) {
         return API.putUserData(user)
             .then(response => {
+                dispatch(openModal(() => {
+                    return <ConfirmationDialog type="NONE">
+                        Profil uložen
+                    </ConfirmationDialog>
+                }));
                 dispatch(getUserDataSuccess(response.data));
             }).catch(error => {
                 console.log('CHYBA, NEPOVEDLO SE NAČÍST INFORMACE O UŽIVATELI', error);

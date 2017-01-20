@@ -1,11 +1,11 @@
 import * as C from './../actions/modalActionTypes'
 import * as U from './../../User/actions/userActionTypes'
 
-var defaultState = {
+let defaultState = {
   showModal: false,
   contentGenerator: () => { return null; },
   error: null
-}
+};
 
 function modalReducer(state = defaultState, action) {
 

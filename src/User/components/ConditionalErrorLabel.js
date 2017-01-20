@@ -3,10 +3,11 @@ import { FormGroup, Col } from 'react-bootstrap'
 
 class ConditionalErrorLabel extends Component {
     render() {
+        const { error, text } = this.props;
         return (
             <FormGroup>
                 <Col smOffset={3} sm={9}>
-                    {this.props.error ? <label>Nastala neočekávaná chyba</label> : ""}
+                    { error ? <label>{ text }</label> : ""}
                 </Col>
             </FormGroup>
         )
@@ -15,6 +16,7 @@ class ConditionalErrorLabel extends Component {
 
 ConditionalErrorLabel.propTypes = {
     error: React.PropTypes.any,
+    text: React.PropTypes.string.isRequired,
 };
 
 export default ConditionalErrorLabel;

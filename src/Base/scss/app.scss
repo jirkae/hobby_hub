@@ -242,3 +242,17 @@
 .flex {
   display: flex;
 }
+
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  button {
+    margin: auto;
+  }
+
+  button + button {
+    margin-left: 5px;
+  }
+}
