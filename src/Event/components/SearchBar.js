@@ -42,7 +42,7 @@ class SearchBar extends Component {
                 <i className="icon-location-2 icon-append"></i>
 
                 <TagsSuggestInput tags={this.state.cities} onTagsChange={(cities) => {
-                  this.handleCitiesChange(cities)
+                  this.handleCitiesChange(cities) 
                 }} placeholder="město" onFetchSuggestionsRequest={fetchCities}/>
 
               </Col>
