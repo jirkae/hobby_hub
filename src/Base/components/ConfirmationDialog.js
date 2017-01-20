@@ -21,13 +21,13 @@ class ConfirmationDialog extends Component {
                 </div>;
                 break;
 
-            case 'NONE':
-                stateButtons = '';
+            case 'OK':
+                stateButtons = <button className="btn btn-primary" onClick={this.props.primaryAction}>Ok</button>;
                 break;
 
-            case 'OK':
+            case 'NONE':
             default:
-                stateButtons = <button className="btn btn-primary" onClick={this.props.primaryAction}>Ok</button>;
+                stateButtons = '';
                 break;
         }
 
