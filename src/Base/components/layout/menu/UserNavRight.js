@@ -13,8 +13,9 @@ class GuestNavRight extends Component {
   }
 
   handleLogoutClick(e) {
-    e.preventDefault();
-    this.props.dispatch(logoutUser(this.props.userId));
+      e.preventDefault();
+      this.props.dispatch(logoutUser(this.props.userId));
+        this.context.router.push('/');
   }
 
   render() {
@@ -28,5 +29,9 @@ class GuestNavRight extends Component {
     )
   }
 }
+
+GuestNavRight.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default GuestNavRight = connect()(GuestNavRight);
