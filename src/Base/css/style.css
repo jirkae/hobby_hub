@@ -18,6 +18,20 @@
     }
 }
 
+
+div.react-tagsinput
+{
+    border: 0px solid;
+    border-right: solid 1px #ddd;
+    box-shadow: none !important;
+    height: 48px auto;
+}
+
+.search-row .search-col:first-child .react-tagsinput
+{
+    border-radius: 3px 0 0 3px !important;
+}
+
 span.logo-icon
 {
     margin-right: 5px;
@@ -255,8 +269,6 @@ hr.small {
 form input[type="text"], form input[type="email"], form input[type="password"] {
     height: 40px;
 }
-
-.form-control {}
 
 p.required, .required sup {
     color: #e74c3c;
