@@ -2,7 +2,7 @@
 @import url("animate.min.css");
 /*@import url("font-awesome.css");*/
 @import url("fontello.css");
-/*@import url("longshadow.css");*/
+@import url("longshadow.css");
 /*@import url("../plugins/jquery.fs.scroller/jquery.fs.scroller.css");*/
 /*@import url("../plugins/jquery.fs.selecter/jquery.fs.selecter.css");*/
 /*@import url("fileinput.min.css");*/
@@ -16,6 +16,11 @@
     .container-top-margin {
       margin-top: 30px;
     }
+}
+
+span.logo-icon
+{
+    margin-right: 5px;
 }
 
 .no-results-alert

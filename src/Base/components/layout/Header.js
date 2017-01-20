@@ -20,7 +20,7 @@ export default class Header extends Component {
                     }}>
                       <Button bsStyle="link">
                         <span className="logo-icon">
-                          <i className="icon icon-search-1"></i>
+                          <i className="icon icon-search-1 ln-shadow-logo shape-0"></i>
                         </span>
                         Hobby<span>Hub
                         </span>
