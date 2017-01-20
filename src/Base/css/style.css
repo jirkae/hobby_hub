@@ -1900,6 +1900,7 @@ h1.pricetag span, h1.trtri span {
 }
 
 .list-check>li {
+    text-align: left;
     margin-bottom: 3px;
     padding-left: 18px;
     position: relative;

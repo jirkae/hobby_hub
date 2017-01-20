@@ -77,7 +77,9 @@ class AddEventStep1 extends Component {
       errors.push('tags');
     }
 
-    if (typeof(event.price) !== "number" || !(parseInt(event.price, 10) >= 0)) {
+    let isnum = /^\d+$/.test(event.price);
+
+    if (!isnum || !(parseInt(event.price, 10) >= 0)) {
       errors.push('price');
     }
 

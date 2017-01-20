@@ -41,7 +41,7 @@ class EventsCreatePage extends Component {
             <div className="promo-text-box"><i className=" icon-lamp fa fa-4x icon-color-1"></i>
               <h3><strong>Jak správně vytvořit akci? </strong></h3>
               <p> Měli byste především myslet na to, že čím lepší informace předáte
-              případnému zájemci, tím spíše nenastane žádný problém v průběhu akce. Zvažte následující: </p>
+              případnému zájemci, tím spíše nenastane žádný problém v průběhu akce. </p>
             </div>
             <Panel heading="Tipy">
               <ul className="list-check">
@@ -49,7 +49,6 @@ class EventsCreatePage extends Component {
                 <li> Používejte výstižné štítky</li>
                 <li> Nebojte se být detailní</li>
                 <li> Zadejte údaje o lokalitě</li>
-                <li> Buďte přesní!</li>
               </ul>
             </Panel>
           </div>
