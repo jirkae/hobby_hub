@@ -77,7 +77,7 @@ class AddEventStep1 extends Component {
       errors.push('tags');
     }
 
-    if (!(parseInt(event.price, 10) >= 0)) {
+    if (typeof(event.price) !== "number" || !(parseInt(event.price, 10) >= 0)) {
       errors.push('price');
     }
 
@@ -136,7 +136,7 @@ class AddEventStep1 extends Component {
             </FormGroup>
 
             <FormGroup controlId="price" validationState={this.getValidationState('price')}>
-              <ControlLabel className="col-md-3 control-label">Cena</ControlLabel>
+              <ControlLabel className="col-md-3 control-label">Cena v CZK</ControlLabel>
               <div className="col-md-8">
                 <FormControl type="text" value={this.state.event.price} onChange={(e) => { this.handleFieldChange(e, 'price') } } />
               </div>
