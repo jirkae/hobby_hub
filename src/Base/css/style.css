@@ -24,7 +24,7 @@ div.react-tagsinput
     border: 0px solid;
     border-right: solid 1px #ddd;
     box-shadow: none !important;
-    height: 48px auto;
+    min-height: 48px;
 }
 
 .search-row .search-col:first-child .react-tagsinput
