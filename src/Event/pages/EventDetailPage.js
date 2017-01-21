@@ -6,6 +6,8 @@ import ParticipantPanel from '../components/Participants/ParticipantsPanel.js';
 import { connect } from "react-redux";
 import EventDetailInfo from './../components/EventDetailInfo';
 import { getEventData } from './../actions/eventActionCreators';
+import { Row, Col } from 'react-bootstrap';
+import EventComments from '../components/EventComments';
 
 class EventDetailPage extends Component {
 
@@ -34,18 +36,29 @@ class EventDetailPage extends Component {
 
     return (
       <ContentWrapper>
-        <MainContent className="col-sm-9">
-          {data !== null  ?
-            <EventDetailInfo data={data} />
+        <Row>
+          <MainContent className="col-sm-9">
+            {data !== null ?
+              <EventDetailInfo data={data} />
+              : null
+            }
+          </MainContent>
+          <AsideContent className="col-sm-3">
+            {data !== null ?
+              <ParticipantPanel />
+              : null
+            }
+          </AsideContent>
+        </Row>
+        {
+          data ?
+            <Row>
+              <MainContent className="col-sm-9">
+                {<EventComments comments={data.comments} event={data} />}
+              </MainContent>
+            </Row>
             : null
-          }
-        </MainContent>
-        <AsideContent className="col-sm-3">
-          {data !== null  ?
-            <ParticipantPanel />
-            : null
-          }
-        </AsideContent>
+        }
       </ContentWrapper>
     );
   }

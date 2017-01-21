@@ -30,12 +30,12 @@ class EventComments extends Component {
         return (
             <Row>
                 <Col xs="12">
-                    <h4 className="text-uppercase">Komentáře</h4>
+                    <h4>Komentáře</h4>
                     <div className="form-group">
-                        <textarea className="form-control" value={this.state.newComment} onChange={(e) => { this.setState({ newComment: e.target.value }); } }></textarea>
-                        <button className="btn btn-xs btn-success" onClick={this.handleAddComment}>Přidat komentář</button>
+                        <textarea rows="4" className="form-control" value={this.state.newComment} onChange={(e) => { this.setState({ newComment: e.target.value }); } }></textarea>
+                        <button className="btn btn-success btn-xs" onClick={this.handleAddComment}>Přidat komentář</button>
                     </div>
-                    {comments.map((item) => (
+                    {comments && comments.length > 0 ? comments.map((item) => (
                         <div key={item.id} className="media">
                             <div className="media-body">
                                 <div>
@@ -45,7 +45,7 @@ class EventComments extends Component {
                                 {item.text}
                             </div>
                         </div>
-                    ))}
+                    )) : "K této akci nebyly přidány žádné komentáře. Buďte první!"}
                 </Col>
             </Row>
         );

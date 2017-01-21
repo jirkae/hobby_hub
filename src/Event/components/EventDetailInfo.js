@@ -3,9 +3,6 @@ import { Col, Row } from "react-bootstrap";
 import moment from 'moment';
 import { connect } from "react-redux";
 import { Link } from 'react-router';
-import EventComments from './EventComments';
-
-
 
 class EventDetailInfo extends Component {
     render() {
@@ -34,8 +31,11 @@ class EventDetailInfo extends Component {
                     </Col>
                 </Row>
                 <span className="info-row">
-                    <span className="date"><i className=" icon-clock"> </i> Datum a čas: {moment(data.startDate).format('DD. MM. YYYY h:mm')}- {moment(data.endDate).format('DD. MM. YYYY h:mm')} </span> <br />
-                    <span className="item-location"><i className="fa fa-map-marker"></i> {data.street}, {data.city}, {data.zipCode} </span> </span>
+                    <span className="date"><i className="icon-clock"> </i> Začátek akce: {moment(data.startDate).format('DD. MM. YYYY h:mm')}</span><br />
+                    <span className="date"><i className="icon-clock-2"> </i> Konec akce: {moment(data.endDate).format('DD. MM. YYYY h:mm')}</span><br />
+                    <span className="item-location"><i className="icon-globe"> </i> Adresa: {data.street}, {data.city}, {data.zipCode} </span><br />
+                    <span className="item-location"><i className="icon-money"> </i> Cena: {data.price},- </span>
+                </span>
                 <div className="Ads-Details ">
                     <div className="row">
                         <div className="ads-details-info jobs-details-info col-md-8">
@@ -46,16 +46,8 @@ class EventDetailInfo extends Component {
                             <p>{renderTags(data.tags)}</p>
                             <h4 className="text-uppercase ">Mapa konání:</h4>
                             <iframe className="map" src={'https://www.google.com/maps/embed/v1/place?key=AIzaSyCgB3COu0_8KX6bCwzhHRePKn8rbRdybBI&q=' + data.street + ',' + data.city + ',' + data.zipCode} />
-                            {user.id !== undefined &&
-                                <EventComments comments={data.comments} event={data} />
-                            }
                         </div>
                         <div className="col-md-4">
-                            <aside className="panel panel-body panel-details job-summery">
-                                <ul>
-                                    <li><p className=" no-margin "><strong>Cena:</strong> {data.price} Kč </p></li>
-                                </ul>
-                            </aside>
                             <div className="ads-action hide">
                                 <ul className="list-border">
                                     <li><a href="#" data-toggle="modal"> <i className="fa icon-print"></i> Print job</a></li>
