@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalFooter, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import Header from './Header.js';
+import Footer from './Footer.js';
 import { closeModal } from './../../actions/modalActionCreators';
 
 import '../../scss/app.scss';
@@ -45,6 +46,7 @@ class Layout extends Component {
         </Modal>
         <Header/>
         {children}
+        <Footer/>
       </div>
     );
   }

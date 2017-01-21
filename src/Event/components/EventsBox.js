@@ -21,7 +21,8 @@ const EventsBox = (props) => {
   };
 
   return (
-    <Grid className="container-top-margin">
+    <Grid>
+    <div className="container-top-margin">
       { typeof props.showMap !== 'undefined' && props.showMap &&
         <EventsMap events={props.events} params={props.params} />
       }
@@ -53,6 +54,7 @@ const EventsBox = (props) => {
           </Col>
         </Col>
       </Row>
+      </div>
     </Grid>
   );
 };
