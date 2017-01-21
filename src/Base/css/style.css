@@ -43,6 +43,19 @@ span.logo-icon
   margin-bottom: 0px;
 }
 
+
+div.media-body div{
+    color: #9a9a9a;
+    font-size: 11px;
+}
+
+div.media-body strong
+{
+    color: #000000;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
 div.landingBackground{
   /*background-image: url(../images/bg.jpg);*/
   background-image: url(../images/header_bg_kriket.jpg);
@@ -1929,7 +1942,7 @@ h1.pricetag span, h1.trtri span {
 }
 
 .ads-details-wrapper.inner-box {
-    padding-bottom: 0;
+    padding-bottom: 15px;
 }
 
 .label.adlistingtype {
