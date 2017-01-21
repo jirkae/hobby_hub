@@ -7,12 +7,13 @@ import UserNavRight from "./../menu/UserNavRight";
 class MenuPane extends Component {
   render() {
     const {user} = this.props;
-    return (
-      <div>
-        {user.id === undefined ? <GuestNavRight/> : <UserNavRight userId={user.id}/>}
-      </div>
-    );
+    return showMenuByUserType(user);
   }
+}
+
+function showMenuByUserType(user)
+{
+  return user.id ? <UserNavRight userId={user.id} /> : <GuestNavRight />;
 }
 
 const mapStateToProps = (store) => {

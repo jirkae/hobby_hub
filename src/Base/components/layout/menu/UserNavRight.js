@@ -13,25 +13,25 @@ class GuestNavRight extends Component {
   }
 
   handleLogoutClick(e) {
-      e.preventDefault();
-      this.props.dispatch(logoutUser(this.props.userId));
-        this.context.router.push('/');
+    e.preventDefault();
+    this.props.dispatch(logoutUser(this.props.userId));
+    this.context.router.push('/');
   }
 
   render() {
     return (
-      <ul className="nav navbar-nav navbar-right">
-        <li><Link to={{pathname: "/myActions"}}>Moje akce</Link></li>
-        <li><Link to={{pathname: "/profile"}}>Profil</Link></li>
-        <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
-        <li className="postadd"><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
-      </ul>
+        <ul className="nav navbar-nav navbar-right">
+          <li role="presentation"><Link role="button" action="push" to={{ pathname: "/myActions" }}>Moje akce</Link></li>
+          <li><Link to={{ pathname: "/profile" }}>Profil</Link></li>
+          <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
+          <li className="postadd"><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
+        </ul>
     )
   }
 }
 
 GuestNavRight.contextTypes = {
-    router: React.PropTypes.object.isRequired
+  router: React.PropTypes.object.isRequired
 };
 
 export default GuestNavRight = connect()(GuestNavRight);
