@@ -32,7 +32,7 @@ class EventDetailPage extends Component {
   }
 
   render() {
-    const {data} = this.props;
+    const {data, user} = this.props;
 
     return (
       <ContentWrapper>
@@ -45,13 +45,13 @@ class EventDetailPage extends Component {
           </MainContent>
           <AsideContent className="col-sm-3">
             {data !== null ?
-              <ParticipantPanel />
+              <ParticipantPanel event={data}/>
               : null
             }
           </AsideContent>
         </Row>
         {
-          data ?
+          data && user.id ?
             <Row>
               <MainContent className="col-sm-9">
                 {<EventComments comments={data.comments} event={data} />}

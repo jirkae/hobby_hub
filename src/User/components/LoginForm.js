@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
+import { Button, Form, FormGroup, ControlLabel, FormControl, Col, InputGroup, Glyphicon } from 'react-bootstrap'
 import { loginUser } from './../actions/userActionCreators';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import ConditionalErrorLabel from './ConditionalErrorLabel';
 
 class LoginForm extends Component {
@@ -20,7 +20,7 @@ class LoginForm extends Component {
 
   componentWillReceiveProps(newProp) {
     if (this.props !== newProp) {
-      this.setState({error: newProp.error});
+      this.setState({ error: newProp.error });
     }
   }
 
@@ -29,22 +29,22 @@ class LoginForm extends Component {
 
     const formData = this.state;
 
-    if(formData.email && formData.password){
+    if (formData.email && formData.password) {
       this.props.dispatch(loginUser(formData))
     } else {
       this.setState({
-          emailValidationState: formData.email ? 'success' : 'error',
-          passwordValidationState: formData.password ? 'success' : 'error',
+        emailValidationState: formData.email ? 'success' : 'error',
+        passwordValidationState: formData.password ? 'success' : 'error',
       })
     }
   }
 
   handleEmailChange(event) {
-    this.setState({email: event.target.value});
+    this.setState({ email: event.target.value });
   }
 
   handlePasswordChange(event) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   render() {
@@ -57,7 +57,10 @@ class LoginForm extends Component {
               Email*
             </Col>
             <Col sm={7}>
-              <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange}/>
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="envelope" /></InputGroup.Addon>
+                <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -66,7 +69,10 @@ class LoginForm extends Component {
               Heslo*
             </Col>
             <Col sm={7}>
-              <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="lock" /></InputGroup.Addon>
+                <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange} />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -78,7 +84,7 @@ class LoginForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.state.error} text="Špatné uživatelské jméno nebo heslo"/>
+          <ConditionalErrorLabel error={this.state.error} text="Špatné uživatelské jméno nebo heslo" />
         </Form>
       </div>
     )
@@ -86,13 +92,13 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (store) => {
-    return {
-        error: store.modalReducer.error
-    }
+  return {
+    error: store.modalReducer.error
+  }
 };
 
 LoginForm = connect(
-    mapStateToProps
+  mapStateToProps
 )(LoginForm);
 
 export default LoginForm;

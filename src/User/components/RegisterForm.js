@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, ControlLabel, FormControl, Col } from 'react-bootstrap'
+import { Button, Form, FormGroup, ControlLabel, FormControl, Col, InputGroup, Glyphicon } from 'react-bootstrap'
 import { registerUser } from './../actions/userActionCreators';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import ConditionalErrorLabel from './ConditionalErrorLabel';
 
 const minPassLength = 6;
@@ -34,9 +34,9 @@ class RegisterForm extends Component {
   }
 
   componentWillReceiveProps(newProp) {
-      if (this.props !== newProp) {
-          this.setState({error: newProp.error});
-      }
+    if (this.props !== newProp) {
+      this.setState({ error: newProp.error });
+    }
   }
 
   handleSubmit(event) {
@@ -46,30 +46,30 @@ class RegisterForm extends Component {
       email: this.state.email,
       firstName: this.state.firstName,
       password: this.state.password,
-        lastName: this.state.lastName
+      lastName: this.state.lastName
     };
 
     this.validateFormAndCall(formData);
   }
 
   handleEmailChange(event) {
-    this.setState({email: event.target.value});
+    this.setState({ email: event.target.value });
   }
 
   handleFirstNameChange(event) {
-    this.setState({firstName: event.target.value});
+    this.setState({ firstName: event.target.value });
   }
 
-  handleLastNameChange(event){
-    this.setState({lastName: event.target.value});
+  handleLastNameChange(event) {
+    this.setState({ lastName: event.target.value });
   }
 
   handlePasswordChange(event) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   handleSecondPasswordChange(event) {
-    this.setState({secondPassword: event.target.value});
+    this.setState({ secondPassword: event.target.value });
   }
 
   getValidationState() {
@@ -83,48 +83,48 @@ class RegisterForm extends Component {
     let { email, password, secondPassword, firstName, lastName } = this.state;
     let valid = true;
     let validationText = '';
-    this.setState({validationText: ''});
+    this.setState({ validationText: '' });
 
     if (!email) {
-      this.setState({emailValidationState: 'error'});
+      this.setState({ emailValidationState: 'error' });
       valid = false;
       validationText = validationText + 'Vyplňte prosím email';
     } else {
-      this.setState({emailValidationState: null});
+      this.setState({ emailValidationState: null });
     }
 
     if (!password || password !== secondPassword || minPassLength > password.length) {
-      this.setState({passValidationState: 'error'});
+      this.setState({ passValidationState: 'error' });
       valid = false;
 
-        validationText = !password ? validationText + ' Zadejte heslo' : validationText;
-        validationText = password !== secondPassword ? validationText + ' Zadaná hesla se neshodují' : validationText;
-        validationText = minPassLength > password.length ? validationText + ' Zadané heslo je příliš krátké' : validationText;
+      validationText = !password ? validationText + ' Zadejte heslo' : validationText;
+      validationText = password !== secondPassword ? validationText + ' Zadaná hesla se neshodují' : validationText;
+      validationText = minPassLength > password.length ? validationText + ' Zadané heslo je příliš krátké' : validationText;
     } else {
-      this.setState({passValidationState: null});
+      this.setState({ passValidationState: null });
     }
 
-    if(!firstName){
-      this.setState({firstNameValidationState: 'error'});
+    if (!firstName) {
+      this.setState({ firstNameValidationState: 'error' });
       valid = false;
-        validationText = validationText + ' Zadejte své jméno';
-    }else {
-        this.setState({firstNameValidationState: 'success'});
+      validationText = validationText + ' Zadejte své jméno';
+    } else {
+      this.setState({ firstNameValidationState: 'success' });
     }
 
-      if(!lastName){
-          this.setState({lastNameValidationState: 'error'});
-          valid = false;
-          validationText = validationText + ' Zadejte své příjmení';
-      }else {
-        this.setState({lastNameValidationState: 'success'});
-      }
+    if (!lastName) {
+      this.setState({ lastNameValidationState: 'error' });
+      valid = false;
+      validationText = validationText + ' Zadejte své příjmení';
+    } else {
+      this.setState({ lastNameValidationState: 'success' });
+    }
 
-      this.setState({validationText: validationText}, () => {
-          if (valid) {
-              this.props.dispatch(registerUser(formData));
-          }
-      });
+    this.setState({ validationText: validationText }, () => {
+      if (valid) {
+        this.props.dispatch(registerUser(formData));
+      }
+    });
   }
 
   render() {
@@ -137,8 +137,11 @@ class RegisterForm extends Component {
               Email*
             </Col>
             <Col sm={8}>
-              <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
-              <FormControl.Feedback />
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="envelope" /></InputGroup.Addon>
+                <FormControl type="email" placeholder="Email" onChange={this.handleEmailChange} />
+                <FormControl.Feedback />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -147,8 +150,11 @@ class RegisterForm extends Component {
               Jméno*
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="Jméno" onChange={this.handleFirstNameChange} />
-              <FormControl.Feedback/>
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="pencil" /></InputGroup.Addon>
+                <FormControl type="text" placeholder="Jméno" onChange={this.handleFirstNameChange} />
+                <FormControl.Feedback />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -157,7 +163,10 @@ class RegisterForm extends Component {
               Příjmení*
             </Col>
             <Col sm={8}>
-              <FormControl type="text" placeholder="Příjmení" onChange={this.handleLastNameChange}/>
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="pencil" /></InputGroup.Addon>
+                <FormControl type="text" placeholder="Příjmení" onChange={this.handleLastNameChange} />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -166,8 +175,11 @@ class RegisterForm extends Component {
               Heslo*
             </Col>
             <Col sm={8}>
-              <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange}/>
-              <FormControl.Feedback />
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="lock" /></InputGroup.Addon>
+                <FormControl type="password" placeholder="Heslo" onChange={this.handlePasswordChange} />
+                <FormControl.Feedback />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -176,8 +188,11 @@ class RegisterForm extends Component {
               Heslo znovu*
             </Col>
             <Col sm={8}>
-              <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange}/>
-              <FormControl.Feedback />
+              <InputGroup>
+                <InputGroup.Addon><Glyphicon glyph="lock" /></InputGroup.Addon>
+                <FormControl type="password" placeholder="Heslo znovu" onChange={this.handleSecondPasswordChange} />
+                <FormControl.Feedback />
+              </InputGroup>
             </Col>
           </FormGroup>
 
@@ -189,7 +204,7 @@ class RegisterForm extends Component {
             </Col>
           </FormGroup>
 
-          <ConditionalErrorLabel error={this.state.validationText.length !== 0} text={this.state.validationText}/>
+          <ConditionalErrorLabel error={this.state.validationText.length !== 0} text={this.state.validationText} />
         </Form>
       </div>
     )
@@ -198,7 +213,7 @@ class RegisterForm extends Component {
 
 const mapStateToProps = (store) => {
   return {
-      error: store.modalReducer.error
+    error: store.modalReducer.error
   };
 };
 

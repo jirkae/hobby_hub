@@ -12,6 +12,10 @@ class ParticipantPanel extends Component {
         getParticipants(event.id);
     }
 
+    componentDidUpdate() {
+        const { getParticipants, event } = this.props;
+        getParticipants(event.id);
+    }
 
     render() {
         const { participantsConfirmed, participantsRequested, event, user} = this.props;
@@ -46,7 +50,6 @@ class ParticipantPanel extends Component {
 const mapStateToProps = (store) => {
     return {
         user: store.userReducer.user,
-        event: store.eventReducer.data,
         participantsConfirmed: store.eventReducer.participantsConfirmed,
         participantsRequested: store.eventReducer.participantsRequested,
     }
