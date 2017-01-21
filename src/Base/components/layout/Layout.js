@@ -35,7 +35,7 @@ class Layout extends Component {
 
     return (
       <div>
-        <Modal show={modalVisible}>
+        <Modal show={modalVisible} onHide={this.closeModal}>
           <ModalBody>
             {modalContentGenerator()}
           </ModalBody>
