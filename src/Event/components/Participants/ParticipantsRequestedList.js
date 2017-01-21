@@ -32,7 +32,7 @@ class ParticipantsRequestedList extends Component {
         });
 
         return (
-            <Panel heading="živatelé na schválení">
+            <Panel heading="Uživatelé na schválení">
                 <ul>
                     {items}
                 </ul>
