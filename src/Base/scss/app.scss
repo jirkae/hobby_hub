@@ -4,6 +4,24 @@
   padding: 20px;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+  height: auto !important;
+}
+body {
+  position: static !important;
+  margin-bottom: 90px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 80px;
+  background-color: #f5f5f5;
+}
+
 .footer {
   clear: both;
 }
@@ -57,18 +75,24 @@
   padding-top: 40px;
 
   .react-tagsinput {
-    padding: 0 !important;
+    padding: 2px 0 !important;
     border-radius: 3px;
     overflow: visible;
     position: relative;
 
     .react-tagsinput-input {
-      margin: 0 !important;
+      margin: 0 -80% 0 0 !important;
+      width: 100%;
     }
 
     & > span {
       padding-left: 7px;
+      margin-left: 0 !important;
     }
+  }
+
+  .has-error .react-tagsinput {
+    border-color: #a94442;
   }
 }
 
@@ -101,6 +125,11 @@
   text-align: left;
   padding-left: 35px;
   margin-left: 20px;
+}
+
+.react-tagsinput input {
+  width: 100%;
+  margin-right: -70%;
 }
 
 .icon-append {
@@ -214,7 +243,7 @@
   padding: 0;
 
   span {
-    padding-left: 5px;
+    padding-left: 12px;
 
     .react-autosuggest__container {
       input {
