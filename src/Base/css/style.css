@@ -18,6 +18,11 @@
     }
 }
 
+div.search-row div.col-sm-4
+{
+    margin-bottom: 15px;
+}
+
 .search-row div.react-tagsinput
 {
     border: 0px solid;
@@ -2861,9 +2866,6 @@ td.ads-details-td {
     }
     .text-center-xs {
         text-align: center;
-    }
-    .intro .col-sm-4 {
-        margin-bottom: 15px;
     }
     .table-action {
         display: block;
