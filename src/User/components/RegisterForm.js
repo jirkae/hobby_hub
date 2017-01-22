@@ -88,7 +88,7 @@ class RegisterForm extends Component {
     if (!email) {
       this.setState({ emailValidationState: 'error' });
       valid = false;
-      validationText = validationText + 'Vyplňte prosím email';
+      validationText += 'Vyplňte prosím email';
     } else {
       this.setState({ emailValidationState: null });
     }
@@ -107,7 +107,7 @@ class RegisterForm extends Component {
     if (!firstName) {
       this.setState({ firstNameValidationState: 'error' });
       valid = false;
-      validationText = validationText + ' Zadejte své jméno';
+      validationText += ' Zadejte své jméno';
     } else {
       this.setState({ firstNameValidationState: 'success' });
     }
@@ -115,7 +115,7 @@ class RegisterForm extends Component {
     if (!lastName) {
       this.setState({ lastNameValidationState: 'error' });
       valid = false;
-      validationText = validationText + ' Zadejte své příjmení';
+      validationText += ' Zadejte své příjmení';
     } else {
       this.setState({ lastNameValidationState: 'success' });
     }
