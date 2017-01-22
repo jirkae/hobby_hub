@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import { logoutUser } from './../../../../User/actions/userActionCreators';
+import { getLatestEvents } from './../../../../Event/actions/eventActionCreators';
 
 class GuestNavRight extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class GuestNavRight extends Component {
   handleLogoutClick(e) {
     e.preventDefault();
     this.props.dispatch(logoutUser(this.props.userId));
+    this.props.dispatch(getLatestEvents());
     this.context.router.push('/');
   }
 
