@@ -4,6 +4,7 @@ import SearchBar from "../../Event/components/SearchBar.js";
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { getLatestEvents, getFilteredEvents} from './../../Event/actions/eventActionCreators';
+import { getUserProfileInfo } from './../../User/actions/userActionCreators';
 
 class LandingPage extends Component {
 
@@ -13,6 +14,14 @@ class LandingPage extends Component {
         this.state = {
             events: null
         };
+    }
+
+    componentWillReceiveProps(newProp) {
+        if (newProp.userId !== undefined && this.props.userId === undefined) {
+            this.props.getUserProfileInfo(newProp.userId);
+        } if (newProp.interests !== undefined && this.props.interests === undefined) {
+            this.props.getFilteredEvents({ tags: newProp.interests });
+        }
     }
 
     componentDidMount()
@@ -96,7 +105,8 @@ LandingPage = connect(
     mapStateToProps,
     { /* funguje stejně jako mapDispatchToProps v případě, že se funkce jmenují stejně */
         getLatestEvents,
-        getFilteredEvents
+        getFilteredEvents,
+        getUserProfileInfo
     }
 )(LandingPage);
 
