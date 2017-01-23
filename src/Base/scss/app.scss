@@ -120,7 +120,7 @@ body {
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
-  overflow: hidden !important;
+  //overflow: hidden !important;
   //position: relative;
 }
 
@@ -302,4 +302,8 @@ body {
   body .navbar-nav>li.postadd a {
     padding: 0;
   }
+}
+
+.createEvent {
+  overflow: hidden;
 }

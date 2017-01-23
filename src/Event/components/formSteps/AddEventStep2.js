@@ -75,7 +75,7 @@ class AddEventStep2 extends Component {
     }
 
     if (errors.length !== 0) {
-      this.setState({ errors: this.errors });
+      this.setState({ errors: errors });
     }
 
     if (errors.length === 0 && typeof this.geocoder !== 'undefined') {
