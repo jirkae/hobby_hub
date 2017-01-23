@@ -29,7 +29,7 @@ class EventComments extends Component {
 
         return (
             <Row>
-                <Col xs="12">
+                <Col xs={12}>
                     <h4>Komentáře</h4>
                     <div className="form-group">
                         <textarea rows="4" className="form-control" value={this.state.newComment} onChange={(e) => { this.setState({ newComment: e.target.value }); } }></textarea>

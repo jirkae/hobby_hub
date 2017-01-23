@@ -68,6 +68,9 @@ body {
       display: block;
     }
   }
+  .active {
+    cursor: pointer;
+  }
 }
 
 .addEventContent {
@@ -117,6 +120,7 @@ body {
 .react-tagsinput {
   padding-top: 7px !important;
   padding-bottom: 1px !important;
+  overflow: hidden;
   //position: relative;
 }
 
@@ -292,4 +296,10 @@ body {
   display: block;
   box-shadow: 0 1px 1px rgba(180, 180, 180, 0.5);
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  body .navbar-nav>li.postadd a {
+    padding: 0;
+  }
 }

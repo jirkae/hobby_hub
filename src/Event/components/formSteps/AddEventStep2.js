@@ -39,7 +39,9 @@ class AddEventStep2 extends Component {
         }
       }
       this.setState({ event: event }, () => {
-        this.setState({ cities: [this.state.event.city] });
+        if (this.state.event.city !== undefined && this.state.event.city.length > 0) {
+          this.setState({ cities: [this.state.event.city] });
+        }
       });
     }
   }

@@ -66,16 +66,19 @@ class AddEvent extends Component {
   }
 
   getCurrentStepContent() {
+    let {event} = this.props;
+    event = Object.assign({}, this.state.event, event);
+
     switch (this.state.step) {
       case 1:
-        return <AddEventStep1 onSubmit={this.handleStep1Submit} event={this.props.event} />;
+        return <AddEventStep1 onSubmit={this.handleStep1Submit} event={event} />;
       case 2:
-        return <AddEventStep2 onSubmit={this.handleStep2Submit} event={this.props.event} />;
+        return <AddEventStep2 onSubmit={this.handleStep2Submit} event={event} />;
       case 3:
-        return <AddEventStep3 onSubmit={this.handleStep3Submit} event={this.props.event} />;
+        return <AddEventStep3 onSubmit={this.handleStep3Submit} event={event} />;
       case 4:
         let successTitle, successText;
-        if (this.props.event === null) {
+        if (event === null) {
           successTitle = "Událost vytvořena";
           successText = "Úspěšně jsme vytvořili vaši událost. Naleznete ji ve výpisu událostí";
         } else {
@@ -96,15 +99,17 @@ class AddEvent extends Component {
   }
 
   render() {
+    const {step} = this.state;
+
     return (
       <div className="row">
         <nav className="addEventNav col-md-6 col-md-offset-3">
           <ul>
-            <li className={this.state.step === 1 ? 'active' : null}>
+            <li onClick={(e) => {if (step > 1) this.handleStep(e, 1)}} className={step >= 1 ? 'active' : null}>
               <FontAwesome name="info-circle"></FontAwesome>
               <small>Základní info</small>
             </li>
-            <li className={this.state.step === 2 ? 'active' : null}>
+            <li onClick={(e) => {if (step > 2) this.handleStep(e, 2)}} className={step >= 2 ? 'active' : null}>
               <FontAwesome name="map-marker"></FontAwesome>
               <small>Lokace</small>
             </li>

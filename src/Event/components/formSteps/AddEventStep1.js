@@ -149,18 +149,24 @@ class AddEventStep1 extends Component {
               <div className="col-md-8">
                 <Row>
                   <Col md={6}>
-                    <Col md={12}>
-                      <FormGroup controlId="eventParticipantsMin" validationState={this.getValidationState('participantsMin')}>
+                    <FormGroup controlId="eventParticipantsMin" validationState={this.getValidationState('participantsMin')}>
+                      <Col md={4} className="text-right">
+                        <ControlLabel className="control-label">min: </ControlLabel>
+                      </Col>
+                      <Col md={8}>
                         <FormControl type="number" value={this.state.event.participantsMin} onChange={(e) => { this.handleFieldChange(e, 'participantsMin') } } />
-                      </FormGroup>
-                    </Col>
+                      </Col>
+                    </FormGroup>
                   </Col>
                   <Col md={6}>
-                    <Col md={12}>
-                      <FormGroup controlId="eventParticipantsMax" validationState={this.getValidationState('participantsMax')}>
+                    <FormGroup controlId="eventParticipantsMax" validationState={this.getValidationState('participantsMax')}>
+                      <Col md={4} className="text-right">
+                        <ControlLabel className="control-label">max: </ControlLabel>
+                      </Col>
+                      <Col md={8}>
                         <FormControl type="number" value={this.state.event.participantsMax} onChange={(e) => { this.handleFieldChange(e, 'participantsMax') } } />
-                      </FormGroup>
-                    </Col>
+                      </Col>
+                    </FormGroup>
                   </Col>
                 </Row>
               </div>

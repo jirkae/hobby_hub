@@ -50,7 +50,7 @@ export function logoutUser(token) {
   };
 }
 
-export function loginUser(user) {
+export function loginUser(user, onSuccess = null) {
   return function (dispatch) {
     return API.postLogin(user)
       .then(response => {
@@ -58,6 +58,9 @@ export function loginUser(user) {
 
         dispatch(loginUserSuccess(response.data));
         dispatch(closeModal());
+        if (onSuccess) {
+          onSuccess(response.data);
+        }
 
       }).catch(error => {
         dispatch(loginUserFailure(user, error))

@@ -4,18 +4,31 @@ import { Link } from 'react-router';
 
 import Panel from './../../../Base/components/layout/Panel';
 import { toggleParticipant, toggleParticipantConfirmation } from './../../actions/eventActionCreators';
+import { openModal } from './../../../Base/actions/modalActionCreators';
+import LoginRegisterModal from './../../../User/components/LoginRegisterModal';
 
 class ParticipantsList extends Component {
     constructor(props) {
         super(props);
         this.handleParticipationClick = this.handleParticipationClick.bind(this);
+        this.toggleParticipant = this.toggleParticipant.bind(this);
     }
 
-    handleParticipationClick(e, id) {
+    handleParticipationClick(e) {
         e.preventDefault();
-        const { toggleParticipant, event, user } = this.props;
+        const { user, openModal } = this.props;
+        if (user.id !== undefined) {
+            this.toggleParticipant(user);
+        } else {
+            openModal(() => { return <LoginRegisterModal onSuccessLogin={this.toggleParticipant}/> });
+        }
+    }
+
+    toggleParticipant(user) {
+        const { event, toggleParticipant } = this.props;
+
         toggleParticipant({
-            userId: id,
+            userId: user.userId,
             eventId: event.id
         }, user.id);
     }
@@ -44,22 +57,18 @@ class ParticipantsList extends Component {
         });
 
         const renderActions = () => {
-            if (user.id !== undefined) {
-                if (amIConfirmed) {
-                    return (<span>Pro odhlášení z události prosím kontaktujte správce</span>);
-                }
-
-                return (
-                    <div>
-                        {amIRequested &&
-                            <p>Stav: čekání na potvrzení</p>
-                        }
-                        <a href="" onClick={(e) => { this.handleParticipationClick(e, user.userId) } }>{amIRequested ? 'Odhlásit se' : 'Přihlásit se'}</a>
-                    </div>
-                );
-            } else {
-                return null;
+            if (amIConfirmed) {
+                return (<span>Pro odhlášení z události prosím kontaktujte správce</span>);
             }
+
+            return (
+                <div>
+                    {amIRequested &&
+                        <p>Stav: čekání na potvrzení</p>
+                    }
+                    <a href="" onClick={this.handleParticipationClick}>{amIRequested ? 'Odhlásit se' : 'Přihlásit se'}</a>
+                </div>
+            );
         };
 
 
@@ -86,7 +95,8 @@ ParticipantsList = connect(
     mapStateToProps,
     {
         toggleParticipant,
-        toggleParticipantConfirmation
+        toggleParticipantConfirmation,
+        openModal
     }
 )(ParticipantsList);
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { NavItem } from 'react-bootstrap';
+import { NavItem, Nav, } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 import { logoutUser } from './../../../../User/actions/userActionCreators';
 import { getLatestEvents } from './../../../../Event/actions/eventActionCreators';
+import {LinkContainer} from "react-router-bootstrap";
 
 class GuestNavRight extends Component {
   constructor(props) {
@@ -22,12 +22,24 @@ class GuestNavRight extends Component {
 
   render() {
     return (
-        <ul className="nav navbar-nav navbar-right">
-          <li role="presentation"><Link role="button" action="push" to={{ pathname: "/myActions" }}>Moje akce</Link></li>
-          <li><Link to={{ pathname: "/profile" }}>Profil</Link></li>
-          <NavItem onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
-          <li className="postadd"><Link className="btn btn-block btn-border btn-post btn-danger" to="/create-event">Přidat akci</Link></li>
-        </ul>
+      <Nav pullRight>
+          <LinkContainer active={false} to={{
+            pathname: '/myActions'
+          }}>
+            <NavItem eventKey={1} role="button">Moje akce</NavItem>
+          </LinkContainer>
+          <LinkContainer active={false} to={{
+            pathname: '/profile'
+          }}>
+            <NavItem eventKey={2} role="button">Profil</NavItem>
+          </LinkContainer>
+          <NavItem eventKey={3} role="button" onClick={this.handleLogoutClick}>Odhlásit se</NavItem>
+          <LinkContainer active={false} to={{
+            pathname: '/create-event'
+          }}>
+            <NavItem eventKey={2} className="postadd"><div className="btn btn-block btn-border btn-post btn-danger">Přidat akci</div></NavItem>
+          </LinkContainer>
+      </Nav>
     )
   }
 }

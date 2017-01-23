@@ -95,7 +95,7 @@ LandingPage.contextTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        interests: store.userReducer.user.interests,
+        interests: store.userReducer.user.interests ? store.userReducer.user.interests : [],
         userId: store.userReducer.user.userId,
         events: store.eventsListReducer.items
     }

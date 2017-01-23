@@ -26,11 +26,12 @@ class LoginForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const {onSuccess} = this.props;
 
     const formData = this.state;
 
     if (formData.email && formData.password) {
-      this.props.dispatch(loginUser(formData))
+      this.props.dispatch(loginUser(formData, onSuccess));
     } else {
       this.setState({
         emailValidationState: formData.email ? 'success' : 'error',
