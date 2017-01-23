@@ -73,7 +73,11 @@ export function registerUser(user) {
 
         dispatch(registerUserSuccess(response.data));
         dispatch(closeModal());
-
+          dispatch(openModal(() => {
+              return <ConfirmationDialog type="NONE">
+                  Registrace úspěšně proběhla. Zkontrolujte prosím svůj e-mail
+              </ConfirmationDialog>
+          }));
       }).catch(error => {
         dispatch(registerUserFailure(user, error))
       });
