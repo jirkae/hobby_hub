@@ -3,9 +3,7 @@ import { Nav, NavItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { openModal } from './../../../actions/modalActionCreators';
 
-import Tabs from "./../Tabs";
-import LoginForm from "./../../../../User/components/LoginForm";
-import RegisterForm from "./../../../../User/components/RegisterForm";
+import LoginRegisterModal from "./../../../../User/components/LoginRegisterModal";
 
 class GuestNavRight extends Component {
   constructor(props) {
@@ -15,18 +13,13 @@ class GuestNavRight extends Component {
   }
 
   handleClick(e) {
-    const tabs = [
-      { label: 'Přihlášení', render: () => <LoginForm /> },
-      { label: 'Registrace', render: () => <RegisterForm /> }
-    ];
-
-    this.props.dispatch(openModal(() => { return <Tabs tabs={tabs} /> }));
+    this.props.dispatch(openModal(() => { return <LoginRegisterModal /> }));
   }
 
   render() {
     return (
       <Nav pullRight>
-        <NavItem role="button" eventKey={5} onClick={event => this.handleClick(event, 0)}>Přihlásit se</NavItem>
+        <NavItem role="button" eventKey={5} onClick={this.handleClick}>Přihlásit se</NavItem>
       </Nav>
     )
   }
