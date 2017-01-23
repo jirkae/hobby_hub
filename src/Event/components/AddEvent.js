@@ -105,11 +105,11 @@ class AddEvent extends Component {
       <div className="row">
         <nav className="addEventNav col-md-6 col-md-offset-3">
           <ul>
-            <li onClick={(e) => {if (step > 1) this.handleStep(e, 1)}} className={step === 1 ? 'active' : null}>
+            <li onClick={(e) => {if (step > 1) this.handleStep(e, 1)}} className={step >= 1 ? 'active' : null}>
               <FontAwesome name="info-circle"></FontAwesome>
               <small>Základní info</small>
             </li>
-            <li onClick={(e) => {if (step > 2) this.handleStep(e, 2)}} className={step === 2 ? 'active' : null}>
+            <li onClick={(e) => {if (step > 2) this.handleStep(e, 2)}} className={step >= 2 ? 'active' : null}>
               <FontAwesome name="map-marker"></FontAwesome>
               <small>Lokace</small>
             </li>

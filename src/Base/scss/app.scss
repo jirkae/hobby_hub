@@ -68,6 +68,9 @@ body {
       display: block;
     }
   }
+  .active {
+    cursor: pointer;
+  }
 }
 
 .addEventContent {
